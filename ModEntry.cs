@@ -36,6 +36,7 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry Wizbo_Character_Squint_1 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_2 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_3 { get; }
+    internal ISpriteEntry TowerDoor {  get; }
     internal IDeckEntry Wizbo_Deck { get; }
     internal IShipEntry MagicTower_Ship { get; }
     internal static IReadOnlyList<Type> Wizbo_StarterCard_Types { get; } = [
@@ -55,7 +56,7 @@ public sealed class ModEntry : SimpleMod
 
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
-
+        typeof(CardVanish)
     ];
     /* We can use an IEnumerable to combine the lists we made above, and modify it if needed
      * Maybe you created a new list for Uncommon cards, and want to add it.
@@ -88,6 +89,7 @@ public sealed class ModEntry : SimpleMod
         Instance = this;
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPExhaust();
+        _= new HPShipAnim();
 
         /* These localizations lists help us organize our mod's text and messages by language.
          * For general use, prefer AnyLocalizations, as that will provide an easier time to potential localization submods that are made for your mod 
@@ -116,7 +118,7 @@ public sealed class ModEntry : SimpleMod
         Wizbo_Character_Squint_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_1.png"));
         Wizbo_Character_Squint_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_2.png"));
         Wizbo_Character_Squint_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_3.png"));
-
+        TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         /* Decks are assigned separate of the character. This is because the game has decks like Trash which is not related to a playable character
          * Do note that Color accepts a HEX string format (like Color("a1b2c3")) or a Float RGB format (like Color(0.63, 0.7, 0.76). It does NOT allow a traditional RGB format (Meaning Color(161, 178, 195) will NOT work) */
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
@@ -250,7 +252,7 @@ public sealed class ModEntry : SimpleMod
         });
         var TowerPartMissiles = Helper.Content.Ships.RegisterPart("TowerPart.Missiles", new PartConfiguration()
         {
-            Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/towermissiles.png")).Sprite
+            Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/towermissilesOpen.png")).Sprite
         });
         var TowerPartCockpit = Helper.Content.Ships.RegisterPart("TowerPart.Cockpit", new PartConfiguration()
         {
@@ -289,7 +291,8 @@ public sealed class ModEntry : SimpleMod
                         {
                             type = PType.missiles,
                             skin = TowerPartMissiles.UniqueName,
-                            damageModifier = PDamMod.none
+                            damageModifier = PDamMod.none,
+                            key = "Gate"
                         },
                         new Part
                         {

@@ -48,7 +48,16 @@ public override List<CardAction> GetActions(State s, Combat c)
                         {
                             temporaryOverride= true
                         },
-                        amount = 2,
+                        amount = 1,
+                        destination = CardDestination.Deck
+                    },
+                    new AAddCard
+                    {
+                        card = new CardFetor
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
                         destination = CardDestination.Deck
                     },
                     new AAddCard
@@ -72,7 +81,16 @@ public override List<CardAction> GetActions(State s, Combat c)
                         {
                             temporaryOverride= true
                         },
-                        amount = 2,
+                        amount = 1,
+                        destination = CardDestination.Deck
+                    },
+                    new AAddCard
+                    {
+                        card = new CardFetor
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
                         destination = CardDestination.Deck
                     },
                     new AAddCard
@@ -96,7 +114,25 @@ public override List<CardAction> GetActions(State s, Combat c)
                         {
                             temporaryOverride= true
                         },
-                        amount = 3,
+                        amount = 1,
+                        destination = CardDestination.Deck
+                    },
+                    new AAddCard
+                    {
+                        card = new CardFetor
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
+                        destination = CardDestination.Deck
+                    },
+                    new AAddCard
+                    {
+                        card = new CardFetor
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
                         destination = CardDestination.Deck
                     },
                     new AAddCard
@@ -105,7 +141,16 @@ public override List<CardAction> GetActions(State s, Combat c)
                         {
                             temporaryOverride= true
                         },
-                        amount = 2,
+                        amount = 1,
+                        destination = CardDestination.Discard
+                    },
+                    new AAddCard
+                    {
+                        card = new CardPestilence
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
                         destination = CardDestination.Discard
                     }
                 };
