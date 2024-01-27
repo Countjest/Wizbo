@@ -1,0 +1,2 @@
+# Wizbo
+CC-Mod
