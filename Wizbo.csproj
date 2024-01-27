@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>AuthorName.DemoMod</RootNamespace>
+		<RootNamespace>CountJest.Wizbo</RootNamespace>
 		<Version>1.0.0</Version>
 		<IsNickelMod>True</IsNickelMod>
 		<IncludedModProjectPaths>i18n;assets</IncludedModProjectPaths>
