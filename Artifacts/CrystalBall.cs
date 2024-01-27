@@ -1,12 +1,12 @@
-﻿using AuthorName.DemoMod.Cards;
+﻿using CountJest.Wizbo.Cards;
 using Nickel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace AuthorName.DemoMod.Artifacts;
+namespace CountJest.Wizbo.Artifacts;
 
-internal sealed class DemoArtifactBookOfTails : Artifact, IDemoArtifact
+internal sealed class CrystalBall : Artifact, IDemoArtifact
 {
     public static void Register(IModHelper helper)
     {
@@ -15,7 +15,7 @@ internal sealed class DemoArtifactBookOfTails : Artifact, IDemoArtifact
             ArtifactType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
-                owner = ModEntry.Instance.DemoMod_Deck.Deck,
+                owner = ModEntry.Instance.Wizbo_Deck.Deck,
                 pools = [ArtifactPool.Common]
             },
             Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/bookoftails.png")).Sprite,

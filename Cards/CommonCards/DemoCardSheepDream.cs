@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace AuthorName.DemoMod.Cards;
+namespace CountJest.Wizbo.Cards;
 
 internal sealed class DemoCardSheepDream : Card, IDemoCard
 {
@@ -13,7 +13,7 @@ internal sealed class DemoCardSheepDream : Card, IDemoCard
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
-                deck = ModEntry.Instance.DemoMod_Deck.Deck,
+                deck = ModEntry.Instance.Wizbo_Deck.Deck,
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },

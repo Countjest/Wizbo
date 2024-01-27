@@ -1,37 +1,51 @@
 {
-  "character": {
-    "DemoCharacter": {
-      "name": "DemoCharacter",
-      "description": "<c=cd6a00>DEMOCHARACTER</c>\nThis is a demo character. <c=boldPink>Am I cool or am I cool?</c>"
-    }
-  },
-  "artifact": {
-    "BookOfTails": {
-      "name": "BOOK OF TAILS",
-      "description": "At start of turn, add a <c=cardtrait>temp</c> <c=card>Fox Tale</c> to your hand."
+    "character": {
+        "Wizbo": {
+            "name": "Wizbo",
+            "description": "<c=412bbe>Wizbo</c>\n The framjificent!"
+        }
     },
-    "Counting": {
-      "name": "COUNTING",
-      "description": "At start of turn, count sheeps. Once you counted 7 sheep, gain 1 <c=status>ENERGY</c> and restart the counter."
-    }
-  },
-  "ship": {
-    "DemoShip": {
-      "name": "DemoShip",
-      "description": "This is a demo ship.\n <c=boldPink>Isn't this cool?</c>"
-    }
-  },
-  "card": {
-    "FoxTale": {
-      "name": "Fox Tale"
+    "artifact": {
+        "BookOfTails": {
+            "name": "BOOK OF TAILS",
+            "description": "At start of turn, add a <c=cardtrait>temp</c> <c=card>Fox Tale</c> to your hand."
+        },
+        "FramjificentCore": {
+            "name": "FramjificentCore",
+            "description": "Draw a card whenever you <c=cardtrait>exhaust</c> a card"
+        }
     },
-    "SheepDream": {
-      "name": "Sheep Dream",
-      "description": {
-        "None": "Attack for set amount = 3. On hit, apply 1 <c=status>BOOST</c>.",
-        "A": "Attack for set amount = 4. On hit, apply 1 <c=status>BOOST</c>.",
-        "B": "Attack for set amount = 5. On hit, apply 2 <c=status>BOOST</c>."
-      }
+    "ship": {
+        "Tower": {
+            "name": "Tower",
+            "description": "This is a Framjificent ship"
+        }
+    },
+    "card": {
+        "CrocusPocus": {
+            "name": "Crocus Pocus"
+        },
+        "Ponder": {
+            "name": "Ponder"
+        },
+        "Fetor": {
+            "name": "Fetor"
+        },
+        "Pestilence": {
+            "name": "Pestilence",
+            "description": {
+                "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
+            }
+        },
+        "PocusCrocus": {
+            "name": "Pocus Crocus",
+            "description": {
+                "None": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                "A": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                "B": "Add 3 <c=card>Fetor</c> to your Draw pile, and 2 <c=card>Pestilence</c> to your Discard."
+            }
+        }
     }
-  }
 }
