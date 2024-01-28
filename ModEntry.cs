@@ -54,10 +54,11 @@ public sealed class ModEntry : SimpleMod
         typeof(CardKoolahLimpoo)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
-
+        typeof(AbraKadoozle)
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
-        typeof(CardVanish)
+        typeof(CardVanish),
+        typeof(CardGreaterLesserBeam)
     ];
     /* We can use an IEnumerable to combine the lists we made above, and modify it if needed
      * Maybe you created a new list for Uncommon cards, and want to add it.

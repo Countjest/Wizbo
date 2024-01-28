@@ -29,7 +29,7 @@ internal sealed class CrystalBall : Artifact, IDemoArtifact
         {
             new TTCard
             {
-                card = new DemoCardFoxTale
+                card = new AbraKadoozle
                 {
                     temporaryOverride = true
                 }
@@ -44,7 +44,7 @@ internal sealed class CrystalBall : Artifact, IDemoArtifact
         c.QueueImmediate([
             new AAddCard
             {
-                card = new DemoCardFoxTale
+                card = new AbraKadoozle
                 {
                     temporaryOverride = true
                 },

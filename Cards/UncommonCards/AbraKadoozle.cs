@@ -9,12 +9,12 @@ namespace CountJest.Wizbo.Cards;
 /* The Card's class name IS IMPORTANT, however. This is what the game will ask for when trying to get a card.
  * If your card's class shares the same name as a vanilla card, or shares it with a modded card, the game can't keep both, and will only use one
  * For this reason, we recommend to give a unique name that is unlikely to be repeated by others, such as incorporating CountJest or ModName to it */
-internal sealed class DemoCardFoxTale : Card, IDemoCard
+internal sealed class AbraKadoozle : Card, IDemoCard
 {
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("FoxTale", new()
+        helper.Content.Cards.RegisterCard("AbraKadoozle", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -23,13 +23,13 @@ internal sealed class DemoCardFoxTale : Card, IDemoCard
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
 
                 /* The vanilla rarities are Rarity.common, Rarity.uncommon, Rarity.rare */
-                rarity = Rarity.common,
+                rarity = Rarity.uncommon,
 
                 /* Some vanilla cards don't upgrade, some only upgrade to A, but most upgrade to either A or B */
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
             /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "FoxTale", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "AbraKadoozle", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
@@ -37,7 +37,8 @@ internal sealed class DemoCardFoxTale : Card, IDemoCard
         CardData data = new CardData()
         {
             /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
-            cost = 1,
+            cost = 2,
+            exhaust = upgrade == Upgrade.A ? false : true,
 
             /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
         };
@@ -54,17 +55,16 @@ internal sealed class DemoCardFoxTale : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new AAttack()
-                    {
-                        damage = GetDmg(s, 1)
-                    },
-                    /* AStatus is a card action that gives the target a status and, unlike attacks, its effect is unavoidable
-                     * Of Note: AStatuses will default to targetPlayer = false, If what you want is for the card to give the player a status, you want to set it targetPlayer = true
-                     * Other types of CardActions like AMove, AHurt or AHeal operate as such too, so it's important to remember */
                     new AStatus()
                     {
-                        status = Status.shield,
-                        statusAmount = 1,
+                        status = Status.boost,
+                        statusAmount = 2,
+                        targetPlayer = false
+                    },
+                    new AStatus()
+                    {
+                        status = Status.boost,
+                        statusAmount = 2,
                         targetPlayer = true
                     },
                 };
@@ -73,33 +73,36 @@ internal sealed class DemoCardFoxTale : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new AAttack()
+                    new AStatus()
                     {
-                        damage = GetDmg(s, 2)
+                        status = Status.boost,
+                        statusAmount = 2,
+                        targetPlayer = false
                     },
-                    new AHeal()
+                    new AStatus()
                     {
-                        healAmount = 1,
-                        targetPlayer = true,
-                        /* Make sure to flag AHeal card actions as canRunAfterKill = true, unless you want people to wonder why a healing card didn't heal them */
-                        canRunAfterKill = true
-                    }
+                        status = Status.boost,
+                        statusAmount = 2,
+                        targetPlayer = true
+                    },
                 };
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AAttack()
+                    new AStatus()
                     {
-                        damage = GetDmg(s, 1),
-                        /* AAttacks can have flags indicating some extra effect. In this case, stunEnemy = true will stun the ship part hit. */
-                        stunEnemy = true
+                        status = Status.boost,
+                        statusAmount = 3,
+                        targetPlayer = false
                     },
-                    new ADrawCard()
+                    new AStatus()
                     {
-                        count = 2
-                    }
+                        status = Status.boost,
+                        statusAmount = 3,
+                        targetPlayer = true
+                    },
                 };
                 actions = cardActionList3;
                 break;

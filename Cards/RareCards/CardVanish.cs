@@ -26,6 +26,7 @@ internal sealed class CardVanish: Card, IDemoCard
         CardData data = new CardData()
         {
             cost = 3,
+            exhaust = true,
         };
         return data;
     }
