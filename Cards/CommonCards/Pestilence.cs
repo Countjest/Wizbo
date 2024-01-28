@@ -1,9 +1,9 @@
-﻿using Nickel;
+﻿using FMOD.Studio;
+using Nickel;
 using OneOf.Types;
 using System.Collections.Generic;
 using System.Reflection;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
 /* Like other namespaces, this can be named whatever
  * However it's recommended that you follow the structure defined by ModEntry of <AuthorName>.<ModName> or <AuthorName>.<ModName>.Cards*/
 namespace CountJest.Wizbo.Cards;
@@ -29,7 +29,7 @@ internal sealed class CardPestilence : Card, IDemoCard
 
                 /* Some vanilla cards don't upgrade, some only upgrade to A, but most upgrade to either A or B */
                 upgradesTo = [],
-                
+
                 dontOffer = true
             },
             /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
@@ -89,18 +89,15 @@ internal sealed class CardPestilence : Card, IDemoCard
     }
     public override void OnDraw(State s, Combat c)
     {
-        s.RemoveCardFromWhereverItIs(uuid);
-        c.SendCardToExhaust(s, this);
-        c.QueueImmediate
-            ([
-                new AStatus()
-                {
-                    status = Status.corrode,
-                    statusAmount = 1,
-                    targetPlayer = false
-                },
-            ]);
-                
+        c.Queue(new AStatus() // We queue the status first, because otherwise it visually becomes funky. You can try putting this at the end, it doesn't crash but it looks quite bad in-game
+        {
+            status = Status.corrode,
+            statusAmount = 1,
+            targetPlayer = false
+        });
+        c.Queue(new ExhaustCardAction() // We queue our custom action
+        {
+            cardId = uuid
+        });
     }
-    
 }
