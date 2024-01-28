@@ -32,26 +32,34 @@
         "Ponder": {
             "name": "Ponder"
         },
-        "Miasma": {
-            "name": "Miasma",
+        "Kachow": {
+            "name": "Kachow",
             "description": {
-                "None": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
-                "A": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
-                "B": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>."
+                "None": "Attack for X \n X = your highest status.",
+                "A": "Attack for X \n X = your highest status.",
+                "B": "Attack for X \n Attack for X \n X = your highest status."
             },
-            "Toxic": {
-                "name": "Toxic",
+            "Miasma": {
+                "name": "Miasma",
                 "description": {
-                    "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                    "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                    "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
+                    "None": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
+                    "A": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
+                    "B": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>."
                 },
-                "PocusCrocus": {
-                    "name": "Pocus Crocus",
+                "Toxic": {
+                    "name": "Toxic",
                     "description": {
-                        "None": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
-                        "A": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
-                        "B": "Add 3 <c=card>Fetor</c> to your Draw pile, and 2 <c=card>Pestilence</c> to your Discard."
+                        "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                        "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                        "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
+                    },
+                    "PocusCrocus": {
+                        "name": "Pocus Crocus",
+                        "description": {
+                            "None": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                            "A": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                            "B": "Add 3 <c=card>Fetor</c> to your Draw pile, and 2 <c=card>Pestilence</c> to your Discard."
+                        }
                     }
                 }
             }

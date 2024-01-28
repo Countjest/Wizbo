@@ -1,14 +1,16 @@
 ﻿using Nickel;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class CardKoolahLimpoo : Card, IDemoCard
+internal sealed class CardKachow : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("KoolahLimpoo", new()
+        helper.Content.Cards.RegisterCard("Kachow", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -17,36 +19,30 @@ internal sealed class CardKoolahLimpoo : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "KoolahLimpoo", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Kachow", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.A ? 0 : 1,
-            flippable = true,
+            cost = upgrade == Upgrade.A ? 1 : 2,
+            description = ModEntry.Instance.Localizations.Localize(["card", "Kachow", "description", upgrade.ToString()])
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        var max = s.ship.statusEffects.Values.Max();
         List<CardAction> actions = new();
         switch (upgrade)
         {
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new AStatus()
+                    new AAttack()
                     {
-                        status = Status.hermes,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    },
-                    new AMove()
-                    {
-                        targetPlayer = true,
-                        dir = 1,
+                    damage = GetDmg(s, max)
                     }
                 };
                 actions = cardActionList1;
@@ -54,16 +50,9 @@ internal sealed class CardKoolahLimpoo : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new AStatus()
+                    new AAttack()
                     {
-                        status = Status.hermes,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    },
-                    new AMove()
-                    {
-                        targetPlayer = true,
-                        dir = 1,
+                    damage = GetDmg(s, max)
                     }
                 };
                 actions = cardActionList2;
@@ -71,16 +60,13 @@ internal sealed class CardKoolahLimpoo : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AStatus()
+                    new AAttack()
                     {
-                        status = Status.hermes,
-                        statusAmount = 2,
-                        targetPlayer = true,
+                    damage = GetDmg(s, max)
                     },
-                    new AMove()
+                    new AAttack()
                     {
-                        targetPlayer = true,
-                        dir = 1,
+                    damage = GetDmg(s, max)
                     }
                 };
                 actions = cardActionList3;

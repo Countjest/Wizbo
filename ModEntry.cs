@@ -51,7 +51,8 @@ public sealed class ModEntry : SimpleMod
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
         typeof(CardMiasma),
         typeof(CardToxic),
-        typeof(CardKoolahLimpoo)
+        typeof(CardKoolahLimpoo),
+        typeof(CardKachow)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(AbraKadoozle)
@@ -321,6 +322,7 @@ public sealed class ModEntry : SimpleMod
                 },
                 artifacts =
                 {
+                    new ReinforcedGate(),
                     new FriendlyHearth(),
                     new FramjificentCore()
                 }
@@ -328,7 +330,9 @@ public sealed class ModEntry : SimpleMod
             ExclusiveArtifactTypes = new HashSet<Type>()
             {
                 /* If you make some artifacts that you want only this ship to encounter in a run, here is where you place them */
-                typeof(FramjificentCore)
+                typeof(FramjificentCore),
+                typeof(FriendlyHearth),
+                typeof(ReinforcedGate)
             },
 
             UnderChassisSprite = TowerSpriteChassis,
