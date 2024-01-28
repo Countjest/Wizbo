@@ -2,7 +2,7 @@
     "character": {
         "Wizbo": {
             "name": "Wizbo",
-            "description": "<c=412bbe>Wizbo</c>\n The framjificent!"
+            "description": "<c=7d5bff>Wizbo</c>\n The framjificent!"
         }
     },
     "artifact": {
@@ -13,6 +13,10 @@
         "FramjificentCore": {
             "name": "FramjificentCore",
             "description": "Draw a card whenever you <c=cardtrait>exhaust</c> a card"
+        },
+        "FriendlyHearth": {
+            "name": "FriendlyHearth",
+            "description": "Your ship <c=downside>overheats</c> at 4 instead of 3."
         }
     },
     "ship": {
@@ -28,23 +32,28 @@
         "Ponder": {
             "name": "Ponder"
         },
-        "Fetor": {
-            "name": "Fetor"
-        },
-        "Pestilence": {
-            "name": "Pestilence",
+        "Miasma": {
+            "name": "Miasma",
             "description": {
-                "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
-            }
-        },
-        "PocusCrocus": {
-            "name": "Pocus Crocus",
-            "description": {
-                "None": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
-                "A": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
-                "B": "Add 3 <c=card>Fetor</c> to your Draw pile, and 2 <c=card>Pestilence</c> to your Discard."
+                "None": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
+                "A": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
+                "B": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>."
+            },
+            "Toxic": {
+                "name": "Toxic",
+                "description": {
+                    "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                    "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
+                    "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
+                },
+                "PocusCrocus": {
+                    "name": "Pocus Crocus",
+                    "description": {
+                        "None": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                        "A": "Add 2 <c=card>Fetor</c> to your Draw pile, and one <c=card>Pestilence</c> to your Discard.",
+                        "B": "Add 3 <c=card>Fetor</c> to your Draw pile, and 2 <c=card>Pestilence</c> to your Discard."
+                    }
+                }
             }
         }
     }

@@ -49,8 +49,9 @@ public sealed class ModEntry : SimpleMod
      * We recommend having a Starter Cards list, a Common Cards list, an Uncommon Cards list, and a Rare Cards list
      * However you can be more detailed, or you can be more loose, if that's your style */
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
-        typeof(CardFetor),
-        typeof(CardPestilence)
+        typeof(CardMiasma),
+        typeof(CardToxic),
+        typeof(CardKoolahLimpoo)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
 
@@ -77,7 +78,8 @@ public sealed class ModEntry : SimpleMod
         typeof(CrystalBall)
     ];
     internal static IReadOnlyList<Type> TowerShip_Artifact_Types { get; } = [
-        typeof(FramjificentCore)
+        typeof(FramjificentCore),
+        typeof(FriendlyHearth)
     ];
     internal static IEnumerable<Type> Wizbo_AllArtifact_Types
         => Wizbo_CommonArtifact_Types
@@ -89,7 +91,7 @@ public sealed class ModEntry : SimpleMod
         Instance = this;
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPExhaust();
-        _= new HPShipAnim();
+        _ = new HPShipAnim();
 
         /* These localizations lists help us organize our mod's text and messages by language.
          * For general use, prefer AnyLocalizations, as that will provide an easier time to potential localization submods that are made for your mod 
@@ -129,11 +131,11 @@ public sealed class ModEntry : SimpleMod
                  * It is used as the deck's rarity 'shine'
                  * If a playable character uses this deck, the character Name will use this color
                  * If a playable character uses this deck, the character mini panel will use this color */
-                color = new Color("412bbe"),
+                color = new Color("7d5bff"),
 
                 /* This color is for the card name in-game
                  * Make sure it has a good contrast against the CardFrame, and take rarity 'shine' into account as well */
-                titleColor = new Color("deae83")
+                titleColor = new Color("d4b55b")
             },
             DefaultCardArt = Wizbo_Character_CardBackground.Sprite,
             BorderSprite = Wizbo_Character_CardFrame.Sprite,
@@ -318,7 +320,7 @@ public sealed class ModEntry : SimpleMod
                 },
                 artifacts =
                 {
-                    new ShieldPrep(),
+                    new FriendlyHearth(),
                     new FramjificentCore()
                 }
             },
