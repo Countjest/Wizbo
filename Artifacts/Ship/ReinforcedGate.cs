@@ -15,7 +15,7 @@ internal sealed class ReinforcedGate : Artifact, IDemoArtifact
                 owner = Deck.colorless,
                 pools = [ArtifactPool.EventOnly]
             },
-            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/counting.png")).Sprite,
+            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/ReinforcedGate.png")).Sprite,
             Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ReinforcedGate", "name"]).Localize,
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ReinforcedGate", "description"]).Localize
         });

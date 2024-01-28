@@ -15,7 +15,7 @@ internal sealed class FramjificentCore : Artifact, IDemoArtifact
                 owner = Deck.colorless,
                 pools = [ArtifactPool.Common]
             },
-            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/counting.png")).Sprite,
+            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/FramjificentCore.png")).Sprite,
             Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FramjificentCore", "name"]).Localize,
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FramjificentCore", "description"]).Localize
         });

@@ -15,7 +15,7 @@ internal sealed class FriendlyHearth : Artifact, IDemoArtifact
                 owner = Deck.colorless,
                 pools = [ArtifactPool.Common]
             },
-            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/counting.png")).Sprite,
+            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/FriendlyHearth.png")).Sprite,
             Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FriendlyHearth", "name"]).Localize,
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FriendlyHearth", "description"]).Localize
         });
