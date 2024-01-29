@@ -33,7 +33,11 @@ internal sealed class CardKachow : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        var max = s.ship.statusEffects.Values.Max();
+        var max = 0;
+
+        if (s.route is Combat combat && s.ship.statusEffects.Values != null)
+            max = s.ship.statusEffects.Values.Max();
+        
         List<CardAction> actions = new();
         switch (upgrade)
         {

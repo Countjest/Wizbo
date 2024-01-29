@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace CountJest.Wizbo
 {
-    internal sealed class HPExhaust
+    internal sealed class HPCoreExhaust
     {
-        public HPExhaust()
+        public HPCoreExhaust()
         {
             ModEntry.Instance.Harmony.Patch(
             original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToExhaust)),
-            postfix: new HarmonyMethod(GetType(), nameof(HPExhaust.SendCardToExhaust)));
+            postfix: new HarmonyMethod(GetType(), nameof(HPCoreExhaust.SendCardToExhaust1)));
         }
-        public static void SendCardToExhaust(Combat __instance, State s, Card card)
+        public static void SendCardToExhaust1(Combat __instance, State s, Card card)
         {
-            var artifact = s.EnumerateAllArtifacts().OfType<FramjificentCore>().FirstOrDefault();
-            if (artifact is null)
+            var artifact1 = s.EnumerateAllArtifacts().OfType<FramjificentCore>().FirstOrDefault();
+            if (artifact1 is null)
                 return;
             __instance.Queue(new ADrawCard()
             {
-                artifactPulse = artifact.Key(),
+                artifactPulse = artifact1.Key(),
                 count = 1,
             });
-
         }
     }
 }

@@ -38,18 +38,8 @@ internal sealed class CardVanish: Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new ADrawCard
-                    {
-                    count = 2,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.shield,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    }
+                    new VanishCardAction()
                 };
-                actions = cardActionList1;
                 break;
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()

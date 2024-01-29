@@ -44,6 +44,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 Upgrade.B => 2,
                 _ => 2
             },
+            description = ModEntry.Instance.Localizations.Localize(["card", "GreaterLesserBeam", "description", upgrade.ToString()])
             /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
             /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
         };
@@ -51,7 +52,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        int Bonus = c.otherShip.Get(Status.heat) + upgrade == Upgrade.B ? c.otherShip.Get(Status.shield) : 0;
+        var Bonus = 0;
+        if (s.route is Combat != false)
+            Bonus = (c.otherShip.Get(Status.heat) + (upgrade == Upgrade.B ? c.otherShip.Get(Status.shield) : 0));
         /* The meat of the card, this is where we define what a card does, and some would say the most fun part of modding Cobalt Core happens here! */
         List<CardAction> actions = new();
         /* Since we want to have different actions for each Upgrade, we use a switch that covers the Upgrade paths we've defined */
