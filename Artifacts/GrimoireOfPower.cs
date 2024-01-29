@@ -20,9 +20,9 @@ internal sealed class GrimoireOfPower : Artifact, IDemoArtifact
                 owner = ModEntry.Instance.Wizbo_Deck.Deck,
                 pools = [ArtifactPool.Common],
             },
-            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/FramjificentGrimoirev1.png")).Sprite,
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FramjificentGrimoirev1", "name"]).Localize,
-            Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "FramjificentGrimoirev1", "description"]).Localize
+            Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("assets/artifacts/GrimoireOfPower.png")).Sprite,
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "GrimoireOfPower", "name"]).Localize,
+            Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "GrimoireOfPower", "description"]).Localize
         });
     }
     public override void OnTurnStart(State s, Combat c)

@@ -17,6 +17,18 @@
         "FriendlyHearth": {
             "name": "FriendlyHearth",
             "description": "Your ship <c=downside>overheats</c> at 4 instead of 3."
+        },
+        "GrimoireOfPower": {
+            "name": "GrimoireOfPower",
+            "description": "Gain 1 <c=status>Boost<c/> every third turn"
+        },
+        "GrimoireOfSpeed": {
+            "name": "GrimoireOfSpeed",
+            "description": "Draw 1 card every 4th turn"
+        },
+        "EtherealGrimoire": {
+            "name": "EtherealGrimoire",
+            "description": "Gain 1 <c=status>Overdrive<c/> when you <c=cardtrait>exhaust</c> a card"
         }
     },
     "ship": {
