@@ -2,10 +2,11 @@
 using Nickel;
 using System.Collections.Generic;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class CardVanish: Card, IDemoCard
+internal sealed class CardVanish : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
@@ -27,54 +28,59 @@ internal sealed class CardVanish: Card, IDemoCard
         {
             cost = 3,
             exhaust = true,
+            description = ModEntry.Instance.Localizations.Localize(["card", "Vanish", "description", upgrade.ToString()])
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        List<CardAction> actions = new();
-        switch (upgrade)
+        List<Ship> ships = [s.ship];
         {
-            case Upgrade.None:
-                List<CardAction> cardActionList1 = new List<CardAction>()
-                {
-                    new VanishCardAction()
-                };
-                break;
-            case Upgrade.A:
-                List<CardAction> cardActionList2 = new List<CardAction>()
-                {
-                    new ADrawCard
-                    {
-                    count = 3,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.shield,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    }
-                };
-                actions = cardActionList2;
-                break;
-            case Upgrade.B:
-                List<CardAction> cardActionList3 = new List<CardAction>()
-                {
-                    new ADrawCard
-                    {
-                    count = 2,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.shield,
-                        statusAmount = 2,
-                        targetPlayer = true,
-                    }
-                };
-                actions = cardActionList3;
-                break;
+            if (upgrade == Upgrade.B)
+            {
+                ships.Add(c.otherShip);
+            }
         }
+
+        List<CardAction> actions = [];
+        foreach (var ship in ships)
+            for (var partIndex = 0; partIndex < ship.parts.Count; partIndex++)
+                if (ship.parts[partIndex].type != PType.empty)
+                    actions.Add(new AVanishPart
+                    {
+                        TargetPlayer = ship.isPlayerShip,
+                        WorldX = ship.x + partIndex,
+                        omitFromTooltips = true,
+                    });
         return actions;
+    }
+    public sealed class AVanishPart : CardAction
+    {
+        [JsonProperty]
+        public required bool TargetPlayer;
+
+        [JsonProperty]
+        public required int WorldX;
+        public override void Begin(G g, State s, Combat c)
+        {
+            base.Begin(g, s, c);
+            timer = 0;
+
+            var ship = TargetPlayer ? s.ship : c.otherShip;
+            if (ship.GetPartAtWorldX(WorldX) is not { } part)
+                return;
+            foreach (var partIndex in ship.parts)
+            {
+                if (part.type != PType.cockpit)
+                {
+                    part.type = PType.empty;
+                }
+                if (part.skin != "parts/empty.png")
+                {
+                    part.skin = "parts/empty.png";
+                }
+            }
+        }
     }
 }
 
