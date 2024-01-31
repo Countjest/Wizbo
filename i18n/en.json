@@ -89,6 +89,14 @@
                 "A": "Attack for X \n X = Enemy ship's <c=status>Heat<c/>",
                 "B": "Attack for X \n X = Enemy ship's <c=status>Heat<c/>"
             }
+        },
+        "Vanish": {
+            "name": "Vanish",
+            "description": {
+                "None": "Im in hell.",
+                "A": "Im in hell.",
+                "B": "Im in hell."
+            }
         }
     }
 }
