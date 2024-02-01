@@ -29,6 +29,10 @@
         "EtherealGrimoire": {
             "name": "EtherealGrimoire",
             "description": "Gain 1 <c=status>Overdrive<c/> when you <c=cardtrait>exhaust</c> a card"
+        },
+        "ParadoxGrimoire": {
+            "name": "ParadoxGrimoire",
+            "description": "When you <c=cardtrait>exhaust</c> a card that is NOT 0 cost <c=cardtrait>AddCard</c> add a copy of it into your discard and draw piles"
         }
     },
     "ship": {
@@ -96,6 +100,14 @@
                 "None": "Im in hell.",
                 "A": "Im in hell.",
                 "B": "Im in hell."
+            }
+        },
+        "KablooiePachinko": {
+            "name": "KablooiePachinko",
+            "description": {
+                "None": null,
+                "A": null,
+                "B": "Turn all Midrow objects into FireMines."
             }
         }
     }

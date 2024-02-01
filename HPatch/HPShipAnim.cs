@@ -27,8 +27,8 @@ namespace CountJest.Wizbo
                 Spr? id = ModEntry.Instance.TowerDoor.Sprite;
                 Part bay = __instance.parts[i];
                 Vec bayPos = v + worldPos + new Vec((bay.xLerped ?? ((double)i)) * 16.0, -32.0 + (__instance.isPlayerShip ? bay.offset.y : (1.0 + (0.0 - bay.offset.y)))) + new Vec(-1.0, -1.0);
-                Draw.Sprite(id, (bayPos.x+bay.pulse*7), bayPos.y);
-                Draw.Sprite(id, (bayPos.x+bay.pulse*(-7)), bayPos.y, flipX:true);
+                Draw.Sprite(id, (bayPos.x + bay.pulse * 2), (bayPos.y + +bay.pulse * (3)));
+                Draw.Sprite(id, (bayPos.x+bay.pulse*(-2)), (bayPos.y+ + bay.pulse * (-3)), flipX:true);
                 
             }
 

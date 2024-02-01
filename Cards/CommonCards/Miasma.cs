@@ -130,7 +130,7 @@ internal sealed class CardMiasma : Card, IDemoCard
                 new AStatus()
                 {
                     status = Status.heat,
-                    statusAmount = 3,
+                    statusAmount = 2,
                     targetPlayer = false
                 }
             ]);

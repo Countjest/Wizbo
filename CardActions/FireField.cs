@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using CountJest.Wizbo;
 using FSPRO;
+using Nickel;
 
 public class AFireField : CardAction
 {
@@ -9,7 +13,7 @@ public class AFireField : CardAction
         foreach (StuffBase item in c.stuff.Values.ToList())
         {
             c.stuff.Remove(item.x);
-            SpaceMine value = new SpaceMine
+            FireMine value = new FireMine
             {
                 x = item.x,
                 xLerped = item.xLerped,
@@ -38,9 +42,5 @@ public class AFireField : CardAction
             new TTGlossary("action.medusaField")
         };
     }
-
-    public override Icon? GetIcon(State s)
-    {
-        return new Icon(Spr.icons_medusaField, null, Colors.textMain);
-    }
+    public static Spr FireMinespr { get; }
 }

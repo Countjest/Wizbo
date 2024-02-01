@@ -34,6 +34,7 @@ internal sealed class GrimoireOfPower : Artifact, IDemoArtifact
         {
             c.QueueImmediate(new AStatus()
             {
+                status = Status.boost,
                 statusAmount = 1,
                 targetPlayer = true
             });

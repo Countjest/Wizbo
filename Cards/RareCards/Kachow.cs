@@ -16,7 +16,7 @@ internal sealed class CardKachow : Card, IDemoCard
             Meta = new()
             {
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
-                rarity = Rarity.common,
+                rarity = Rarity.rare,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
             Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Kachow", "name"]).Localize
@@ -27,17 +27,29 @@ internal sealed class CardKachow : Card, IDemoCard
         CardData data = new CardData()
         {
             cost = upgrade == Upgrade.A ? 1 : 2,
+            exhaust = upgrade == Upgrade.A ? false : true,
             description = ModEntry.Instance.Localizations.Localize(["card", "Kachow", "description", upgrade.ToString()])
+
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        var max = 0;
+        int max = 0;
+        if (s.ship.statusEffects.Values.Count > 0)
+            if (s.route is Combat)
+                max = s.ship.statusEffects.Values.Max();
+            else 
+            {
+            }
+        int max2 = 0;
+        if (s.route is Combat)
+            if (c.otherShip.statusEffects.Values.Count > 0)
+                max2 = s.ship.statusEffects.Values.Max();
+            else
+            {
+            }
 
-        if (s.route is Combat combat && s.ship.statusEffects.Values != null)
-            max = s.ship.statusEffects.Values.Max();
-        
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -56,7 +68,7 @@ internal sealed class CardKachow : Card, IDemoCard
                 {
                     new AAttack()
                     {
-                    damage = GetDmg(s, max)
+                    damage = GetDmg(s, max),
                     }
                 };
                 actions = cardActionList2;
@@ -66,12 +78,8 @@ internal sealed class CardKachow : Card, IDemoCard
                 {
                     new AAttack()
                     {
-                    damage = GetDmg(s, max)
+                    damage = GetDmg(s, max + max2)
                     },
-                    new AAttack()
-                    {
-                    damage = GetDmg(s, max)
-                    }
                 };
                 actions = cardActionList3;
                 break;

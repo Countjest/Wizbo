@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace CountJest.Wizbo
 {
-    internal sealed class HPGrimoireExhaust
+    internal sealed class HPAGrimoireExhaust
     {
-        public HPGrimoireExhaust()
+        public HPAGrimoireExhaust()
         {
             ModEntry.Instance.Harmony.Patch(
             original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToExhaust)),
-            postfix: new HarmonyMethod(GetType(), nameof(HPGrimoireExhaust.SendCardToExhaust2)));
+            postfix: new HarmonyMethod(GetType(), nameof(HPAGrimoireExhaust.SendCardToExhaust3)));
         }
-        public static void SendCardToExhaust2(Combat __instance, State s, Card card)
+        public static void SendCardToExhaust3(Combat __instance, State s, Card card)
         {
-            var artifact2 = s.EnumerateAllArtifacts().OfType<EtherealGrimoire>().FirstOrDefault();
-            if (artifact2 is null)
+            var artifact3 = s.EnumerateAllArtifacts().OfType<AegisGrimoire>().FirstOrDefault();
+            if (artifact3 is null)
                 return;
             __instance.Queue(new AStatus()
             {
-                artifactPulse = artifact2.Key(),
-                status = Status.overdrive,
+                artifactPulse = artifact3.Key(),
+                status = Status.shield,
                 statusAmount = 1,
                 targetPlayer = true
             });

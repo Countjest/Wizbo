@@ -37,11 +37,11 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry Wizbo_Character_Squint_1 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_2 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_3 { get; }
-    internal ISpriteEntry TowerDoor {  get; }
+    internal ISpriteEntry TowerDoor { get; }
     internal ISpriteEntry SEmpty { get; }
     internal IDeckEntry Wizbo_Deck { get; }
     internal IShipEntry MagicTower_Ship { get; }
-    internal ISpriteEntry FireMine {  get; }
+    internal ISpriteEntry FireMinespr { get; }
     internal static IReadOnlyList<Type> Wizbo_StarterCard_Types { get; } = [
         /* Add more starter cards here if you'd like. */
         typeof(CardPocusCrocus),
@@ -54,14 +54,14 @@ public sealed class ModEntry : SimpleMod
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
         typeof(CardMiasma),
         typeof(CardToxic),
-        typeof(CardKoolahLimpoo),
-        typeof(CardKachow)
+        typeof(CardKoolahLimpoo)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
-        typeof(AbraKadoozle)
+        typeof(AbraKadoozle),
+        typeof(KablooiePachinko)
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
-        typeof(CardVanish),
+        typeof(CardKachow),
         typeof(CardGreaterLesserBeam)
     ];
     /* We can use an IEnumerable to combine the lists we made above, and modify it if needed
@@ -81,8 +81,10 @@ public sealed class ModEntry : SimpleMod
     /* We'll organize our artifacts the same way: making lists and then feed those to an IEnumerable */
     internal static IReadOnlyList<Type> Wizbo_CommonArtifact_Types { get; } = [
         typeof(GrimoireOfPower),
+        typeof(AegisGrimoire),
         typeof(GrimoireOfSpeed),
-        typeof(EtherealGrimoire)
+        typeof(EtherealGrimoire),/*Boss*/
+        typeof(ParadoxGrimoire)/*Boss*/
     ];
     internal static IReadOnlyList<Type> TowerShip_Artifact_Types { get; } = [
         typeof(FramjificentCore),
@@ -101,6 +103,9 @@ public sealed class ModEntry : SimpleMod
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPCoreExhaust();
         _ = new HPGrimoireExhaust();
+        _ = new HPAGrimoireExhaust();
+        _ = new HPPGrimoireExhaust();
+        _ = new HPArtifactBlacklist();
         _ = new HPShipAnim();
 
         /* These localizations lists help us organize our mod's text and messages by language.
@@ -114,6 +119,7 @@ public sealed class ModEntry : SimpleMod
         this.Localizations = new MissingPlaceholderLocalizationProvider<IReadOnlyList<string>>(
             new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(this.AnyLocalizations)
         );
+
 
         /* Assigning our ISpriteEntry objects manually. This is the easiest way to do it when starting out!
          * Of note: GetRelativeFile is case sensitive. Double check you've written the file names correctly */
@@ -132,7 +138,7 @@ public sealed class ModEntry : SimpleMod
         Wizbo_Character_Squint_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_3.png"));
         TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
-        FireMine = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
+        FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
         /* Decks are assigned separate of the character. This is because the game has decks like Trash which is not related to a playable character
          * Do note that Color accepts a HEX string format (like Color("a1b2c3")) or a Float RGB format (like Color(0.63, 0.7, 0.76). It does NOT allow a traditional RGB format (Meaning Color(161, 178, 195) will NOT work) */
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
@@ -352,3 +358,5 @@ public sealed class ModEntry : SimpleMod
         });
     }
 }
+
+
