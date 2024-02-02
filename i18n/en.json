@@ -78,6 +78,9 @@
         "KoolahLimpoo": {
             "name": "KoolahLimpoo"
         },
+        "Hashakalah": {
+            "name": "Hashakalah"
+        },
         "PocusCrocus": {
             "name": "Pocus Crocus",
             "description": {
@@ -105,8 +108,8 @@
         "KablooiePachinko": {
             "name": "KablooiePachinko",
             "description": {
-                "None": null,
-                "A": null,
+                "None": "Spawn one <c=card>Firemine<c/> from your misslebay",
+                "A": "Spawn three <c=card>Firemine<c/> from your misslebay",
                 "B": "Turn all Midrow objects into FireMines."
             }
         }

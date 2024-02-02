@@ -54,15 +54,17 @@ public sealed class ModEntry : SimpleMod
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
         typeof(CardMiasma),
         typeof(CardToxic),
-        typeof(CardKoolahLimpoo)
+        typeof(CardKoolahLimpoo),
+        typeof(CardHashakalah)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
-        typeof(AbraKadoozle),
-        typeof(KablooiePachinko)
+        typeof(CardAbraKadoozle),
+        typeof(CardKablooiePachinko)
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
         typeof(CardKachow),
-        typeof(CardGreaterLesserBeam)
+        typeof(CardGreaterLesserBeam),
+        typeof(CardVanish)
     ];
     /* We can use an IEnumerable to combine the lists we made above, and modify it if needed
      * Maybe you created a new list for Uncommon cards, and want to add it.
@@ -86,6 +88,7 @@ public sealed class ModEntry : SimpleMod
         typeof(EtherealGrimoire),/*Boss*/
         typeof(ParadoxGrimoire)/*Boss*/
     ];
+    /*Ship starting artifacts*/
     internal static IReadOnlyList<Type> TowerShip_Artifact_Types { get; } = [
         typeof(FramjificentCore),
         typeof(FriendlyHearth),

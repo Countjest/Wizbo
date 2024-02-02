@@ -25,7 +25,7 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = 1,
+            cost = upgrade == Upgrade.A? 0 : 1,
         };
         return data;
     }
@@ -55,7 +55,7 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
                 {
                     new ADrawCard
                     {
-                    count = 3,
+                    count = 2,
                     },
                     new AStatus()
                     {

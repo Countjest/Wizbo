@@ -1,4 +1,5 @@
 ﻿using Nickel;
+using System.Collections.Generic;
 
 namespace CountJest.Wizbo;
 
@@ -8,6 +9,7 @@ namespace CountJest.Wizbo;
 internal interface IDemoCard
 {
     static abstract void Register(IModHelper helper);
+    List<CardAction> GetActions(State s, Combat c);
 }
 
 internal interface IDemoArtifact

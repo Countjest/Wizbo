@@ -1,13 +1,14 @@
 ﻿using Nickel;
 using System.Collections.Generic;
 
+namespace CountJest.Wizbo;
+
 public class FireMine : StuffBase
 {
-    public bool bigFire;
     public override List<Tooltip> GetTooltips()
     {
         List<Tooltip> list = new List<Tooltip>();
-        list.Add(bigFire ? new TTGlossary(MKGlossary("bigFire"), "1") : new TTGlossary(MKGlossary("FireMine"), "1"));
+        list.Add(new TTGlossary(MKGlossary("FireMine"), "1"));
         List<Tooltip> list2 = list;
         if (bubbleShield)
         {
@@ -16,8 +17,6 @@ public class FireMine : StuffBase
 
         return list2;
     }
-    public static Spr FireMinespr { get; }
-
     public override string GetDialogueTag()
     {
         return "FireMine";
@@ -35,7 +34,7 @@ public class FireMine : StuffBase
 
     public override void Render(G g, Vec v)
     {
-        DrawWithHilight(g, FireMinespr, v + GetOffset(g), Mutil.Rand((double)x + 0.1) > 0.5, Mutil.Rand((double)x + 0.2) > 0.5);
+        DrawWithHilight(g, ModEntry.Instance.FireMinespr.Sprite, v + GetOffset(g), Mutil.Rand((double)x + 0.1) > 0.5, Mutil.Rand((double)x + 0.2) > 0.5);
     }
 
     public override List<CardAction>? GetActionsOnDestroyed(State s, Combat c, bool wasPlayer, int worldX)
@@ -44,14 +43,14 @@ public class FireMine : StuffBase
         {
             new AFireMineAttack
             {
-                hurtAmount = (bigFire ? 1 : 1),
+                hurtAmount = 1,
                 targetPlayer = wasPlayer,
                 worldX = worldX
             },
             new AStatus
             {
                 status = Status.heat,
-                statusAmount = (bigFire ? 6 : 3),
+                statusAmount = 3,
                 targetPlayer = wasPlayer,
 
             }

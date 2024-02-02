@@ -5,11 +5,11 @@ using System.Reflection;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class KablooiePachinko : Card, IDemoCard
+internal sealed class CardKablooiePachinko : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("KablooiePachinko", new()
+        helper.Content.Cards.RegisterCard("CardKablooiePachinko", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -18,7 +18,7 @@ internal sealed class KablooiePachinko : Card, IDemoCard
                 rarity = Rarity.uncommon,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "KablooiePachinko", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "CardKablooiePachinko", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
