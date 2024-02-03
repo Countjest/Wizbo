@@ -48,23 +48,26 @@
         "AbraKadoozle": {
             "name": "AbraKadoozle"
         },
+        "SpillYourDrink": {
+            "name": "SpillYourDrink"
+        },
         "Ponder": {
             "name": "Ponder"
         },
         "Kachow": {
             "name": "Kachow",
             "description": {
-                "None": "Attack for X \n X = your highest status.",
-                "A": "Attack for X \n X = your highest status.",
-                "B": "Attack for X \n Attack for X \n X = your highest status."
+                "None": "Attack for X, X = your highest status.",
+                "A": "Attack for X, X = your highest status.",
+                "B": "Attack for X, X = The Sum of your and the enemy ship's' highest status."
             }
         },
         "Miasma": {
             "name": "Miasma",
             "description": {
-                "None": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
-                "A": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>.",
-                "B": "On draw add 3 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 2 <c=status>Heat<c/>."
+                "None": "On draw add 2 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
+                "A": "On draw add 2 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
+                "B": "On draw add 2 <c=status>Heat<c/> to the enemy /n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>."
             }
         },
         "Toxic": {
@@ -92,17 +95,26 @@
         "GreaterLesserBeam": {
             "name": "GreaterLesserBeam",
             "description": {
-                "None": "Attack for X \n X = Enemy ship's <c=status>Heat<c/>.",
-                "A": "Attack for X \n X = Enemy ship's <c=status>Heat<c/>",
-                "B": "Attack for X \n X = Enemy ship's <c=status>Heat<c/>"
+                "None": "Attack for X, X = Enemy ship's <c=status>Heat<c/>.",
+                "A": "Attack for X, X = Enemy ship's <c=status>Heat<c/>",
+                "B": "Attack for X, X = Enemy ship's <c=status>Heat<c/>"
             }
         },
         "Vanish": {
             "name": "Vanish",
             "description": {
-                "None": "Im in hell.",
-                "A": "Im in hell.",
-                "B": "Im in hell."
+                "None": "Send all non-cockpit ship parts to the third dimension. Until the start of the next turn, side-effects might apply",
+                "A": "Send all non-cockpit ship parts to the third dimension. Until the start of the next turn, side-effects might apply",
+                "B": "Send all non-cockpit enemy ship parts to the third dimension"
+
+            }
+        },
+        "Yeet": {
+            "name": "Yeet",
+            "description": {
+                "None": "Attack for X, X = number of exhausted cards this combat",
+                "A": "Attack for X, X = number of exhausted cards this combat",
+                "B": "Attack for X, X = number of exhausted cards this combat"
             }
         },
         "KablooiePachinko": {
@@ -115,4 +127,3 @@
         }
     }
 }
-

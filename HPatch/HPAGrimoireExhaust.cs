@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CountJest.Wizbo
-{
+namespace CountJest.Wizbo;
+
     internal sealed class HPAGrimoireExhaust
     {
         public HPAGrimoireExhaust()
@@ -31,4 +31,3 @@ namespace CountJest.Wizbo
 
         }
     }
-}

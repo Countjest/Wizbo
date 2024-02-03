@@ -1,15 +1,42 @@
-﻿using Nanoray.PluginManager;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
 using Nickel;
-using OneOf.Types;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CountJest.Wizbo.Cards;
+internal static class VanishExt
+{
+    // We save up our part damage modifiers
+    public static PDamMod? GetPDamModBeforeVanish(this Part self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<PDamMod>(self, "PDamModBeforeVanish");
+    public static void SetPDamModBeforeVanish(this Part self, PDamMod? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "PDamModBeforeVanish", value);
+
+    public static PDamMod? GetOverrideWhileActivePDamModBeforeVanish(this Part self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<PDamMod>(self, "OverrideWhileActivePDamModBeforeVanish");
+    public static void SetOverrideWhileActivePDamModBeforeVanish(this Part self, PDamMod? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "OverrideWhileActivePDamModBeforeVanish", value);
+
+    // We save up our part types
+    public static PType? GetPTypeBeforeVanish(this Part self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<PType>(self, "PTypeBeforeVanish");
+    public static void SetPTypeBeforeVanish(this Part self, PType? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "PTypeBeforeVanish", value);
+
+    // We save up our part skins
+    public static string? GetSkinBeforeVanish(this Part self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<string>(self, "SkinBeforeVanish");
+    public static void SetSkinBeforeVanish(this Part self, string? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "SkinBeforeVanish", value);
+    public static string? GetChassisOverBeforeVanish(this Ship self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<string>(self, "ChassisOverBeforeVanish");
+    public static void SetChassisOverBeforeVanish(this Ship self, string? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "ChassisOverBeforeVanish", value);
+    public static string? GetChassisUnderBeforeVanish(this Ship self)
+        => ModEntry.Instance.Helper.ModData.GetOptionalModData<string>(self, "ChassisUnderBeforeVanish");
+    public static void SetChassisUnderBeforeVanish(this Ship self, string? value)
+        => ModEntry.Instance.Helper.ModData.SetOptionalModData(self, "ChassisUnderBeforeVanish", value);
+}
 internal sealed class CardVanish : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
@@ -25,6 +52,49 @@ internal sealed class CardVanish : Card, IDemoCard
             },
             Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Vanish", "name"]).Localize
         });
+        helper.Events.RegisterBeforeArtifactsHook(nameof(Artifact.OnTurnStart), (State state, Combat combat) =>
+        {
+            if (!combat.isPlayerTurn)
+                return;
+
+            List<Ship> ships = [state.ship, combat.otherShip];
+            foreach (var ship in ships)
+            {
+                foreach (var part in ship.parts)
+                {
+                    if (part.GetPDamModBeforeVanish() is { } PDamModBeforeVanish)
+                    {
+                        part.damageModifier = PDamModBeforeVanish;
+                        part.SetPDamModBeforeVanish(null);
+                    }
+                    if (part.GetOverrideWhileActivePDamModBeforeVanish() is { } overrideWhileActivePDamModBeforeVanish)
+                    {
+                        part.damageModifierOverrideWhileActive = overrideWhileActivePDamModBeforeVanish;
+                        part.SetOverrideWhileActivePDamModBeforeVanish(null);
+                    }
+                    if (part.GetPTypeBeforeVanish() is { } PTypeBeforeVanish)
+                    {
+                        part.type = PTypeBeforeVanish;
+                        part.SetPTypeBeforeVanish(null);
+                    }
+                    if (part.GetSkinBeforeVanish() is { } SkinBeforeVanish)
+                    {
+                        part.skin = SkinBeforeVanish;
+                        part.SetSkinBeforeVanish(null);
+                    }
+                }
+                if (ship.GetChassisOverBeforeVanish() is { } ChassisOverBeforeVanish)
+                {
+                    ship.chassisOver = ChassisOverBeforeVanish;
+                    ship.SetChassisOverBeforeVanish(null);
+                }
+                if (ship.GetChassisUnderBeforeVanish() is { } ChassisUnderBeforeVanish)
+                {
+                    ship.chassisUnder = ChassisUnderBeforeVanish;
+                    ship.SetChassisUnderBeforeVanish(null);
+                }
+            }
+        }, 0);
     }
     public override CardData GetData(State state)
     {
@@ -36,105 +106,156 @@ internal sealed class CardVanish : Card, IDemoCard
         };
         return data;
     }
-    public static void Register(IPluginPackage<IModManifest> package, IModHelper helper)
-    {
-
-        helper.Events.RegisterBeforeArtifactsHook(nameof(Artifact.OnTurnStart), (State state, Combat combat) =>
-        {
-            List<Ship> ships = [state.ship, combat.otherShip];
-            PropertyInfo[] array = typeof(Ship).GetProperties();
-            for (int i = 0; i < array.Length; i++)
-            {
-                PropertyInfo? Ship = array[i];
-                foreach (var parts in typeof(List<Part>).GetProperties())
-                {
-                    PropertyInfo? PartTypeBeforeVanish = null;
-                    PropertyInfo? Part = PartTypeBeforeVanish;
-                }
-            }
-        });
-    }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        var TargetPlayer = s.ship;
+        var ship = upgrade == Upgrade.B ? c.otherShip : s.ship;
         List<CardAction> actions = new();
-        switch (upgrade)
+        for (var partIndex = 0; partIndex < ship.parts.Count; partIndex++)
         {
-            case Upgrade.None:
-                List<CardAction> cardActionList1 = new List<CardAction>()
+            if (ship.parts[partIndex].type != PType.cockpit)
+                actions.Add(new AVanishPart
                 {
-                    new VanishPart()
-                    {
-                        TargetPlayer = true,
-                        WorldX = 0,
-                    }
-
-                };
-                actions = cardActionList1;
-                break;
-            case Upgrade.A:
-                List<CardAction> cardActionList2 = new List<CardAction>()
-                {
-                    new VanishPart()
-                    {
-                        TargetPlayer = true,
-                        WorldX = 0,
-                    }
-
-                };
-                actions = cardActionList2;
-                break;
-            case Upgrade.B:
-                List<CardAction> cardActionList3 = new List<CardAction>()
-                {
-                    new VanishPart()
-                    {
-                        TargetPlayer = true,
-                        WorldX = 0,
-                    }
-
-                };
-                actions = cardActionList3;
-                break;
+                    TargetPlayer = ship.isPlayerShip,
+                    WorldX = ship.x + partIndex,
+                    omitFromTooltips = true,
+                });
         }
+        actions.Add(new AVanishChassis
+        {
+            TargetPlayer = ship.isPlayerShip
+        });
+        if (upgrade == Upgrade.B)
+        {
+            actions.Add(new AStunShip
+            {
+                targetPlayer = ship.isPlayerShip
+            });
+        }
+        return actions;
     }
 }
-public sealed class VanishPart : CardAction
+public sealed class AVanishPart : CardAction
 {
-    public readonly PType PartTypeAfterVanish;
-    [JsonProperty]
-    public readonly PType PartTypeBeforeVanish;
-    [JsonProperty]
-    public readonly string? PartSkinBeforeVanish;
-    [JsonProperty]
-    public readonly string? PartSkinAfterVanish;
     [JsonProperty]
     public required bool TargetPlayer;
+
     [JsonProperty]
     public required int WorldX;
+
     public override void Begin(G g, State s, Combat c)
     {
+        base.Begin(g, s, c);
+        timer = 0;
+
         var ship = TargetPlayer ? s.ship : c.otherShip;
         if (ship.GetPartAtWorldX(WorldX) is not { } part)
             return;
+
+        if (part.damageModifier != PDamMod.none)
         {
-            foreach (var partIndex in ship.parts)
+            part.SetPDamModBeforeVanish(part.damageModifier);
+            c.QueueImmediate(new ANoneMod
             {
-                if (part.type != PType.cockpit)
-                {
-                    part.type = PartTypeBeforeVanish;
-                    part.type = PType.empty;
-                    part.type = PartTypeAfterVanish;
-                    part.skin = PartSkinBeforeVanish;
-                    part.skin = partIndex.skin;
-                }
-                else return;
-                if (part.type == PType.empty)
-                {
-                    part.skin = "parts/empty.png";
-                    part.skin = PartSkinAfterVanish;
-                }
-            }
+                targetPlayer = TargetPlayer,
+                worldX = WorldX
+            });
+        }
+        if (part.damageModifierOverrideWhileActive is not null && part.damageModifierOverrideWhileActive != PDamMod.none)
+        {
+            part.SetOverrideWhileActivePDamModBeforeVanish(part.damageModifierOverrideWhileActive);
+            c.QueueImmediate(new ANoneMod
+            {
+                targetPlayer = TargetPlayer,
+                worldX = WorldX
+            });
+        }
+        if (part.type != PType.empty)
+        {
+            part.SetPTypeBeforeVanish(part.type);
+            part.SetSkinBeforeVanish(part.skin);
+            c.QueueImmediate(new AEmptyType
+            {
+                targetPlayer = TargetPlayer,
+                worldX = WorldX
+            });
+        }
+        if (part.skin != ModEntry.Instance.SEmpty.UniqueName)
+        {
+            part.SetSkinBeforeVanish(part.skin);
+            c.QueueImmediate(new AEmptySkin
+            {
+                targetPlayer = TargetPlayer,
+                worldX = WorldX
+            });
+        }
+    }
+}
+
+public class ANoneMod : CardAction
+{
+    public int worldX;
+
+    public bool targetPlayer;
+
+    public override void Begin(G g, State s, Combat c)
+    {
+        timer = 0.0;
+        Part? partAtWorldX = (targetPlayer ? s.ship : c.otherShip).GetPartAtWorldX(worldX);
+        if (partAtWorldX != null)
+        {
+            partAtWorldX.damageModifier = PDamMod.none;
+        }
+    }
+}
+public class AEmptyType : CardAction
+{
+    public int worldX;
+
+    public bool targetPlayer;
+
+    public override void Begin(G g, State s, Combat c)
+    {
+        timer = 0.0;
+        Part? partAtWorldX = (targetPlayer ? s.ship : c.otherShip).GetPartAtWorldX(worldX);
+        if (partAtWorldX != null)
+        {
+            partAtWorldX.type = PType.empty;
+        }
+    }
+}
+public class AEmptySkin : CardAction
+{
+    public int worldX;
+
+    public bool targetPlayer;
+
+    public override void Begin(G g, State s, Combat c)
+    {
+        timer = 0.0;
+        Part? partAtWorldX = (targetPlayer ? s.ship : c.otherShip).GetPartAtWorldX(worldX);
+        if (partAtWorldX != null)
+        {
+            partAtWorldX.skin = ModEntry.Instance.SEmpty.UniqueName;
+        }
+    }
+}
+public class AVanishChassis : CardAction
+{
+    public bool TargetPlayer;
+
+    public override void Begin(G g, State s, Combat c)
+    {
+        timer = 0.0;
+        var ship = TargetPlayer ? s.ship : c.otherShip;
+        if (ship.chassisOver != null)
+        {
+            ship.SetChassisOverBeforeVanish(ship.chassisOver);
+            ship.chassisOver = null;
+        }
+        if (ship.chassisUnder != null)
+        {
+            ship.SetChassisUnderBeforeVanish(ship.chassisUnder);
+            ship.chassisUnder = "empty";
         }
     }
 }

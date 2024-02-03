@@ -24,5 +24,4 @@ internal sealed class AegisGrimoire : Artifact, IDemoArtifact
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "AegisGrimoire", "description"]).Localize
         });
     }
-
 }

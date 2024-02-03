@@ -29,13 +29,22 @@ internal class ExhaustCardAction2 : CardAction // We made a custom card action t
         {
             card2.ExhaustFX(); // This is a method for the exhaust sound effect and poof visual effect
             s.RemoveCardFromWhereverItIs(cardId2);
-            c.SendCardToExhaust(s, card2);
+            try
+            {
+                HPPGrimoireExhaust.bypass = true;
+                c.SendCardToExhaust(s, card2);
+            }
+            finally
+            {
+                HPPGrimoireExhaust.bypass = false;
+            }
         }
     }
 }
 internal class ParadoxCardAction : CardAction
 {
     public int cardId3;
+
     public override void Begin(G g, State s, Combat c)
     {
         var card3 = s.FindCard(cardId3);

@@ -17,8 +17,11 @@ namespace CountJest.Wizbo
             original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToExhaust)),
             postfix: new HarmonyMethod(GetType(), nameof(HPPGrimoireExhaust.SendCardToExhaust4)));
         }
+        public static bool bypass = false;
         public static void SendCardToExhaust4(Combat __instance, State s, Card card)
         {
+            if (bypass)
+                return;
             var artifact4 = s.EnumerateAllArtifacts().OfType<ParadoxGrimoire>().FirstOrDefault();
             if (artifact4 is null)
                 return;

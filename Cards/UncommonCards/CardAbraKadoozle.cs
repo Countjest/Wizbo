@@ -14,7 +14,7 @@ internal sealed class CardAbraKadoozle : Card, IDemoCard
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("CardAbraKadoozle", new()
+        helper.Content.Cards.RegisterCard("AbraKadoozle", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -29,7 +29,7 @@ internal sealed class CardAbraKadoozle : Card, IDemoCard
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
             /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "CardAbraKadoozle", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "AbraKadoozle", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

@@ -1,6 +1,7 @@
 ﻿using CountJest.Tower.Cards;
 using CountJest.Wizbo.Artifacts;
 using CountJest.Wizbo.Cards;
+using CountJest.Wizbo.Cards.UncommonCards;
 using HarmonyLib;
 using Microsoft.Extensions.Logging;
 using Nanoray.PluginManager;
@@ -8,10 +9,14 @@ using Nickel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Versioning;
 
 /* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
  * This is helpful to know at a glance what mod we're looking at, and who made it */
 namespace CountJest.Wizbo;
+/* MEGA special thanks to Sorwest for the getting the VanishCard working */
+/* Extra special thanks to APurpleApple for the getting the Door animation set up, ship sorcery */
+/* Special thanks to Fayti1703 for getting us out of the Paradox loop :D */
 
 /* ModEntry is the base for our mod. Others like to name it Manifest, and some like to name it <ModName>
  * Notice the ': SimpleMod'. This means ModEntry is a subclass (child) of the superclass SimpleMod (parent). This is help us use Nickel's functions more easily! */
@@ -55,15 +60,17 @@ public sealed class ModEntry : SimpleMod
         typeof(CardMiasma),
         typeof(CardToxic),
         typeof(CardKoolahLimpoo),
-        typeof(CardHashakalah)
+        typeof(CardHashakalah),
+        typeof(CardSpillYourDrink),
+        typeof(CardYeet),
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(CardAbraKadoozle),
-        typeof(CardKablooiePachinko)
+        typeof(CardGreaterLesserBeam),
+        typeof(CardKablooiePachinko),
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
         typeof(CardKachow),
-        typeof(CardGreaterLesserBeam),
         typeof(CardVanish)
     ];
     /* We can use an IEnumerable to combine the lists we made above, and modify it if needed
@@ -142,8 +149,7 @@ public sealed class ModEntry : SimpleMod
         TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
         FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
-        /* Decks are assigned separate of the character. This is because the game has decks like Trash which is not related to a playable character
-         * Do note that Color accepts a HEX string format (like Color("a1b2c3")) or a Float RGB format (like Color(0.63, 0.7, 0.76). It does NOT allow a traditional RGB format (Meaning Color(161, 178, 195) will NOT work) */
+  
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
             Definition = new DeckDef()
@@ -169,52 +175,31 @@ public sealed class ModEntry : SimpleMod
         * It's totally fine to assign them, if you'd like, but we don't have a reason to in this mod */
         Helper.Content.Characters.RegisterCharacter("Wizbo", new CharacterConfiguration()
         {
-            /* What we registered above was an IDeckEntry object, but when you register a character the Helper will ask for you to provide its Deck 'id'
-             * This is simple enough, as you can get it from Wizbo_Deck */
             Deck = Wizbo_Deck.Deck,
-
-            /* The Starter Card Types are, as the name implies, the cards you will start a DemoCharacter run with. 
-             * You could provide vanilla cards if you want, but it's way more fun to create your own cards! */
             StarterCardTypes = Wizbo_StarterCard_Types,
-
-            /* This is the little blurb that appears when you hover over the character in-game.
-             * You can make it fluff, use it as a way to tell players about the character's playstyle, or a little bit of both! */
             Description = this.AnyLocalizations.Bind(["character", "Wizbo", "description"]).Localize,
-
-            /* This is the fancy panel that encapsulates your character while in active combat.
-             * It's recommended that it follows the same color scheme as the character and deck, for cohesion */
-            BorderSprite = Wizbo_Character_Panel.Sprite
-        });
-
-        /* Let's create some animations, because if you were to boot up this mod from what you have above,
-         * DemoCharacter would be a blank void inside a box, we haven't added their sprites yet! */
-        Helper.Content.Characters.RegisterCharacterAnimation(new CharacterAnimationConfiguration()
-        {
-            /* Characters themselves aren't used that much by the code itself, most of the time we care about having the character's deck at hand */
-            Deck = Wizbo_Deck.Deck,
-
-            /* The Looptag is the 'name' of the animation. When making shouts and events, and you want your character to show emotions, the LoopTag is what you want
-             * In vanilla Cobalt Core, there are 3 'animations' looptags that any character should have: "neutral", "mini" and "squint", as these are used in: Neutral is used as default, mini is used in character select and out-of-combat UI, and Squink is hardcoded used in certain events */
-            LoopTag = "neutral",
-
-            /* The game doesn't use frames properly when there are only 2 or 3 frames. If you want a proper animation, avoid only adding 2 or 3 frames to it */
-            Frames = new[]
+            BorderSprite = Wizbo_Character_Panel.Sprite,
+            NeutralAnimation = new()
             {
-                Wizbo_Character_Neutral_0.Sprite,
-                Wizbo_Character_Neutral_1.Sprite,
-                Wizbo_Character_Neutral_2.Sprite,
-                Wizbo_Character_Neutral_3.Sprite,
-                Wizbo_Character_Neutral_4.Sprite
-            }
-        });
-        Helper.Content.Characters.RegisterCharacterAnimation(new CharacterAnimationConfiguration()
-        {
-            Deck = Wizbo_Deck.Deck,
-            LoopTag = "mini",
-            Frames = new[]
+                Deck = Wizbo_Deck.Deck,
+                LoopTag = "neutral",
+                Frames = new[]
+                {
+                    Wizbo_Character_Neutral_0.Sprite,
+                    Wizbo_Character_Neutral_1.Sprite,
+                    Wizbo_Character_Neutral_2.Sprite,
+                    Wizbo_Character_Neutral_3.Sprite,
+                    Wizbo_Character_Neutral_4.Sprite
+                }
+            },
+            MiniAnimation = new()
             {
-                /* Mini only needs one sprite. We call it animation just because we add it the same way as other expressions. */
-                Wizbo_Character_Mini_0.Sprite
+                Deck = Wizbo_Deck.Deck,
+                LoopTag = "mini",
+                Frames = new[]
+                {
+                    Wizbo_Character_Mini_0.Sprite
+                }
             }
         });
         Helper.Content.Characters.RegisterCharacterAnimation(new CharacterAnimationConfiguration()
@@ -361,5 +346,6 @@ public sealed class ModEntry : SimpleMod
         });
     }
 }
-
+/* Dialog ideas :
+ Wizbo + Max, discuss magic V.S. non magic when Vanish reappears your tridim cockpit*/
 

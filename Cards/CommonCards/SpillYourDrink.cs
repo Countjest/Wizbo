@@ -1,15 +1,14 @@
 ﻿using Nickel;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class CardCrocusPocus : Card, IDemoCard
+internal sealed class CardSpillYourDrink : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("CrocusPocus", new()
+        helper.Content.Cards.RegisterCard("SpillYourDrink", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -18,15 +17,15 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "CrocusPocus", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "SpillYourDrink", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.A? 0 : 1,
-            exhaust = upgrade == Upgrade.A ? true : false,
+            cost = upgrade == Upgrade.A ? 1 : 1,
+            exhaust = upgrade == Upgrade.A ? false : false,
         };
         return data;
     }
@@ -38,47 +37,51 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new ADrawCard
+                    new AMove()
                     {
-                    count = 2,
+                        dir = 3,
+                        isTeleport = true,
+                        isRandom = true,
+                        targetPlayer = true
                     },
-                    new AStatus()
-                    {
-                        status = Status.shield,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    }
                 };
                 actions = cardActionList1;
                 break;
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new ADrawCard
+                    new AMove()
                     {
-                    count = 2,
+                        dir = 4,
+                        isTeleport = true,
+                        isRandom = true,
+                        targetPlayer = true
                     },
-                    new AStatus()
+                    new AAddCard
                     {
-                        status = Status.shield,
-                        statusAmount = 2,
-                        targetPlayer = true,
-                    }
+                        card = new CardMiasma
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
+                        destination = CardDestination.Hand,
+                    },
                 };
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new ADrawCard
+                    new AMove()
                     {
-                    count = 2,
+                        dir = 3,
+                        isTeleport = true,
+                        isRandom = true,
+                        targetPlayer = true
                     },
-                    new AStatus()
+                    new ADrawCard()
                     {
-                        status = Status.shield,
-                        statusAmount = 2,
-                        targetPlayer = true,
+                        count = 2,
                     }
                 };
                 actions = cardActionList3;

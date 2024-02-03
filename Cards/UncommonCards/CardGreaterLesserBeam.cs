@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 /* Like other namespaces, this can be named whatever
  * However it's recommended that you follow the structure defined by ModEntry of <AuthorName>.<ModName> or <AuthorName>.<ModName>.Cards*/
-namespace CountJest.Wizbo.Cards;
+namespace CountJest.Wizbo.Cards.UncommonCards;
 
 /* The Card's class name IS IMPORTANT, however. This is what the game will ask for when trying to get a card.
  * If your card's class shares the same name as a vanilla card, or shares it with a modded card, the game can't keep both, and will only use one
@@ -25,7 +25,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
 
                 /* The vanilla rarities are Rarity.common, Rarity.uncommon, Rarity.rare */
-                rarity = Rarity.rare,
+                rarity = Rarity.uncommon,
 
                 /* Some vanilla cards don't upgrade, some only upgrade to A, but most upgrade to either A or B */
                 upgradesTo = [Upgrade.A, Upgrade.B]
@@ -54,7 +54,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
     {
         var Bonus = 0;
         if (s.route is Combat != false)
-            Bonus = (c.otherShip.Get(Status.heat) + (upgrade == Upgrade.B ? c.otherShip.Get(Status.shield) : 0));
+            Bonus = c.otherShip.Get(Status.heat) + (upgrade == Upgrade.B ? c.otherShip.Get(Status.shield) : 0);
         /* The meat of the card, this is where we define what a card does, and some would say the most fun part of modding Cobalt Core happens here! */
         List<CardAction> actions = new();
         /* Since we want to have different actions for each Upgrade, we use a switch that covers the Upgrade paths we've defined */

@@ -72,7 +72,7 @@ internal sealed class CardMiasma : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.heat,
-                        statusAmount = 2,
+                        statusAmount = 1,
                         targetPlayer = true
                     }
                 };
@@ -93,7 +93,7 @@ internal sealed class CardMiasma : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.heat,
-                        statusAmount = 2,
+                        statusAmount = 1,
                         targetPlayer = true
                     }
                 };
@@ -114,7 +114,7 @@ internal sealed class CardMiasma : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.heat,
-                        statusAmount = 2,
+                        statusAmount = 1,
                         targetPlayer = true
                     }
                 };

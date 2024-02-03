@@ -5,28 +5,30 @@ using System.Reflection;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class CardKablooiePachinko : Card, IDemoCard
+internal sealed class CardTregunaMekoides : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("KablooiePachinko", new()
+        helper.Content.Cards.RegisterCard("TregunaMekoides", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
+                dontOffer = true,
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
                 rarity = Rarity.uncommon,
                 upgradesTo = [Upgrade.A, Upgrade.B]
+                            
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "KablooiePachinko", "name"]).Localize
-        });
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "TregunaMekoides", "name"]).Localize
+        });;
     }
     public override CardData GetData(State state)
     {
         CardData data = new CardData()
         {
             cost = upgrade == Upgrade.None ? 1 : 3,
-            description = ModEntry.Instance.Localizations.Localize(["card", "KablooiePachinko", "description", upgrade.ToString()])
+
             /* In a similar manner to how we localized card names, we'll localize their descriptions
              * For example, if Sheep Dream is upgraded to B, this description would try getting information from card > SheepDream > Description > B in the locale file */
         };
@@ -42,11 +44,14 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new FireMine
+                        thing = new HexBolt
                         {
-                            yAnimation = 0.0
+                        yAnimation = 0.0,
+                        missileType = MissileType.seeker,
+                        targetPlayer = false
                         }
-                    }
+                    },
+
                 };
                 actions = cardActionList1;
                 break;
