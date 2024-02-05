@@ -17,6 +17,10 @@ namespace CountJest.Wizbo;
 /* MEGA special thanks to Sorwest for the getting the VanishCard working */
 /* Extra special thanks to APurpleApple for the getting the Door animation set up, ship sorcery */
 /* Special thanks to Fayti1703 for getting us out of the Paradox loop :D */
+/* Special thanks to Mezzelo for the heat cost sprites*/
+/*rft50 */
+/*clay */
+/*shockah */
 
 /* ModEntry is the base for our mod. Others like to name it Manifest, and some like to name it <ModName>
  * Notice the ': SimpleMod'. This means ModEntry is a subclass (child) of the superclass SimpleMod (parent). This is help us use Nickel's functions more easily! */
@@ -47,6 +51,28 @@ public sealed class ModEntry : SimpleMod
     internal IDeckEntry Wizbo_Deck { get; }
     internal IShipEntry MagicTower_Ship { get; }
     internal ISpriteEntry FireMinespr { get; }
+    internal ISpriteEntry Mbolt0 { get; }
+    internal ISpriteEntry Mbolt1 { get; }
+    internal ISpriteEntry Mbolt2 { get; }
+    internal ISpriteEntry Mbolt3 { get; }
+    internal ISpriteEntry Mbolt4 { get; }
+    internal ISpriteEntry Hbolt0 { get; }
+    internal ISpriteEntry Hbolt1 { get; }
+    internal ISpriteEntry Hbolt2 { get; }
+    internal ISpriteEntry Hbolt3 { get; }
+    internal ISpriteEntry Hbolt4 { get; }
+    internal ISpriteEntry Cbolt0 { get; }
+    internal ISpriteEntry Cbolt1 { get; }
+    internal ISpriteEntry Cbolt2 { get; }
+    internal ISpriteEntry Cbolt3 { get; }
+    internal ISpriteEntry Cbolt4 { get; }
+    
+    /*Icons*/
+    internal ISpriteEntry MboltIcon { get; }
+    internal ISpriteEntry HboltIcon { get; }
+    internal ISpriteEntry CboltIcon { get; }
+    internal ISpriteEntry HeatCostUnsatisfied { get; }
+    internal ISpriteEntry HeatCostSatisfied { get; }
     internal static IReadOnlyList<Type> Wizbo_StarterCard_Types { get; } = [
         /* Add more starter cards here if you'd like. */
         typeof(CardPocusCrocus),
@@ -63,6 +89,7 @@ public sealed class ModEntry : SimpleMod
         typeof(CardHashakalah),
         typeof(CardSpillYourDrink),
         typeof(CardYeet),
+        typeof(CardShazammy)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(CardAbraKadoozle),
@@ -148,8 +175,30 @@ public sealed class ModEntry : SimpleMod
         Wizbo_Character_Squint_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_3.png"));
         TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
+        //stuffbase
         FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
-  
+        Mbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt0.png"));
+        Mbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt1.png"));
+        Mbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt2.png"));
+        Mbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt3.png"));
+        Mbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt4.png"));
+        Hbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt0.png"));
+        Hbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt1.png"));
+        Hbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt2.png"));
+        Hbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt3.png"));
+        Hbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt4.png"));
+        Cbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt0.png"));
+        Cbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt1.png"));
+        Cbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt2.png"));
+        Cbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt3.png"));
+        Cbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt4.png"));
+        //Icons
+        MboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_mbolt.png"));
+        HboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_hbolt.png"));
+        CboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_cbolt.png"));
+        HeatCostUnsatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCostOff.png"));
+        HeatCostSatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCost.png"));
+
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
             Definition = new DeckDef()

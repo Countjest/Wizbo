@@ -27,7 +27,7 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.None ? 1 : 3,
+            cost = upgrade == Upgrade.None ? 1 : 2,
 
             /* In a similar manner to how we localized card names, we'll localize their descriptions
              * For example, if Sheep Dream is upgraded to B, this description would try getting information from card > SheepDream > Description > B in the locale file */
@@ -44,10 +44,9 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new HexBolt
+                        thing = new Bolt
                         {
-                        yAnimation = 0.0,
-                        missileType = MissileType.seeker,
+                        boltType = BoltType.Magic,
                         targetPlayer = false
                         }
                     },
@@ -58,29 +57,54 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                new ASpawn
-                {
-                    thing = new FireMine(),
-                    offset = -1
-                },
-                new ASpawn
-                {
-                    thing = new FireMine(),
-                    omitFromTooltips = true
-                },
-                new ASpawn
-                {
-                    thing = new FireMine(),
-                    offset = 1,
-                    omitFromTooltips = true
-                }
+                    new ASpawn
+                    {
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Magic,
+                        targetPlayer = false
+                        }
+                    },
+                    new AMove()
+                    {
+                        dir = -2
+                    },
+                    new ASpawn
+                    {
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Magic,
+                        targetPlayer = false
+                        }
+                    },
+
                 };
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AFireField()
+                    new ASpawn
+                    {
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Magic,
+                        targetPlayer = false
+                        }
+                    },
+                    new AMove()
+                    {
+                        dir = 2
+                    },
+                    new ASpawn
+                    {
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Magic,
+                        targetPlayer = false
+                        }
+                    },
+
                 };
                 actions = cardActionList3;
                 break;

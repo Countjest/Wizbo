@@ -26,6 +26,10 @@
             "name": "GrimoireOfSpeed",
             "description": "Draw 1 card every 4th turn"
         },
+        "AegisGrimoire": {
+            "name": "AegisGrimoire",
+            "description": "Gain 1 <c=status>Shield<c/> when you <c=cardtrait>exhaust</c> a card"
+        },
         "EtherealGrimoire": {
             "name": "EtherealGrimoire",
             "description": "Gain 1 <c=status>Overdrive<c/> when you <c=cardtrait>exhaust</c> a card"
@@ -53,6 +57,9 @@
         },
         "Ponder": {
             "name": "Ponder"
+        },
+        "Shazammy": {
+            "name": "Shazammy"
         },
         "Kachow": {
             "name": "Kachow",
@@ -95,16 +102,16 @@
         "GreaterLesserBeam": {
             "name": "GreaterLesserBeam",
             "description": {
-                "None": "Attack for X, X = Enemy ship's <c=status>Heat<c/>.",
-                "A": "Attack for X, X = Enemy ship's <c=status>Heat<c/>",
-                "B": "Attack for X, X = Enemy ship's <c=status>Heat<c/>"
+                "None": "Attack for X, X = FireMines in MidRow.",
+                "A": "Attack for X, X = FireMines in MidRow",
+                "B": "Turn all Midrow objects into FireMines. Attack for X, X = FireMines in MidRow"
             }
         },
         "Vanish": {
             "name": "Vanish",
             "description": {
-                "None": "Send all non-cockpit ship parts to the third dimension. Until the start of the next turn, side-effects might apply",
-                "A": "Send all non-cockpit ship parts to the third dimension. Until the start of the next turn, side-effects might apply",
+                "None": "Vanish non-cockpit ship parts. Until the start of the next turn, leaving only your cockpit",
+                "A": "Vanish non-cockpit ship parts. Until the start of the next turn, leaving only your cockpit",
                 "B": "Send all non-cockpit enemy ship parts to the third dimension"
 
             }
@@ -112,9 +119,9 @@
         "Yeet": {
             "name": "Yeet",
             "description": {
-                "None": "Attack for X, X = number of exhausted cards this combat",
-                "A": "Attack for X, X = number of exhausted cards this combat",
-                "B": "Attack for X, X = number of exhausted cards this combat"
+                "None": "Attack for X, X = number of <c=cardtrait>exhaust</c> cards this combat",
+                "A": "Attack for X, X = number of <c=cardtrait>exhaust</c> cards this combat",
+                "B": "Attack for X, X = number of <c=cardtrait>exhaust</c> cards this combat"
             }
         },
         "KablooiePachinko": {

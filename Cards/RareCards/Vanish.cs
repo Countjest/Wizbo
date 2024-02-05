@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Nickel;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Reflection;
 
 namespace CountJest.Wizbo.Cards;
@@ -102,6 +103,7 @@ internal sealed class CardVanish : Card, IDemoCard
         {
             cost = 3,
             exhaust = true,
+            retain = upgrade != Upgrade.A? true : false,
             description = ModEntry.Instance.Localizations.Localize(["card", "Vanish", "description", upgrade.ToString()])
         };
         return data;
@@ -179,7 +181,12 @@ public sealed class AVanishPart : CardAction
                 worldX = WorldX
             });
         }
-        if (part.skin != ModEntry.Instance.SEmpty.UniqueName)
+        if (part.skin != ModEntry.Instance.SEmpty.UniqueName
+            && part.skin != "scaffolding_tridim_pink"
+                && part.skin != "scaffolding_tridim_red"
+                    && part.skin != "scaffolding_tridim_tiderunner"
+                        && part.skin != "scaffolding_tridim_jupiter"
+                            && part.skin != "scaffolding_tridim")
         {
             part.SetSkinBeforeVanish(part.skin);
             c.QueueImmediate(new AEmptySkin
@@ -188,6 +195,11 @@ public sealed class AVanishPart : CardAction
                 worldX = WorldX
             });
         }
+        if (part.skin == "scaffolding_tridim_pink") part.type = PType.cockpit;
+        else if (part.skin != "scaffolding_tridim_red") part.type = PType.cockpit;
+        else if (part.skin != "scaffolding_tridim_tiderunner") part.type = PType.cockpit;
+        else if (part.skin != "scaffolding_tridim_jupiter") part.type = PType.cockpit;
+        else if (part.skin != "scaffolding_tridim") part.type = PType.cockpit;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using Nickel;
 using OneOf.Types;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -40,10 +41,11 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
         {
             cost = upgrade switch
             {
-                Upgrade.A => 1,
-                Upgrade.B => 2,
-                _ => 2
+                Upgrade.A => 2,
+                Upgrade.B => 3,
+                _ => 3
             },
+            exhaust = true,
             description = ModEntry.Instance.Localizations.Localize(["card", "GreaterLesserBeam", "description", upgrade.ToString()])
             /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
             /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
@@ -52,50 +54,112 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        var Bonus = 0;
-        if (s.route is Combat != false)
-            Bonus = c.otherShip.Get(Status.heat) + (upgrade == Upgrade.B ? c.otherShip.Get(Status.shield) : 0);
         /* The meat of the card, this is where we define what a card does, and some would say the most fun part of modding Cobalt Core happens here! */
         List<CardAction> actions = new();
-        /* Since we want to have different actions for each Upgrade, we use a switch that covers the Upgrade paths we've defined */
         switch (upgrade)
         {
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new AAttack()
+                    new ASpawn
                     {
-                        damage = GetDmg(s, Bonus),
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
                     },
-                    /* AStatus is a card action that gives the target a status and, unlike attacks, its effect is unavoidable
-                     * Of Note: AStatuses will default to targetPlayer = false, If what you want is for the card to give the player a status, you want to set it targetPlayer = true
-                     * Other types of CardActions like AMove, AHurt or AHeal operate as such too, so it's important to remember */
+                    new ASpawn
+                    {
+                        offset = -1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
+                    new ASpawn
+                    {
+                        offset = 1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
                 };
                 actions = cardActionList1;
                 break;
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new AAttack()
+                    new ASpawn
                     {
-                        damage = GetDmg(s, Bonus),
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
                     },
-                    /* AStatus is a card action that gives the target a status and, unlike attacks, its effect is unavoidable
-                     * Of Note: AStatuses will default to targetPlayer = false, If what you want is for the card to give the player a status, you want to set it targetPlayer = true
-                     * Other types of CardActions like AMove, AHurt or AHeal operate as such too, so it's important to remember */
+                    new ASpawn
+                    {
+                        offset = -1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
+                    new ASpawn
+                    {
+                        offset = 1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
                 };
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AAttack()
+                    new ASpawn
                     {
-                        damage = GetDmg(s, Bonus),
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
                     },
-                    /* AStatus is a card action that gives the target a status and, unlike attacks, its effect is unavoidable
-                     * Of Note: AStatuses will default to targetPlayer = false, If what you want is for the card to give the player a status, you want to set it targetPlayer = true
-                     * Other types of CardActions like AMove, AHurt or AHeal operate as such too, so it's important to remember */
+                    new ASpawn
+                    {
+                        offset = -1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
+                    new ASpawn
+                    {
+                        offset = -2,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
+                    new ASpawn
+                    {
+                        offset = 1,
+                        thing = new Bolt
+                        {
+                        boltType = BoltType.Chaos,
+                        targetPlayer = false
+                        }
+                    },
                 };
                 actions = cardActionList3;
                 break;

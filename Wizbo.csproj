@@ -13,10 +13,6 @@
 		<ModZipPath>$(MSBuildProjectDirectory)\.release\$(MSBuildProjectName)-$(Version).zip</ModZipPath>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Cards\CommonCards\TregunaMekoides.cs" />
-	  <Compile Remove="Cards\HexBolt.cs" />
-	</ItemGroup>
-	<ItemGroup>
 	  <PackageReference Include="Nickel.ModBuildConfig" Version="0.5.0-alpha1" />
 	</ItemGroup>
 	<ItemGroup>
