@@ -27,9 +27,8 @@ internal sealed class CardYeet : Card, IDemoCard
         CardData data = new CardData()
         {
             cost = 1,
-            exhaust = upgrade == Upgrade.A ? false : true,
+            exhaust = true,
             retain = upgrade == Upgrade.B ? true : false,
-            description = ModEntry.Instance.Localizations.Localize(["card", "Yeet", "description", upgrade.ToString()])
         };
         return data;
     }
@@ -51,13 +50,18 @@ internal sealed class CardYeet : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>() 
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, Epile),
+                        iconName = "Exhausted Cards",
+                    },
                     new AAttack()
                     {
                         damage = GetDmg(s, Epile)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -70,9 +74,23 @@ internal sealed class CardYeet : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, Epile),
+                        iconName = "Exhausted Cards",
+                    },
                     new AAttack()
                     {
                         damage = GetDmg(s, Epile)
+                    },
+                    new AAddCard
+                    {
+                        card = new CardYeet
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
+                        destination = CardDestination.Deck
                     }
                 };
                 actions = cardActionList2;
@@ -80,13 +98,18 @@ internal sealed class CardYeet : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, Epile),
+                        iconName = "Exhausted Cards",
+                    },
                     new AAttack()
                     {
                         damage = GetDmg(s, Epile)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -95,7 +118,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },

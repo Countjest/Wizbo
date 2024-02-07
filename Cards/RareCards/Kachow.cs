@@ -28,7 +28,6 @@ internal sealed class CardKachow : Card, IDemoCard
         {
             cost = upgrade == Upgrade.A ? 1 : 2,
             exhaust = upgrade == Upgrade.A ? false : true,
-            description = ModEntry.Instance.Localizations.Localize(["card", "Kachow", "description", upgrade.ToString()])
 
         };
         return data;
@@ -36,26 +35,42 @@ internal sealed class CardKachow : Card, IDemoCard
     public override List<CardAction> GetActions(State s, Combat c)
     {
         int max = 0;
-        if (s.ship.statusEffects.Values.Count > 0)
-            if (s.route is Combat)
-                max = s.ship.statusEffects.Values.Max();
-            else 
-            {
-            }
         int max2 = 0;
-        if (s.route is Combat)
-            if (c.otherShip.statusEffects.Values.Count > 0)
-                max2 = s.ship.statusEffects.Values.Max();
-            else
+        if (s.ship.statusEffects.Values.Count > 0)
+        {
+            if (s.route is Combat)
             {
-            }
+                max = s.ship.statusEffects.Where(pair =>
+                pair.Key != Status.shield &&
+                pair.Key != Status.tempShield)
+                .ToDictionary(i => i.Key, i => i.Value).Values.Max();
 
+                if (c.otherShip.statusEffects.Values.Count > 0)
+                {
+                    max2 = c.otherShip.statusEffects.Where(pair =>
+                    pair.Key != Status.shield &&
+                    pair.Key != Status.tempShield)
+                    .ToDictionary(i => i.Key, i => i.Value).Values.Max();
+
+                }
+            }
+        }
+        else
+        {
+            max = 0;
+            max2 = 0;
+        }
         List<CardAction> actions = new();
         switch (upgrade)
         {
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, max),
+                        iconName = "Highest Status",
+                    },
                     new AAttack()
                     {
                     damage = GetDmg(s, max)
@@ -66,6 +81,11 @@ internal sealed class CardKachow : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, max),
+                        iconName = "Highest Status",
+                    },
                     new AAttack()
                     {
                     damage = GetDmg(s, max),
@@ -76,6 +96,11 @@ internal sealed class CardKachow : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, max+max2),
+                        iconName = "Highest Status",
+                    },
                     new AAttack()
                     {
                     damage = GetDmg(s, max + max2)

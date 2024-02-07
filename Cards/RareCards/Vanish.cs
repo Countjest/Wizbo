@@ -103,7 +103,7 @@ internal sealed class CardVanish : Card, IDemoCard
         {
             cost = 3,
             exhaust = true,
-            retain = upgrade != Upgrade.A? true : false,
+            retain = upgrade == Upgrade.A? true : false,
             description = ModEntry.Instance.Localizations.Localize(["card", "Vanish", "description", upgrade.ToString()])
         };
         return data;

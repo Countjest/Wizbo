@@ -26,7 +26,7 @@ internal sealed class CardPocusCrocus : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade ==Upgrade.A? 1 : 2,
+            cost = upgrade == Upgrade.A? 0 : 2,
             exhaust = true,
             description = ModEntry.Instance.Localizations.Localize(["card", "PocusCrocus", "description", upgrade.ToString()])
             /* In a similar manner to how we localized card names, we'll localize their descriptions
@@ -44,7 +44,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -53,7 +53,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -62,7 +62,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxicW
                         {
                             temporaryOverride= true
                         },
@@ -77,7 +77,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -86,7 +86,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -95,7 +95,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxicW
                         {
                             temporaryOverride= true
                         },
@@ -110,7 +110,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -119,7 +119,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -128,7 +128,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },
@@ -137,7 +137,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxicW
                         {
                             temporaryOverride= true
                         },
@@ -146,7 +146,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxicW
                         {
                             temporaryOverride= true
                         },

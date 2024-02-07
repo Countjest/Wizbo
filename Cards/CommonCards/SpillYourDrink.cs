@@ -59,7 +59,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiasmaW
                         {
                             temporaryOverride= true
                         },

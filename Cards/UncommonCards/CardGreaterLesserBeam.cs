@@ -31,8 +31,8 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 /* Some vanilla cards don't upgrade, some only upgrade to A, but most upgrade to either A or B */
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
             Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "GreaterLesserBeam", "name"]).Localize
+            /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
         });
     }
     public override CardData GetData(State state)
@@ -46,9 +46,6 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 _ => 3
             },
             exhaust = true,
-            description = ModEntry.Instance.Localizations.Localize(["card", "GreaterLesserBeam", "description", upgrade.ToString()])
-            /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
-            /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
         };
         return data;
     }
@@ -61,105 +58,228 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new ASpawn
-                    {
-                        thing = new Bolt
+
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = -1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = -1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = 1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = 1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
+
+                    ),
                 };
                 actions = cardActionList1;
                 break;
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
-                {
-                    new ASpawn
-                    {
-                        thing = new Bolt
+             {
+
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = -1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = -1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = 1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = 1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
+
+                    ),
                 };
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
-                {
-                    new ASpawn
-                    {
-                        thing = new Bolt
+             {
+
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = -1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = -1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = -2,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = 1,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
-                    new ASpawn
-                    {
-                        offset = 1,
-                        thing = new Bolt
+
+                    ),
+                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
+                                Status.heat, //our status
+                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
+                            ), //We close the status cost
+                            amount: 1 //We declare the amout of the cost we're asking
+                        ), //We close the cost
+                        new ASpawn
                         {
-                        boltType = BoltType.Chaos,
-                        targetPlayer = false
+                            offset = -2,
+                            thing = new Bolts
+                            {
+                                boltType = Bolts.BType.chaos,
+                                targetPlayer = false
+                            }
                         }
-                    },
+
+                    ),
                 };
                 actions = cardActionList3;
                 break;

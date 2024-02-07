@@ -1,5 +1,6 @@
 ﻿using Nickel;
 using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CountJest.Wizbo;
 
@@ -8,7 +9,7 @@ public class FireMine : StuffBase
     public override List<Tooltip> GetTooltips()
     {
         List<Tooltip> list = new List<Tooltip>();
-        list.Add(new TTGlossary(MKGlossary("FireMine"), "1"));
+        list.Add(new TTGlossary(MKGlossary("FireMine"), "1 damage 3 heat"));
         List<Tooltip> list2 = list;
         if (bubbleShield)
         {
@@ -17,6 +18,7 @@ public class FireMine : StuffBase
 
         return list2;
     }
+    public Spr? Icon => ModEntry.Instance.FmineIcon.Sprite;
     public override string GetDialogueTag()
     {
         return "FireMine";
@@ -29,7 +31,7 @@ public class FireMine : StuffBase
 
     public override double GetWiggleRate()
     {
-        return 2.0;
+        return 4.0;
     }
 
     public override void Render(G g, Vec v)

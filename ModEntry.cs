@@ -66,13 +66,24 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry Cbolt2 { get; }
     internal ISpriteEntry Cbolt3 { get; }
     internal ISpriteEntry Cbolt4 { get; }
-    
+
     /*Icons*/
+    internal ISpriteEntry FmineIcon { get; }
     internal ISpriteEntry MboltIcon { get; }
     internal ISpriteEntry HboltIcon { get; }
     internal ISpriteEntry CboltIcon { get; }
     internal ISpriteEntry HeatCostUnsatisfied { get; }
     internal ISpriteEntry HeatCostSatisfied { get; }
+    internal ISpriteEntry HStat { get; }
+    internal ISpriteEntry HEStat { get; }
+    internal ISpriteEntry ExhstCards { get; }
+    internal ISpriteEntry EHeat { get; }
+
+
+
+
+
+
     internal static IReadOnlyList<Type> Wizbo_StarterCard_Types { get; } = [
         /* Add more starter cards here if you'd like. */
         typeof(CardPocusCrocus),
@@ -83,18 +94,20 @@ public sealed class ModEntry : SimpleMod
      * We recommend having a Starter Cards list, a Common Cards list, an Uncommon Cards list, and a Rare Cards list
      * However you can be more detailed, or you can be more loose, if that's your style */
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
-        typeof(CardMiasma),
-        typeof(CardToxic),
+        typeof(CardMiasmaW),
+        typeof(CardToxicW),
         typeof(CardKoolahLimpoo),
         typeof(CardHashakalah),
         typeof(CardSpillYourDrink),
         typeof(CardYeet),
-        typeof(CardShazammy)
+        typeof(CardShazammy),
+        typeof(CardTregunaMekoides)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(CardAbraKadoozle),
         typeof(CardGreaterLesserBeam),
         typeof(CardKablooiePachinko),
+        typeof(CardSkiddleDeePop),
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
         typeof(CardKachow),
@@ -193,11 +206,16 @@ public sealed class ModEntry : SimpleMod
         Cbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt3.png"));
         Cbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt4.png"));
         //Icons
+        FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
         MboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_mbolt.png"));
         HboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_hbolt.png"));
         CboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_cbolt.png"));
         HeatCostUnsatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCostOff.png"));
         HeatCostSatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCost.png"));
+        HStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/hstat.png"));
+        HEStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/hestat.png"));
+        ExhstCards = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/exhstcards.png"));
+        EHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/eheat.png"));
 
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
@@ -396,5 +414,5 @@ public sealed class ModEntry : SimpleMod
     }
 }
 /* Dialog ideas :
- Wizbo + Max, discuss magic V.S. non magic when Vanish reappears your tridim cockpit*/
+ Wizbo + Max, discuss magic AfsFlse.S. non magic when Vanish reappears your tridim cockpit*/
 

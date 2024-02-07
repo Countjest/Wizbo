@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using static CountJest.Wizbo.Bolts;
 
 namespace CountJest.Wizbo.Cards;
 
@@ -14,7 +15,6 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
-                dontOffer = true,
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
                 rarity = Rarity.uncommon,
                 upgradesTo = [Upgrade.A, Upgrade.B]
@@ -44,9 +44,9 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolt
+                        thing = new Bolts
                         {
-                        boltType = BoltType.Magic,
+                        boltType = BType.magic,
                         targetPlayer = false
                         }
                     },
@@ -59,21 +59,22 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolt
+                        thing = new Bolts
                         {
-                        boltType = BoltType.Magic,
+                        boltType = BType.magic,
                         targetPlayer = false
                         }
                     },
                     new AMove()
                     {
-                        dir = -2
+                        dir = -2,
+                        targetPlayer = false
                     },
                     new ASpawn
                     {
-                        thing = new Bolt
+                        thing = new Bolts
                         {
-                        boltType = BoltType.Magic,
+                        boltType = BType.magic,
                         targetPlayer = false
                         }
                     },
@@ -86,21 +87,22 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolt
+                        thing = new Bolts
                         {
-                        boltType = BoltType.Magic,
+                        boltType = BType.magic,
                         targetPlayer = false
                         }
                     },
                     new AMove()
                     {
+                        targetPlayer = false,
                         dir = 2
                     },
                     new ASpawn
                     {
-                        thing = new Bolt
+                        thing = new Bolts
                         {
-                        boltType = BoltType.Magic,
+                        boltType = BType.magic,
                         targetPlayer = false
                         }
                     },
