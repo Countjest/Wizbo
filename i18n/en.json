@@ -66,7 +66,7 @@
         }
     },
     "action": {
-        "Higest Status": {
+        "Highest Status": {
             "name": "Highest Status",
             "description": "<c=FF0000>H</c><c=FF7F00>i</c><c=FFFF00>g</c><c=00FF00>h</c><c=0000FF>t</c><c=4B0082>e</c><c=9400D3>s</c><c=FF0000>t</c> <c=FF7F00>S</c><c=FFFF00>t</c><c=00FF00>a</c><c=0000FF>t</c><c=4B0082>u</c><c=9400D3>s</c> <c=boldPink>Amount</c> of your ship. <c=boldPink>{{Amount}}</c>"
         },

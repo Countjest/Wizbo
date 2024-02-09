@@ -44,6 +44,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                     {
                         status = Status.tempShield,
                         statusAmount = 1,
+                        targetPlayer = true,
                     },
 
                     new ASpawn

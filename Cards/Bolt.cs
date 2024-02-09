@@ -96,16 +96,17 @@ public class Bolt : StuffBase
         switch (boltType)
         {
             case BType.hex:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "name", "description"])));
+                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "name"])));
+                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "description"])));
                 break;
             case BType.witch:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "name", "description"])));
+                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "name"])));
                 break;
             case BType.chaos:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Chaos", "name", "description"])));
+                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Chaos", "name"])));
                 break;
             case BType.magic:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Magic", "name", "description"])));
+                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Magic", "name"])));
                 break;
             default:
                 throw new NotImplementedException($"Unkown magic Bolt type {boltType}");

@@ -33,20 +33,20 @@ namespace CountJest.Wizbo
         {
             if (iconName != null && iconName == "Highest Status")
             {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Highest Status", "description"], new { Amount = displayAmount.ToString() }))];
+                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Highest Status", "name", "description"], new { Amount = displayAmount.ToString() }))];
 
             }
             else if (iconName != null && iconName == "Sum Highest Status")
             {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Sum Highest Status", "description"], new { Amount = displayAmount.ToString() }))];
+                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Sum Highest Status", "name", "description"], new { Amount = displayAmount.ToString() }))];
             }
             else if (iconName != null && iconName == "Exhausted Cards")
             {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Exhausted Cards", "description"], new { Amount = displayAmount.ToString() }))];
+                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Exhausted Cards", "name", "description"], new { Amount = displayAmount.ToString() }))];
             }
             else if (iconName != null && iconName == "Enemy Heat")
             {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Enemy Heat", "description"], new { Amount = displayAmount.ToString() }))];
+                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Enemy Heat", "name", "description"], new { Amount = displayAmount.ToString() }))];
             }
             else
             {
