@@ -1,7 +1,8 @@
-﻿using Nickel;
+﻿using CountJest.Tower.Cards;
+using Nickel;
 using System.Collections.Generic;
 using System.Reflection;
-using static CountJest.Wizbo.Bolts;
+using static CountJest.Wizbo.Bolt;
 
 namespace CountJest.Wizbo.Cards;
 
@@ -26,7 +27,8 @@ internal sealed class CardShazammy : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.None ? 1 : 1,
+            cost = upgrade == Upgrade.None ? 0 : 1,
+            exhaust = upgrade == Upgrade.B ? true : false,
         };
         return data;
     }
@@ -38,16 +40,20 @@ internal sealed class CardShazammy : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+                    new AStatus()
+                    {
+                        status = Status.tempShield,
+                        statusAmount = 1,
+                    },
 
                     new ASpawn
                     {
-                        thing = new Bolts
+                        thing = new Bolt
                         {
-                            boltType = BType.hex,
+                            boltType = BType.magic,
                             targetPlayer = false
                         }
-                    } //And ofc, make sure to replace these ... for the actual info you want the action to have, this is familiar territory to you
-                     // We close the whoooooooole thing up
+                    }
 
                 };
                 actions = cardActionList1;
@@ -55,45 +61,29 @@ internal sealed class CardShazammy : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
-                                Status.heat, //our status
-                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
-                            ), //We close the status cost
-                            amount: 1 //We declare the amout of the cost we're asking
-                        ), //We close the cost
+                    new AStatus()
+                    {
+                        status = Status.tempShield,
+                        statusAmount = 1,
+                    },
+
                     new ASpawn
                     {
-                        thing = new Bolts
+                        thing = new Bolt
                         {
-                            boltType = BType.hex,
+                            boltType = BType.magic,
                             targetPlayer = false
                         }
-                    }
-                    ),
-                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
-                                Status.heat, //our status
-                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
-                            ), //We close the status cost
-                            amount: 1 //We declare the amout of the cost we're asking
-                        ), //We close the cost
+                    },
                     new ASpawn
                     {
                         offset = 1,
-                        thing = new Bolts
+                        thing = new Bolt
                         {
-                            boltType = BType.hex,
+                            boltType = BType.magic,
                             targetPlayer = false
                         }
-                    }
-                    ),
+                    },
 
                 };
                 actions = cardActionList2;
@@ -101,40 +91,34 @@ internal sealed class CardShazammy : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
-                                Status.heat, //our status
-                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
-                            ), //We close the status cost
-                            amount: 1 //We declare the amout of the cost we're asking
-                        ), //We close the cost
                     new ASpawn
                     {
-                        thing = new Bolts
+                        offset = -1,
+                        thing = new Bolt
                         {
-                            boltType = BType.hex,
+                            boltType = BType.magic,
                             targetPlayer = false
                         }
-                    }
-                    ),
-                                        ModEntry.Instance.KokoroApi.ActionCosts.Make( //We access it and create a CardAction that will ask for a Cost and a CardAction to do for it
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost( //We access it again and create the cost
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource( //We access it again and declare our cost to be a status
-                                Status.heat, //our status
-                                    target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player, //The target, in our case, we ask heat from the player
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite, //We need to declare a custom sprite!!! Make sure to create one in ModEntry for it
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite //We also need one for the satisfied one!!! So also create it on ModEntry
-                            ), //We close the status cost
-                            amount: 1 //We declare the amout of the cost we're asking
-                        ), //We close the cost
-                    new ADrawCard()
+                    },
+                    new ASpawn
                     {
-                        count = 1,
-                    }
-                    ),
+                        offset = 1,
+                        thing = new Bolt
+                        {
+                            boltType = BType.magic,
+                            targetPlayer = false
+                        }
+                    },
+                    new AAddCard
+                    {
+                        card = new CardShazammy
+                            {
+                                upgrade = Upgrade.B,
+                                temporaryOverride= true
+                            },
+                        amount = 1,
+                        destination = CardDestination.Deck
+                    },
                 };
                 actions = cardActionList3;
                 break;

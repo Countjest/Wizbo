@@ -6,6 +6,7 @@ using CountJest.Wizbo;
 using FSPRO;
 using Nickel;
 
+namespace CountJest.Wizbo;
 public class AFireField : CardAction
 {
     public override void Begin(G g, State s, Combat c)

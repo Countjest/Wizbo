@@ -45,26 +45,38 @@
             "description": "This is a Framjificent Castle, not very mobile"
         }
     },
-    "midrow": {
-        "Bolts": {
+    "Midrow": {
+        "Bolt": {
             "Hex": {
-                "name": "Hex",
-                "description": "Deals Dmg equal to the target's <c=status>Heat<c/> & aaplies 2 <c=status>Heat<c/>"
+                "name": "Hexbolt",
+                "description": "Applies <c=cardtrait>Weak</c> to the enemy ship part hit and 2 <c=status>Missile Malfunction<c/>, never misses"
             },
             "Chaos": {
-                "name": "Chaos",
-                "description": "chaosbolt"
+                "name": "Chaosbolt",
+                "description": "40% chance to apply 1 <c=status>Boost</c> 60% chance to apply 1 of <c=status>Heat, Corrode or Missile Malfunction<c/>, never misses"
             },
             "Magic": {
-                "name": "Magic",
-                "description": "magicbolt"
+                "name": "Magicbolt",
+                "description": "Deals 1 damage to the enemy, never misses"
+            },
+            "Witch": {
+                "name": "Witchbolt",
+                "description": "Witchbolt, deals damage equal to the number of enemy ship parts, never misses"
             }
         }
     },
     "action": {
-        "AVariableHintFake": {
+        "Higest Status": {
             "name": "Highest Status",
             "description": "<c=FF0000>H</c><c=FF7F00>i</c><c=FFFF00>g</c><c=00FF00>h</c><c=0000FF>t</c><c=4B0082>e</c><c=9400D3>s</c><c=FF0000>t</c> <c=FF7F00>S</c><c=FFFF00>t</c><c=00FF00>a</c><c=0000FF>t</c><c=4B0082>u</c><c=9400D3>s</c> <c=boldPink>Amount</c> of your ship. <c=boldPink>{{Amount}}</c>"
+        },
+        "Sum Highest Status": {
+            "name": "Sum Highest Status",
+            "description": "SUM <c=FF0000>H</c><c=FF7F00>i</c><c=FFFF00>g</c><c=00FF00>h</c><c=0000FF>t</c><c=4B0082>e</c><c=9400D3>s</c><c=FF0000>t</c> <c=FF7F00>S</c><c=FFFF00>t</c><c=00FF00>a</c><c=0000FF>t</c><c=4B0082>u</c><c=9400D3>s</c> <c=boldPink>Sum of Players and Enemy ships Highest Status</c>."
+        },
+        "Enemy Heat": {
+            "name": "Enemy Heat",
+            "description": "Total <c=Status>Heat</c> on the the enemy ship."
         }
     },
     "card": {
@@ -77,8 +89,8 @@
         "SpillYourDrink": {
             "name": "SpillYourDrink"
         },
-        "TregunaMekoides": {
-            "name": "TregunaMekoides"
+        "DeeMekoides": {
+            "name": "DeeMekoides"
         },
         "Ponder": {
             "name": "Ponder"
@@ -89,16 +101,16 @@
         "Kachow": {
             "name": "Kachow"
         },
-        "MiasmaW": {
-            "name": "MiasmaW",
+        "Miasma": {
+            "name": "Miasma",
             "description": {
                 "None": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
                 "A": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
                 "B": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>."
             }
         },
-        "ToxicW": {
-            "name": "ToxicW",
+        "Toxic": {
+            "name": "Toxic",
             "description": {
                 "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
                 "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
@@ -114,9 +126,9 @@
         "PocusCrocus": {
             "name": "Pocus Crocus",
             "description": {
-                "None": "Add 2 <c=card>MiasmaW</c> to your Draw pile, and one <c=card>ToxicW</c> to your Discard.",
-                "A": "Add 2 <c=card>MiasmaW</c> to your Draw pile, and one <c=card>ToxicW</c> to your Discard.",
-                "B": "Add 3 <c=card>MiasmaW</c> to your Draw pile, and 2 <c=card>ToxicW</c> to your Discard."
+                "None": "Add 2 <c=card>Miasma</c> to your Draw pile, and one <c=card>Toxic</c> to your Discard.",
+                "A": "Add 2 <c=card>Miasma</c> to your Draw pile, and one <c=card>Toxic</c> to your Discard.",
+                "B": "Add 3 <c=card>Miasma</c> to your Draw pile, and 2 <c=card>Toxic</c> to your Discard."
             }
         },
         "GreaterLesserBeam": {
@@ -135,20 +147,11 @@
             "name": "Yeet"
         },
         "KablooiePachinko": {
-            "name": "KablooiePachinko",
-            "description": {
-                "None": "Attack for X, X = enemy <c=status>Heat</c>",
-                "A": "Give the enemy 3 <c=status>Heat</c>; Attack for X, X = enemy <c=status>Heat</c>",
-                "B": "Turn all Midrow objects into FireMines, destroy them as if you were the enemy ship, then Attack for X, X = enemy <c=status>Heat</c>"
-            }
+            "name": "KablooiePachinko"
         },
         "SkiddleDeePop": {
-            "name": "SkiddleDeePop",
-            "description": {
-                "None": "Gain 2 <c=status>Heat</c>",
-                "A": "Give the enemy 3 <c=status>Heat</c>; Attack for X, X = enemy <c=status>Heat</c>",
-                "B": "Turn all Midrow objects into FireMines, destroy them as if you were the enemy ship, then Attack for X, X = enemy <c=status>Heat</c>"
-            }
+            "name": "SkiddleDeePop"
         }
     }
 }
+

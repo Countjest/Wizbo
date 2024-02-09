@@ -44,6 +44,15 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
                         isRandom = true,
                         targetPlayer = true
                     },
+                    new AAddCard
+                    {
+                        card = new CardMiasma
+                        {
+                            temporaryOverride= true
+                        },
+                        amount = 1,
+                        destination = CardDestination.Deck,
+                    },
                 };
                 actions = cardActionList1;
                 break;
@@ -59,7 +68,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },

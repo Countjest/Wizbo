@@ -109,6 +109,7 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                     new ADrawCard()
                     {
                         count = (2+boostMod) + Cnum,
+                        xHint = 1,
                     },
                     new AStatus()
                     {
@@ -123,6 +124,11 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = Cnum,
+                        iconName = "Highest Status"
+                    },
                     new ADrawCard()
                     {
                         count = Cnum,

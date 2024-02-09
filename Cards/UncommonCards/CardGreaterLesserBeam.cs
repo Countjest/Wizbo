@@ -71,9 +71,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         ), //We close the cost
                         new ASpawn
                         {
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -92,9 +92,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = -1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -113,9 +113,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = 1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -140,9 +140,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         ), //We close the cost
                         new ASpawn
                         {
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -161,9 +161,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = -1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -182,9 +182,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = 1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -209,9 +209,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         ), //We close the cost
                         new ASpawn
                         {
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -230,9 +230,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = -1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -251,9 +251,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = 1,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }
@@ -272,9 +272,9 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         new ASpawn
                         {
                             offset = -2,
-                            thing = new Bolts
+                            thing = new Bolt
                             {
-                                boltType = Bolts.BType.chaos,
+                                boltType = Bolt.BType.chaos,
                                 targetPlayer = false
                             }
                         }

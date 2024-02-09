@@ -2,35 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using static CountJest.Wizbo.Bolts;
+using static CountJest.Wizbo.Bolt;
 
 namespace CountJest.Wizbo.Cards;
 
-internal sealed class CardTregunaMekoides : Card, IDemoCard
+internal sealed class CardDeeMekoides : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("TregunaMekoides", new()
+        helper.Content.Cards.RegisterCard("DeeMekoides", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
-                rarity = Rarity.uncommon,
+                rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
                             
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "TregunaMekoides", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "DeeMekoides", "name"]).Localize
         });;
     }
     public override CardData GetData(State state)
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.None ? 1 : 2,
+            cost = upgrade == Upgrade.None ? 3 : 3,
+            exhaust = upgrade == Upgrade.B ? false : true,
 
-            /* In a similar manner to how we localized card names, we'll localize their descriptions
-             * For example, if Sheep Dream is upgraded to B, this description would try getting information from card > SheepDream > Description > B in the locale file */
         };
         return data;
     }
@@ -44,9 +43,9 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolts
+                        thing = new Bolt
                         {
-                        boltType = BType.magic,
+                        boltType = BType.hex,
                         targetPlayer = false
                         }
                     },
@@ -59,22 +58,19 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolts
+                        offset = 3,
+                        thing = new Bolt
                         {
-                        boltType = BType.magic,
+                        boltType = BType.hex,
                         targetPlayer = false
                         }
                     },
-                    new AMove()
-                    {
-                        dir = -2,
-                        targetPlayer = false
-                    },
                     new ASpawn
                     {
-                        thing = new Bolts
+                        offset = -3,
+                        thing = new Bolt
                         {
-                        boltType = BType.magic,
+                        boltType = BType.hex,
                         targetPlayer = false
                         }
                     },
@@ -87,26 +83,12 @@ internal sealed class CardTregunaMekoides : Card, IDemoCard
                 {
                     new ASpawn
                     {
-                        thing = new Bolts
+                        thing = new Bolt
                         {
-                        boltType = BType.magic,
+                        boltType = BType.witch,
                         targetPlayer = false
                         }
                     },
-                    new AMove()
-                    {
-                        targetPlayer = false,
-                        dir = 2
-                    },
-                    new ASpawn
-                    {
-                        thing = new Bolts
-                        {
-                        boltType = BType.magic,
-                        targetPlayer = false
-                        }
-                    },
-
                 };
                 actions = cardActionList3;
                 break;

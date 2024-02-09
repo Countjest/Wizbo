@@ -11,12 +11,12 @@ namespace CountJest.Wizbo.Cards;
 /* The Card's class name IS IMPORTANT, however. This is what the game will ask for when trying to get a card.
  * If your card's class shares the same name as a vanilla card, or shares it with a modded card, the game can't keep both, and will only use one
  * For this reason, we recommend to give a unique name that is unlikely to be repeated by others, such as incorporating AuthorName or ModName to it */
-internal sealed class CardMiasmaW : Card, IDemoCard
+internal sealed class CardMiasma : Card, IDemoCard
 {
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("MiasmaW", new()
+        helper.Content.Cards.RegisterCard("Miasma", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -33,7 +33,7 @@ internal sealed class CardMiasmaW : Card, IDemoCard
                 dontOffer = true
             },
             /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "MiasmaW", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Miasma", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
@@ -43,7 +43,7 @@ internal sealed class CardMiasmaW : Card, IDemoCard
             cost = 0,
             temporary = true,
             exhaust = true,
-            description = ModEntry.Instance.Localizations.Localize(["card", "MiasmaW", "description", upgrade.ToString()])
+            description = ModEntry.Instance.Localizations.Localize(["card", "Miasma", "description", upgrade.ToString()])
             /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
             /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
         };

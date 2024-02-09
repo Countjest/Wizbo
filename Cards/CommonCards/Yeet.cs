@@ -57,16 +57,17 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, Epile)
+                        damage = GetDmg(s, Epile),
+                        xHint = 1,
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Hand
+                        destination = CardDestination.Deck
                     },
                 };
                 actions = cardActionList1;
@@ -81,7 +82,8 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, Epile)
+                        damage = GetDmg(s, Epile),
+                        xHint = 1,
                     },
                     new AAddCard
                     {
@@ -90,7 +92,7 @@ internal sealed class CardYeet : Card, IDemoCard
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Deck
+                        destination = CardDestination.Hand
                     }
                 };
                 actions = cardActionList2;
@@ -105,11 +107,12 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, Epile)
+                        damage = GetDmg(s, Epile),
+                        xHint = 1,
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -118,7 +121,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },

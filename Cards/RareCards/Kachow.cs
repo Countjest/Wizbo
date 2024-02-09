@@ -34,32 +34,27 @@ internal sealed class CardKachow : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        var jazStatus = s.ship.statusEffects.Where(pair =>
+        pair.Key != Status.shield &&
+        pair.Key != Status.tempShield)
+        .ToDictionary(i => i.Key, i => i.Value).Values;
+        var ejazStatus = c.otherShip.statusEffects.Where(pair =>
+        pair.Key != Status.shield &&
+        pair.Key != Status.tempShield)
+        .ToDictionary(i => i.Key, i => i.Value).Values;
         int max = 0;
         int max2 = 0;
-        if (s.ship.statusEffects.Values.Count > 0)
+        if (jazStatus.Count > 0)
         {
             if (s.route is Combat)
             {
-                max = s.ship.statusEffects.Where(pair =>
-                pair.Key != Status.shield &&
-                pair.Key != Status.tempShield)
-                .ToDictionary(i => i.Key, i => i.Value).Values.Max();
-
-                if (c.otherShip.statusEffects.Values.Count > 0)
+                max = jazStatus.Max();
+                if (ejazStatus.Count > 0)
                 {
-                    max2 = c.otherShip.statusEffects.Where(pair =>
-                    pair.Key != Status.shield &&
-                    pair.Key != Status.tempShield)
-                    .ToDictionary(i => i.Key, i => i.Value).Values.Max();
-
+                    max2 = ejazStatus.Max();
                 }
             }
-        }
-        else
-        {
-            max = 0;
-            max2 = 0;
-        }
+        };
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -69,11 +64,12 @@ internal sealed class CardKachow : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, max),
-                        iconName = "Highest Status",
+                        iconName = "Highest Status"
                     },
                     new AAttack()
                     {
-                    damage = GetDmg(s, max)
+                        damage = GetDmg(s, max),
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList1;
@@ -84,11 +80,12 @@ internal sealed class CardKachow : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, max),
-                        iconName = "Highest Status",
+                        iconName = "Highest Status"
                     },
                     new AAttack()
                     {
-                    damage = GetDmg(s, max),
+                        damage = GetDmg(s, max),
+                        xHint = 1 ,
                     }
                 };
                 actions = cardActionList2;
@@ -99,11 +96,12 @@ internal sealed class CardKachow : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, max+max2),
-                        iconName = "Highest Status",
+                        iconName = "Sum Highest Status"
                     },
                     new AAttack()
                     {
-                    damage = GetDmg(s, max + max2)
+                        damage = GetDmg(s, max + max2),
+                        xHint = 1 ,
                     },
                 };
                 actions = cardActionList3;

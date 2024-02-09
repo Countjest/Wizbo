@@ -45,7 +45,7 @@ internal sealed class CardHashakalah : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -66,7 +66,7 @@ internal sealed class CardHashakalah : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -87,7 +87,7 @@ internal sealed class CardHashakalah : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -96,7 +96,7 @@ internal sealed class CardHashakalah : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },

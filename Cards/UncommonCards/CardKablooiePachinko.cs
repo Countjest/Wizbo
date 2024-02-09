@@ -27,7 +27,6 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
         CardData data = new CardData()
         {
             cost = upgrade == Upgrade.None ? 1 : 2,
-            description = ModEntry.Instance.Localizations.Localize(["card", "KablooiePachinko", "description", upgrade.ToString()])
             /* In a similar manner to how we localized card names, we'll localize their descriptions
              * For example, if Sheep Dream is upgraded to B, this description would try getting information from card > SheepDream > Description > B in the locale file */
         };
@@ -50,9 +49,16 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, bonush),
+                        iconName = "Enemy Heat",
+
+                    },
                     new AAttack()
                     {
-                        damage = GetDmg(s, bonush)
+                        damage = GetDmg(s, bonush),
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList1;
@@ -63,11 +69,18 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.heat,
-                        statusAmount = 3
+                        statusAmount = 3,
+                        targetPlayer = false,
+                    },
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, 3+bonush),
+                        iconName = "Enemy Heat",
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, 3+bonush)
+                        damage = GetDmg(s, 3+bonush),
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList2;
@@ -81,12 +94,17 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                     },
                     new AFireStorm()
                     {
-                        HBonus = hbonusB
-
+                        HBonus = hbonusB,
+                    },
+                    new AVariableHintFake()
+                    {
+                        displayAmount = GetDmg(s, bonush + hbonusB),
+                        iconName = "Enemy Heat",
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, bonush + hbonusB)
+                        damage = GetDmg(s, bonush + hbonusB),
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList3;

@@ -44,7 +44,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -53,7 +53,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -62,7 +62,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxicW
+                        card = new CardToxic
                         {
                             temporaryOverride= true
                         },
@@ -77,7 +77,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -86,7 +86,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -95,7 +95,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxicW
+                        card = new CardToxic
                         {
                             temporaryOverride= true
                         },
@@ -110,7 +110,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -119,7 +119,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -128,7 +128,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasmaW
+                        card = new CardMiasma
                         {
                             temporaryOverride= true
                         },
@@ -137,7 +137,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxicW
+                        card = new CardToxic
                         {
                             temporaryOverride= true
                         },
@@ -146,7 +146,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxicW
+                        card = new CardToxic
                         {
                             temporaryOverride= true
                         },

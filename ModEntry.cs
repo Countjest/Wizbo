@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Versioning;
+using static HarmonyLib.Code;
 
 /* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
  * This is helpful to know at a glance what mod we're looking at, and who made it */
@@ -50,32 +51,20 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry SEmpty { get; }
     internal IDeckEntry Wizbo_Deck { get; }
     internal IShipEntry MagicTower_Ship { get; }
-    internal ISpriteEntry FireMinespr { get; }
-    internal ISpriteEntry Mbolt0 { get; }
-    internal ISpriteEntry Mbolt1 { get; }
-    internal ISpriteEntry Mbolt2 { get; }
-    internal ISpriteEntry Mbolt3 { get; }
-    internal ISpriteEntry Mbolt4 { get; }
-    internal ISpriteEntry Hbolt0 { get; }
-    internal ISpriteEntry Hbolt1 { get; }
-    internal ISpriteEntry Hbolt2 { get; }
-    internal ISpriteEntry Hbolt3 { get; }
-    internal ISpriteEntry Hbolt4 { get; }
-    internal ISpriteEntry Cbolt0 { get; }
-    internal ISpriteEntry Cbolt1 { get; }
-    internal ISpriteEntry Cbolt2 { get; }
-    internal ISpriteEntry Cbolt3 { get; }
-    internal ISpriteEntry Cbolt4 { get; }
 
+    /*midrow*/
+    internal ISpriteEntry FireMinespr { get; }
+    internal ISpriteEntry Bolt { get; }
     /*Icons*/
     internal ISpriteEntry FmineIcon { get; }
+    internal ISpriteEntry WboltIcon { get; }
     internal ISpriteEntry MboltIcon { get; }
     internal ISpriteEntry HboltIcon { get; }
     internal ISpriteEntry CboltIcon { get; }
     internal ISpriteEntry HeatCostUnsatisfied { get; }
     internal ISpriteEntry HeatCostSatisfied { get; }
     internal ISpriteEntry HStat { get; }
-    internal ISpriteEntry HEStat { get; }
+    internal ISpriteEntry SumHStat { get; }
     internal ISpriteEntry ExhstCards { get; }
     internal ISpriteEntry EHeat { get; }
 
@@ -94,14 +83,14 @@ public sealed class ModEntry : SimpleMod
      * We recommend having a Starter Cards list, a Common Cards list, an Uncommon Cards list, and a Rare Cards list
      * However you can be more detailed, or you can be more loose, if that's your style */
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
-        typeof(CardMiasmaW),
-        typeof(CardToxicW),
+        typeof(CardMiasma),
+        typeof(CardToxic),
         typeof(CardKoolahLimpoo),
         typeof(CardHashakalah),
         typeof(CardSpillYourDrink),
         typeof(CardYeet),
         typeof(CardShazammy),
-        typeof(CardTregunaMekoides)
+        typeof(CardDeeMekoides)
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(CardAbraKadoozle),
@@ -130,10 +119,10 @@ public sealed class ModEntry : SimpleMod
     /* We'll organize our artifacts the same way: making lists and then feed those to an IEnumerable */
     internal static IReadOnlyList<Type> Wizbo_CommonArtifact_Types { get; } = [
         typeof(GrimoireOfPower),
-        typeof(AegisGrimoire),
-        typeof(GrimoireOfSpeed),
+        typeof(AegisGrimoire),/*Duo dizzy ?*/
+        typeof(GrimoireOfSpeed),//meh
         typeof(EtherealGrimoire),/*Boss*/
-        typeof(ParadoxGrimoire)/*Boss*/
+        typeof(ParadoxGrimoire)/*Boss meh */
     ];
     /*Ship starting artifacts*/
     internal static IReadOnlyList<Type> TowerShip_Artifact_Types { get; } = [
@@ -190,30 +179,17 @@ public sealed class ModEntry : SimpleMod
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
         //stuffbase
         FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
-        Mbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt0.png"));
-        Mbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt1.png"));
-        Mbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt2.png"));
-        Mbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt3.png"));
-        Mbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Mbolt4.png"));
-        Hbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt0.png"));
-        Hbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt1.png"));
-        Hbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt2.png"));
-        Hbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt3.png"));
-        Hbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Hbolt4.png"));
-        Cbolt0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt0.png"));
-        Cbolt1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt1.png"));
-        Cbolt2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt2.png"));
-        Cbolt3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt3.png"));
-        Cbolt4 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Cbolt4.png"));
+        Bolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Bolt.png"));
         //Icons
         FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
+        WboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_wbolt.png"));
         MboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_mbolt.png"));
         HboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_hbolt.png"));
         CboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_cbolt.png"));
         HeatCostUnsatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCostOff.png"));
         HeatCostSatisfied = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/mezz_heatCost.png"));
         HStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/hstat.png"));
-        HEStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/hestat.png"));
+        SumHStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/sumhstat.png"));
         ExhstCards = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/exhstcards.png"));
         EHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/eheat.png"));
 

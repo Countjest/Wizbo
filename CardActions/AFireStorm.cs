@@ -26,14 +26,17 @@ public class AFireStorm : CardAction
             if (item != null)
             {
                 c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
+                c.stuff.Remove(item.x);
+                s.AddShake(2.0);
+                c.fx.Add(new DroneExplosion
+                {
+                    pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
+                });
+
+                HBonus++;
             }
-            HBonus++;
         }
-        s.AddShake(2.0);
-        c.fx.Add(new DroneExplosion
-        {
-            pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
-        });
+
     }
 
     public override List<Tooltip> GetTooltips(State s)
