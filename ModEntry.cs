@@ -138,7 +138,7 @@ public sealed class ModEntry : SimpleMod
     public ModEntry(IPluginPackage<IModManifest> package, IModHelper helper, ILogger logger) : base(package, helper, logger)
     {
         Instance = this;
-        KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+        KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("CountJest.Kokoro")!;
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPCoreExhaust();
         _ = new HPGrimoireExhaust();
@@ -147,6 +147,7 @@ public sealed class ModEntry : SimpleMod
         _ = new HPArtifactBlacklist();
         _ = new HPShipAnim();
 
+        CustomTTGlossary.ApplyPatches(Harmony);
         /* These localizations lists help us organize our mod's text and messages by language.
          * For general use, prefer AnyLocalizations, as that will provide an easier time to potential localization submods that are made for your mod 
          * IMPORTANT: These localizations are found in the i18n folder (short for internationalization). The Demo Mod comes with a barebones en.json localization file that you might want to check out before continuing 

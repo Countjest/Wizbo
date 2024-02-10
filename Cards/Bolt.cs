@@ -96,11 +96,22 @@ public class Bolt : StuffBase
         switch (boltType)
         {
             case BType.hex:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "name"])));
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "description"])));
+                result.Add(new CustomTTGlossary(
+                    CustomTTGlossary.GlossaryType.midrow,
+                    () => ModEntry.Instance.HboltIcon.Sprite,
+                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "name"]),
+                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "description"]),
+                    key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::BoltHex"
+                ));
                 break;
             case BType.witch:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "name"])));
+                result.Add(new CustomTTGlossary(
+                    CustomTTGlossary.GlossaryType.midrow,
+                    () => ModEntry.Instance.WboltIcon.Sprite,
+                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "name"]),
+                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "description"]),
+                    key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::BoltWitch"
+                ));
                 break;
             case BType.chaos:
                 result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Chaos", "name"])));
