@@ -1,57 +1,51 @@
-﻿
-using System;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
+namespace CountJest.Wizbo;
 
-namespace CountJest.Wizbo
+[JsonConverter(typeof(StringEnumConverter))]
+public class AVariableHintFake : AVariableHint
 {
-    public class AVariableHintFake : AVariableHint
+    [JsonIgnore]
+    public Spr icon = ModEntry.Instance.HStat.Sprite;
+    public int displayAmount;
+    public string? iconName;
+    public AVariableHintFake() : base()
     {
-        [JsonIgnore]
-        public Spr icon = ModEntry.Instance.HStat.Sprite;
-        public int displayAmount;
-        public string? iconName;
-        public AVariableHintFake() : base()
+        hand = true;
+    }
+    public override List<Tooltip> GetTooltips(State s)
+    {
+        Spr iconTT = ModEntry.Instance.HStat.Sprite;
+        switch (iconName)
         {
-            hand = true;
+            case ("Highest Status"):
+            iconTT = ModEntry.Instance.HStat.Sprite;
+                break;
+            case ("Sum Highest Status"):
+            iconTT = ModEntry.Instance.SumHStat.Sprite;
+                break;
+            case ("Exhausted Cards"):
+            iconTT = ModEntry.Instance.ExhstCards.Sprite;
+                break;
+            case ("Enemy Heat"):
+            iconTT = ModEntry.Instance.EHeat.Sprite;
+                break;
         }
-        public override Icon? GetIcon(State s)
-        {
-            if (iconName == "Highest Status")
-                icon = ModEntry.Instance.HStat.Sprite;
-            else if (iconName == "Sum Highest Status")
-                icon = ModEntry.Instance.SumHStat.Sprite;
-            else if (iconName == "Exhausted Cards")
-                icon = ModEntry.Instance.ExhstCards.Sprite;
-            else if (iconName == "Enemy Heat")
-                icon = ModEntry.Instance.EHeat.Sprite;
-            return new Icon(icon, null, Colors.textMain);
 
-        }
-        public override List<Tooltip> GetTooltips(State s)
+        var resultTT = new List<Tooltip>()
         {
-            if (iconName != null && iconName == "Highest Status")
-            {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Highest Status", "name", "description"], new { Amount = displayAmount.ToString() }))];
-
-            }
-            else if (iconName != null && iconName == "Sum Highest Status")
-            {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Sum Highest Status", "name", "description"], new { Amount = displayAmount.ToString() }))];
-            }
-            else if (iconName != null && iconName == "Exhausted Cards")
-            {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Exhausted Cards", "name", "description"], new { Amount = displayAmount.ToString() }))];
-            }
-            else if (iconName != null && iconName == "Enemy Heat")
-            {
-                return [new TTText(ModEntry.Instance.Localizations.Localize(["action", "Enemy Heat", "name", "description"], new { Amount = displayAmount.ToString() }))];
-            }
-            else
-            {
-                throw new NotImplementedException($"Unkown AVariableHint icon");
-            }
-        }
+            new CustomTTGlossary(
+                CustomTTGlossary.GlossaryType.action,
+                () => iconTT,
+                () => ModEntry.Instance.Localizations.Localize(["Action", $"{iconName}", "name"]),
+                () => ModEntry.Instance.Localizations.Localize(["Action", $"{iconName}", "description"]),
+                key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::Icon{iconName}"
+            )
+        };
+        return resultTT;
     }
 }
