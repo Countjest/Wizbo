@@ -47,9 +47,9 @@ internal sealed class CardShazammy : Card, IDemoCard
                         targetPlayer = true,
                     },
 
-                    new ASpawn
+                    new ASpawn()
                     {
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                             boltType = BType.magic,
                             targetPlayer = false
@@ -68,18 +68,18 @@ internal sealed class CardShazammy : Card, IDemoCard
                         statusAmount = 1,
                     },
 
-                    new ASpawn
+                    new ASpawn()
                     {
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                             boltType = BType.magic,
                             targetPlayer = false
                         }
                     },
-                    new ASpawn
+                    new ASpawn()
                     {
                         offset = 1,
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                             boltType = BType.magic,
                             targetPlayer = false
@@ -92,27 +92,27 @@ internal sealed class CardShazammy : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new ASpawn
+                    new ASpawn()
                     {
                         offset = -1,
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                             boltType = BType.magic,
                             targetPlayer = false
                         }
                     },
-                    new ASpawn
+                    new ASpawn()
                     {
                         offset = 1,
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                             boltType = BType.magic,
                             targetPlayer = false
                         }
                     },
-                    new AAddCard
+                    new AAddCard()
                     {
-                        card = new CardShazammy
+                        card = new CardShazammy()
                             {
                                 upgrade = Upgrade.B,
                                 temporaryOverride= true
