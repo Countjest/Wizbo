@@ -53,7 +53,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, Epile),
-                        iconName = "Exhausted Cards",
+                        iconName = "Exhausted Cards"
                     },
                     new AAttack()
                     {
@@ -78,7 +78,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, Epile),
-                        iconName = "Exhausted Cards",
+                        iconName = "Exhausted Cards"
                     },
                     new AAttack()
                     {
@@ -103,7 +103,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     new AVariableHintFake()
                     {
                         displayAmount = GetDmg(s, Epile),
-                        iconName = "Exhausted Cards",
+                        iconName = "Exhausted Cards"
                     },
                     new AAttack()
                     {

@@ -1,6 +1,7 @@
 ﻿using CountJest.Wizbo.Cards;
 using Nickel;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -9,6 +10,7 @@ namespace CountJest.Wizbo.Artifacts;
 
 internal sealed class ParadoxGrimoire : Artifact, IDemoArtifact
 {
+    public int ParadoxCounter = 0;
     public static void Register(IModHelper helper)
     {
         helper.Content.Artifacts.RegisterArtifact("ParadoxGrimoire", new()
@@ -24,5 +26,15 @@ internal sealed class ParadoxGrimoire : Artifact, IDemoArtifact
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ParadoxGrimoire", "description"]).Localize
         });
     }
+    public override void OnReceiveArtifact(State state)
+    {
+        this.ParadoxCounter = 0;
+    }
 
+    public override int? GetDisplayNumber(State s)
+    {
+        if (this.ParadoxCounter != 0)
+            return this.ParadoxCounter;
+        return null;
+    }
 }

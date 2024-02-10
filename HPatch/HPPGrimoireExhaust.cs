@@ -17,24 +17,16 @@ namespace CountJest.Wizbo
             original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToExhaust)),
             postfix: new HarmonyMethod(GetType(), nameof(HPPGrimoireExhaust.SendCardToExhaust4)));
         }
-        public static bool bypass = false;
         public static void SendCardToExhaust4(Combat __instance, State s, Card card)
         {
-            if (bypass)
-                return;
             var artifact4 = s.EnumerateAllArtifacts().OfType<ParadoxGrimoire>().FirstOrDefault();
             if (artifact4 is null)
                 return;
-            __instance.Queue(new ExhaustCardAction2()
-            {
-                cardId2 = card.uuid,
-                artifactPulse = artifact4.Key(),
-            }) ;
             __instance.Queue(new ParadoxCardAction()
             {
                 cardId3 = card.uuid,
                 artifactPulse = artifact4.Key(),
-            });          
+            });  
         }
     }
 }

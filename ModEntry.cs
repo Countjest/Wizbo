@@ -9,6 +9,9 @@ using Nickel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System.Runtime.Versioning;
 using static HarmonyLib.Code;
 
