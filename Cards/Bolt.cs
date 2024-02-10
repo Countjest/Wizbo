@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System;
 using FSPRO;
-using static StoryVars;
 using FMOD;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CountJest.Wizbo;
-
+[JsonConverter(typeof(StringEnumConverter))]
+public enum BType
+{
+    Witch,
+    Chaos,
+    Magic,
+    Hex
+}
 public class Bolt : StuffBase
 {
     public static readonly int SprWidth = 17;
@@ -25,17 +33,10 @@ public class Bolt : StuffBase
     }
 
     public BType boltType;
-    public enum BType
-    {
-        witch = 0,
-        chaos = 1,
-        magic = 2,
-        hex = 3,
-    }
     private static readonly Dictionary<BType, BoltData> boltData = new Dictionary<BType, BoltData>
     {
         {
-            BType.witch,
+            BType.Witch,
             new BoltData
             {
                 Key = "Witch",
@@ -45,7 +46,7 @@ public class Bolt : StuffBase
             }
         },
         {
-            BType.chaos,
+            BType.Chaos,
             new BoltData
             {
                 Key = "Chaos",
@@ -55,7 +56,7 @@ public class Bolt : StuffBase
             }
         },
         {
-            BType.magic,
+            BType.Magic,
             new BoltData
             {
                 Key = "Magic",
@@ -65,7 +66,7 @@ public class Bolt : StuffBase
             }
         },
         {
-            BType.hex,
+            BType.Hex,
             new BoltData
             {
                 Key = "Hex",
@@ -91,40 +92,38 @@ public class Bolt : StuffBase
 
     public override List<Tooltip> GetTooltips()
     {
-        var result = new List<Tooltip>();
-
+        Spr sprite = ModEntry.Instance.HboltIcon.Sprite;
         switch (boltType)
         {
-            case BType.hex:
-                result.Add(new CustomTTGlossary(
-                    CustomTTGlossary.GlossaryType.midrow,
-                    () => ModEntry.Instance.HboltIcon.Sprite,
-                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "name"]),
-                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Hex", "description"]),
-                    key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::BoltHex"
-                ));
+            case BType.Hex:
+                sprite = ModEntry.Instance.HboltIcon.Sprite;
                 break;
-            case BType.witch:
-                result.Add(new CustomTTGlossary(
-                    CustomTTGlossary.GlossaryType.midrow,
-                    () => ModEntry.Instance.WboltIcon.Sprite,
-                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "name"]),
-                    () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Witch", "description"]),
-                    key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::BoltWitch"
-                ));
+            case BType.Witch:
+                sprite = ModEntry.Instance.WboltIcon.Sprite;
                 break;
-            case BType.chaos:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Chaos", "name"])));
+            case BType.Chaos:
+                sprite = ModEntry.Instance.CboltIcon.Sprite;
                 break;
-            case BType.magic:
-                result.Add(new TTText(ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", "Magic", "name"])));
+            case BType.Magic:
+                sprite = ModEntry.Instance.MboltIcon.Sprite;
                 break;
             default:
-                throw new NotImplementedException($"Unkown magic Bolt type {boltType}");
+                sprite = ModEntry.Instance.HboltIcon.Sprite;
+                break;
         }
+        var result = new List<Tooltip>()
+        {
+            new CustomTTGlossary(
+                CustomTTGlossary.GlossaryType.midrow,
+                () => sprite,
+                () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", $"{boltType}", "name"]),
+                () => ModEntry.Instance.Localizations.Localize(["Midrow", "Bolt", $"{boltType}", "description"]),
+                key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::Bolt{boltType}"
+            )
+        };
         return result;
     }
-    public List<Status> chaosstatuslist = new List<Status>()
+    public List<Status> Chaosstatuslist = new List<Status>()
     {
         Status.heat,
         Status.boost,
@@ -134,14 +133,14 @@ public class Bolt : StuffBase
     };
     public virtual Spr GetSprite()
     {
-        return (Spr)ModEntry.Instance.Bolt.Sprite;
+        return ModEntry.Instance.Bolt.Sprite;
     }
     public override void Render(G g, Vec v)
     {
         Vec offset = GetOffset(g, doRound: true);
         Vec vec = new Vec(Math.Sin((double)x + g.state.time * 10.0), Math.Cos((double)x + g.state.time * 20.0 + Math.PI / 2.0)).round();
         offset += vec;
-        int num = ((boltType == BType.magic && g.state.route is Combat c) ? GetBoltDirection(g.state, c) : 0);
+        int num = ((boltType == BType.Magic && g.state.route is Combat c) ? GetBoltDirection(g.state, c) : 0);
         Vec vec2 = v + offset;
         Vec vec3 = default(Vec);
         if (num < 0)
@@ -174,7 +173,7 @@ public class Bolt : StuffBase
     public override Vec GetOffset(G g, bool doRound = true)
     {
         Vec offset = base.GetOffset(g, doRound: true);
-        if (boltType == BType.magic)
+        if (boltType == BType.Magic)
         {
             double num = Math.Pow((yAnimation - 1.0) / 2.5, 3.0);
             if (g.state.route is Combat c)
@@ -278,10 +277,10 @@ public class Bolt : StuffBase
         if (s.route is Combat)
             for (var partIndex = 0; partIndex < c.otherShip.parts.Count; partIndex++)
                 WDmg = partIndex;
-        Status status = chaosstatuslist[s.rngActions.NextInt() % chaosstatuslist.Count];
+        Status status = Chaosstatuslist[s.rngActions.NextInt() % Chaosstatuslist.Count];
         return boltType switch
         {
-            BType.witch => new List<CardAction>
+            BType.Witch => new List<CardAction>
             {
                 new ABoltHit
                 {
@@ -293,7 +292,7 @@ public class Bolt : StuffBase
 
                 }
             },
-            BType.hex => new List<CardAction>
+            BType.Hex => new List<CardAction>
             {
                 new ABoltHit
                 {
@@ -306,7 +305,7 @@ public class Bolt : StuffBase
 
                 }
             },
-            BType.chaos => new List<CardAction>
+            BType.Chaos => new List<CardAction>
             {
                 new ABoltHit
                 {
@@ -318,7 +317,7 @@ public class Bolt : StuffBase
 
                 }
             },
-            BType.magic => new List<CardAction>
+            BType.Magic => new List<CardAction>
             {
                 new ABoltHit
                 {
@@ -334,13 +333,13 @@ public class Bolt : StuffBase
     {
         switch (boltType)
         {
-            case BType.hex:
+            case BType.Hex:
                 return (ModEntry.Instance.HboltIcon.Sprite);
-            case BType.witch:
+            case BType.Witch:
                 return (ModEntry.Instance.WboltIcon.Sprite);
-            case BType.chaos:
+            case BType.Chaos:
                 return (ModEntry.Instance.CboltIcon.Sprite);
-            case BType.magic:
+            case BType.Magic:
                 return (ModEntry.Instance.MboltIcon.Sprite);  
             default:
                 return null;

@@ -51,7 +51,19 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        return new()
+        {
+            new ASpawn
+            {
+                thing = new Bolt
+                {
+                    boltType = BType.Hex,
+                    targetPlayer = false
+                }
+            }
+        };
         /* The meat of the card, this is where we define what a card does, and some would say the most fun part of modding Cobalt Core happens here! */
+        /*
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -73,7 +85,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -94,7 +106,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -115,7 +127,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -142,7 +154,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -163,7 +175,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -184,7 +196,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -211,7 +223,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -232,7 +244,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -253,7 +265,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -274,7 +286,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -2,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -285,5 +297,6 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 break;
         }
         return actions;
+        */
     }
 }
