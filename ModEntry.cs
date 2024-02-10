@@ -147,11 +147,8 @@ public sealed class ModEntry : SimpleMod
         _ = new HPArtifactBlacklist();
         _ = new HPShipAnim();
 
+
         CustomTTGlossary.ApplyPatches(Harmony);
-        /* These localizations lists help us organize our mod's text and messages by language.
-         * For general use, prefer AnyLocalizations, as that will provide an easier time to potential localization submods that are made for your mod 
-         * IMPORTANT: These localizations are found in the i18n folder (short for internationalization). The Demo Mod comes with a barebones en.json localization file that you might want to check out before continuing 
-         * Whenever you add a card, artifact, character, ship, pretty much whatever, you will want to update your locale file in i18n with the necessary information */
         this.AnyLocalizations = new JsonLocalizationProvider(
             tokenExtractor: new SimpleLocalizationTokenExtractor(),
             localeStreamFunction: locale => package.PackageRoot.GetRelativeFile($"i18n/{locale}.json").OpenRead()
@@ -159,10 +156,7 @@ public sealed class ModEntry : SimpleMod
         this.Localizations = new MissingPlaceholderLocalizationProvider<IReadOnlyList<string>>(
             new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(this.AnyLocalizations)
         );
-
-
-        /* Assigning our ISpriteEntry objects manually. This is the easiest way to do it when starting out!
-         * Of note: GetRelativeFile is case sensitive. Double check you've written the file names correctly */
+        //Char
         Wizbo_Character_CardBackground = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_char_cardbackground.png"));
         Wizbo_Character_CardFrame = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_char_cardframe.png"));
         Wizbo_Character_Panel = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_char_panel.png"));
@@ -176,6 +170,7 @@ public sealed class ModEntry : SimpleMod
         Wizbo_Character_Squint_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_1.png"));
         Wizbo_Character_Squint_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_2.png"));
         Wizbo_Character_Squint_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_squint_3.png"));
+        //ship
         TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
         //stuffbase
@@ -210,13 +205,8 @@ public sealed class ModEntry : SimpleMod
             },
             DefaultCardArt = Wizbo_Character_CardBackground.Sprite,
             BorderSprite = Wizbo_Character_CardFrame.Sprite,
-
-            /* Since this deck will be used by our Demo Character, we'll use their name. */
             Name = this.AnyLocalizations.Bind(["character", "Wizbo", "name"]).Localize,
         });
-
-        /*Of Note: You may notice we aren't assigning these ICharacterEntry and ICharacterAnimationEntry to any object, unlike stuff above,
-        * It's totally fine to assign them, if you'd like, but we don't have a reason to in this mod */
         Helper.Content.Characters.RegisterCharacter("Wizbo", new CharacterConfiguration()
         {
             Deck = Wizbo_Deck.Deck,
@@ -258,38 +248,12 @@ public sealed class ModEntry : SimpleMod
                 Wizbo_Character_Squint_3.Sprite,
             }
         });
-
-        /* The basics for a Character mod are done!
-         * But you may still have mechanics you want to tackle, such as,
-         * 1. How to make cards
-         * 2. How to make artifacts
-         * 3. How to make ships */
-
-        /* 1. CARDS
-         * Wizbo comes with a neat folder called Cards where all the .cs files for our cards are stored. Take a look.
-         * You can decide to not use the folder, or to add more folders to further organize your cards. That is up to you.
-         * We do recommend keeping files organized, however. It's way easier to traverse a project when the paths are clear and meaningful */
-
-        /* Here we register our cards so we can find them in game.
-         * Notice the IDemoCard interface, you can find it in InternalInterfaces.cs
-         * Each card in the IEnumerable 'Wizbo_AllCard_Types' will be asked to run their 'Register' method. Open a card's .cs file, and see what it does */
         foreach (var cardType in Wizbo_AllCard_Types)
             AccessTools.DeclaredMethod(cardType, nameof(IDemoCard.Register))?.Invoke(null, [helper]);
 
-        /* 2. ARTIFACTS
-         * Creating artifacts is pretty similar to creating Cards
-         * Take a look at the Artifacts folder for demo artifacts!
-         * You may also notice we're using the other interface from InternalInterfaces.cs, IDemoArtifact, to help us out */
         foreach (var artifactType in Wizbo_AllArtifact_Types)
             AccessTools.DeclaredMethod(artifactType, nameof(IDemoArtifact.Register))?.Invoke(null, [helper]);
 
-        /* 3. SHIPS
-         * Creating a ship is much like creating a character
-         * You will need some assets for the ship parts
-         * You can add ship-exclusive cards and artifacts too */
-
-        /* Let's start with registering the ship parts, so we don't have to do it while making the ship proper
-         * You may notice these assets are copies of the vanilla parts. Don't worry, you can get wild with your own designs! */
         var TowerPartWing = Helper.Content.Ships.RegisterPart("TowerPart.Wing", new PartConfiguration()
         {
             Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/towerwing.png")).Sprite

@@ -69,7 +69,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             thing = new Bolt
                             {
@@ -89,7 +89,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = -1,
                             thing = new Bolt
@@ -110,7 +110,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = 1,
                             thing = new Bolt
@@ -138,7 +138,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             thing = new Bolt
                             {
@@ -158,7 +158,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = -1,
                             thing = new Bolt
@@ -179,7 +179,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = 1,
                             thing = new Bolt
@@ -207,7 +207,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             thing = new Bolt
                             {
@@ -227,7 +227,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = -1,
                             thing = new Bolt
@@ -248,7 +248,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = 1,
                             thing = new Bolt
@@ -269,7 +269,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             ), //We close the status cost
                             amount: 1 //We declare the amout of the cost we're asking
                         ), //We close the cost
-                        new ASpawn
+                        new ASpawn()
                         {
                             offset = -2,
                             thing = new Bolt

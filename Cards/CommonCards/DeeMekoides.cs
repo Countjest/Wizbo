@@ -41,9 +41,9 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new ASpawn
+                    new ASpawn()
                     {
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                         boltType = BType.Hex,
                         targetPlayer = false
@@ -56,19 +56,19 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new ASpawn
+                    new ASpawn()
                     {
                         offset = 3,
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                         boltType = BType.Hex,
                         targetPlayer = false
                         }
                     },
-                    new ASpawn
+                    new ASpawn()
                     {
                         offset = -3,
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                         boltType = BType.Hex,
                         targetPlayer = false
@@ -81,9 +81,9 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new ASpawn
+                    new ASpawn()
                     {
-                        thing = new Bolt
+                        thing = new Bolt()
                         {
                         boltType = BType.Witch,
                         targetPlayer = false
