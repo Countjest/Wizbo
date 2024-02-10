@@ -51,7 +51,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                     {
                         thing = new Bolt()
                         {
-                            boltType = BType.magic,
+                            boltType = BType.Magic,
                             targetPlayer = false
                         }
                     }
@@ -72,7 +72,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                     {
                         thing = new Bolt()
                         {
-                            boltType = BType.magic,
+                            boltType = BType.Magic,
                             targetPlayer = false
                         }
                     },
@@ -81,7 +81,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                         offset = 1,
                         thing = new Bolt()
                         {
-                            boltType = BType.magic,
+                            boltType = BType.Magic,
                             targetPlayer = false
                         }
                     },
@@ -97,7 +97,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                         offset = -1,
                         thing = new Bolt()
                         {
-                            boltType = BType.magic,
+                            boltType = BType.Magic,
                             targetPlayer = false
                         }
                     },
@@ -106,7 +106,7 @@ internal sealed class CardShazammy : Card, IDemoCard
                         offset = 1,
                         thing = new Bolt()
                         {
-                            boltType = BType.magic,
+                            boltType = BType.Magic,
                             targetPlayer = false
                         }
                     },

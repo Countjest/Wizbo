@@ -138,7 +138,7 @@ public sealed class ModEntry : SimpleMod
     public ModEntry(IPluginPackage<IModManifest> package, IModHelper helper, ILogger logger) : base(package, helper, logger)
     {
         Instance = this;
-        KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shokah.Kokoro")!;
+        KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPCoreExhaust();
         _ = new HPGrimoireExhaust();

@@ -73,7 +73,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -94,7 +94,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -115,7 +115,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -142,7 +142,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -163,7 +163,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -184,7 +184,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -211,7 +211,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                         {
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -232,7 +232,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -253,7 +253,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = 1,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }
@@ -274,7 +274,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                             offset = -2,
                             thing = new Bolt
                             {
-                                boltType = Bolt.BType.chaos,
+                                boltType = BType.Chaos,
                                 targetPlayer = false
                             }
                         }

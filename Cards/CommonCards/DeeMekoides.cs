@@ -45,7 +45,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                     {
                         thing = new Bolt()
                         {
-                        boltType = BType.hex,
+                        boltType = BType.Hex,
                         targetPlayer = false
                         }
                     },
@@ -61,7 +61,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                         offset = 3,
                         thing = new Bolt()
                         {
-                        boltType = BType.hex,
+                        boltType = BType.Hex,
                         targetPlayer = false
                         }
                     },
@@ -70,7 +70,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                         offset = -3,
                         thing = new Bolt()
                         {
-                        boltType = BType.hex,
+                        boltType = BType.Hex,
                         targetPlayer = false
                         }
                     },
@@ -85,7 +85,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                     {
                         thing = new Bolt()
                         {
-                        boltType = BType.witch,
+                        boltType = BType.Witch,
                         targetPlayer = false
                         }
                     },
