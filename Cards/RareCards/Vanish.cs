@@ -199,7 +199,7 @@ public sealed class AVanishPart : CardAction
         else if (part.skin != "scaffolding_tridim_red") part.type = PType.cockpit;
         else if (part.skin != "scaffolding_tridim_tiderunner") part.type = PType.cockpit;
         else if (part.skin != "scaffolding_tridim_jupiter") part.type = PType.cockpit;
-        else if (part.skin != "scaffolding_tridim") part.type = PType.cockpit;
+        /*else if (part.skin != "scaffolding_tridim") part.type = PType.cockpit;*/
     }
 }
 

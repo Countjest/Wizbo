@@ -34,15 +34,20 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        int boostMod = 0; 
         int hbonusB = 0;
         int bonush = 0;
         if (c.isPlayerTurn == true && s.route is Combat)
+        {
             if (c.otherShip.statusEffects.Values.Count > 0)
-                bonush = c.otherShip.Get(Status.heat);
-            else
             {
+                bonush = c.otherShip.Get(Status.heat);
+                boostMod = c.otherShip.Get(Status.boost);
             }
-
+        }
+        else
+        {
+        }
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -51,13 +56,13 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                 {
                     new AVariableHintFake()
                     {
-                        displayAmount = GetDmg(s, bonush),
+                        displayAmount = GetDmg(s, boostMod + bonush),
                         iconName = "Enemy Heat",
 
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, bonush),
+                        damage = GetDmg(s, boostMod + bonush),
                         xHint = 1,
                     }
                 };
@@ -74,12 +79,12 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = GetDmg(s, 3+bonush),
+                        displayAmount = GetDmg(s, 3+boostMod+bonush),
                         iconName = "Enemy Heat",
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, 3+bonush),
+                        damage = GetDmg(s, 3+boostMod+bonush),
                         xHint = 1,
                     }
                 };
@@ -98,12 +103,12 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = GetDmg(s, bonush + hbonusB),
+                        displayAmount = GetDmg(s, bonush + hbonusB + boostMod),
                         iconName = "Enemy Heat",
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, bonush + hbonusB),
+                        damage = GetDmg(s, bonush + hbonusB + boostMod),
                         xHint = 1,
                     }
                 };

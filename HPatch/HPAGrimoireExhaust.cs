@@ -1,4 +1,4 @@
-﻿using CountJest.Wizbo.Artifacts;
+﻿using CountJest.Wizbo.Artifacts.Duo;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CountJest.Wizbo;
 
-    internal sealed class HPAGrimoireExhaust
+internal sealed class HPAGrimoireExhaust
     {
         public HPAGrimoireExhaust()
         {
@@ -18,7 +18,7 @@ namespace CountJest.Wizbo;
         }
         public static void SendCardToExhaust3(Combat __instance, State s, Card card)
         {
-            var artifact3 = s.EnumerateAllArtifacts().OfType<AegisGrimoire>().FirstOrDefault();
+            var artifact3 = s.EnumerateAllArtifacts().OfType<WizboDizzyArtifact>().FirstOrDefault();
             if (artifact3 is null)
                 return;
             __instance.Queue(new AStatus()

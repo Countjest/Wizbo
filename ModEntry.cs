@@ -14,6 +14,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Versioning;
 using static HarmonyLib.Code;
+using CountJest.Wizbo.Artifacts.Duo;
 
 /* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
  * This is helpful to know at a glance what mod we're looking at, and who made it */
@@ -33,6 +34,8 @@ public sealed class ModEntry : SimpleMod
     internal static ModEntry Instance { get; private set; } = null!;
     internal Harmony Harmony { get; }
     internal IKokoroApi KokoroApi { get; }
+    internal IDuoArtifactsApi? DuoArtifactsApi { get; }
+    internal IMoreDifficultiesApi? MoreDifficultiesApi { get; }
 
     internal ILocalizationProvider<IReadOnlyList<string>> AnyLocalizations { get; }
     internal ILocaleBoundNonNullLocalizationProvider<IReadOnlyList<string>> Localizations { get; }
@@ -122,10 +125,20 @@ public sealed class ModEntry : SimpleMod
     /* We'll organize our artifacts the same way: making lists and then feed those to an IEnumerable */
     internal static IReadOnlyList<Type> Wizbo_CommonArtifact_Types { get; } = [
         typeof(GrimoireOfPower),
-        typeof(AegisGrimoire),/*Duo dizzy ?*/
         typeof(GrimoireOfSpeed),//meh
         typeof(EtherealGrimoire),/*Boss*/
         typeof(ParadoxGrimoire)/*Boss meh */
+    ];
+    /*Duo Artifacts*/
+    internal static IReadOnlyList<Type> DuoArtifactTypes { get; } = [
+        typeof(WizboDizzyArtifact),
+        /*typeof(WizboRiggsArtifact),
+        typeof(WizboPeriArtifact),
+        typeof(WizboIsaacArtifact),
+        typeof(WizboDrakeArtifact),
+        typeof(WizboMaxArtifact),
+        typeof(WizboBooksArtifact),
+        typeof(WizboCatArtifact)*/
     ];
     /*Ship starting artifacts*/
     internal static IReadOnlyList<Type> TowerShip_Artifact_Types { get; } = [
@@ -142,6 +155,7 @@ public sealed class ModEntry : SimpleMod
     {
         Instance = this;
         KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+        DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts")!;
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPCoreExhaust();
         _ = new HPGrimoireExhaust();
@@ -355,6 +369,11 @@ public sealed class ModEntry : SimpleMod
             Description = this.AnyLocalizations.Bind(["ship", "Tower", "description"]).Localize,
 
         });
+        if (DuoArtifactsApi is not null)
+        {
+            foreach (var artifactType in DuoArtifactTypes)
+                AccessTools.DeclaredMethod(artifactType, nameof(IDemoArtifact.Register))?.Invoke(null, [helper]);
+        }
     }
 }
 /* Dialog ideas :

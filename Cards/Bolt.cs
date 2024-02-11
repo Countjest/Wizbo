@@ -140,7 +140,7 @@ public class Bolt : StuffBase
         Vec offset = GetOffset(g, doRound: true);
         Vec vec = new Vec(Math.Sin((double)x + g.state.time * 10.0), Math.Cos((double)x + g.state.time * 20.0 + Math.PI / 2.0)).round();
         offset += vec;
-        int num = ((boltType == BType.Magic && g.state.route is Combat c) ? GetBoltDirection(g.state, c) : 0);
+        int num = g.state.route is Combat c ? GetBoltDirection(g.state, c) : 0;
         Vec vec2 = v + offset;
         Vec vec3 = default(Vec);
         if (num < 0)
@@ -173,14 +173,11 @@ public class Bolt : StuffBase
     public override Vec GetOffset(G g, bool doRound = true)
     {
         Vec offset = base.GetOffset(g, doRound: true);
-        if (boltType == BType.Magic)
-        {
             double num = Math.Pow((yAnimation - 1.0) / 2.5, 3.0);
-            if (g.state.route is Combat c)
-            {
-                double num2 = (double)((GetBoltImpact(g.state, c) - x) * 16) * num;
-                offset.x += num2;
-            }
+        if (g.state.route is Combat c)
+        {
+            double num2 = (double)((GetBoltImpact(g.state, c) - x) * 16) * num;
+            offset.x += num2;
         }
 
         return offset;

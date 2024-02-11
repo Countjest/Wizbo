@@ -25,6 +25,8 @@ public class AFireStorm : CardAction
             bool targetPlayer = AfsFlse;
             if (item != null)
             {
+                HBonus++;
+                
                 c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
                 c.stuff.Remove(item.x);
                 s.AddShake(2.0);
@@ -33,7 +35,7 @@ public class AFireStorm : CardAction
                     pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
                 });
 
-                HBonus++;
+                
             }
         }
 

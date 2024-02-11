@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
 namespace CountJest.Wizbo.Artifacts;
-
 internal sealed class GrimoireOfSpeed : Artifact, IDemoArtifact
 {
     public int SpeedCounter = 0;
@@ -25,22 +24,26 @@ internal sealed class GrimoireOfSpeed : Artifact, IDemoArtifact
             Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "GrimoireOfSpeed", "description"]).Localize
         });
     }
-    public override void OnTurnStart(State s, Combat c)
+    public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount)
     {
-        if (!c.isPlayerTurn)
-            return;
-        this.SpeedCounter += 1;
-        if (this.SpeedCounter == 4)
+        if (deck == ModEntry.Instance.Wizbo_Deck.Deck)
         {
-            c.QueueImmediate(new ADrawCard()
+            SpeedCounter++;
+            Pulse();
+        }
+
+        if (SpeedCounter >= 3)
+        {
+            combat.QueueImmediate(new AStatus
             {
-                count = 1,
+                targetPlayer = true,
+                status = Status.evade,
+                statusAmount = 1,
+                artifactPulse = Key()
             });
-            this.SpeedCounter = 0;
-            this.Pulse();
+            SpeedCounter = 0;
         }
     }
-
     public override void OnReceiveArtifact(State state)
     {
         this.SpeedCounter = 0;
