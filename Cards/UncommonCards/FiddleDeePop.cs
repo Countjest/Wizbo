@@ -54,11 +54,11 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
     public override List<CardAction> GetActions(State s, Combat c)
     {
         List<CardAction> actions = new();
-        Card? card = null;
+        Card? card2 = null;
         int cardCost = 0;
-        if (card != null && s.route is Combat)
+        if (card2 != null && c.isPlayerTurn)
         {
-            cardCost = card.GetCurrentCost(s);
+            cardCost = card2.GetCurrentCost(s);
         }
         switch (upgrade)
         { 
@@ -73,7 +73,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     {
                         browseAction = new AExhaustOtherCard()
                         {
-                            selectedCard = card,
+                            selectedCard = card2,
                         },
                         browseSource = CardBrowse.Source.Hand
                     },
@@ -101,7 +101,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     {
                         browseAction = new AExhaustOtherCard()
                         {
-                            selectedCard = card,
+                            selectedCard = card2,
                         },
                         browseSource = CardBrowse.Source.Hand
                     },
@@ -135,7 +135,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     {
                         browseAction = new AExhaustOtherCard()
                         {
-                            selectedCard = card,
+                            selectedCard = card2,
                         },
                         browseSource = CardBrowse.Source.DiscardPile
                     },

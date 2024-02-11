@@ -71,6 +71,7 @@ internal sealed class CardShazammy : Card, IDemoCard
 
                     new ASpawn()
                     {
+                        offset = -1,
                         thing = new Bolt()
                         {
                             boltType = BType.Magic,

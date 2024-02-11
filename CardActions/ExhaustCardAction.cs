@@ -32,6 +32,7 @@ internal class ParadoxCardAction : CardAction
             var artifact = s.EnumerateAllArtifacts().OfType<ParadoxGrimoire>().FirstOrDefault();
             card3.ExhaustFX(); // This is a method for the exhaust sound effect and poof visual effect
             s.RemoveCardFromWhereverItIs(cardId3);
+            c.SendCardToExhaust(s, card3);
 
             if (artifact != null)
             {
