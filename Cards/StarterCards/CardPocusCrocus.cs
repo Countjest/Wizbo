@@ -49,7 +49,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Deck
+                        destination = CardDestination.Hand
                     },
                     new AAddCard
                     {
@@ -82,7 +82,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Deck
+                        destination = CardDestination.Hand
                     },
                     new AAddCard
                     {
@@ -115,7 +115,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Deck
+                        destination = CardDestination.Hand
                     },
                     new AAddCard
                     {

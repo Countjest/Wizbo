@@ -65,7 +65,8 @@ internal sealed class CardShazammy : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.tempShield,
-                        statusAmount = 1,
+                        statusAmount = 2,
+                        targetPlayer= true,
                     },
 
                     new ASpawn()

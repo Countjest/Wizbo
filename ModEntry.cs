@@ -103,6 +103,7 @@ public sealed class ModEntry : SimpleMod
         typeof(CardGreaterLesserBeam),
         typeof(CardKablooiePachinko),
         typeof(CardSkiddleDeePop),
+        typeof(CardFiddleDeeDoop),
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
         typeof(CardKachow),
