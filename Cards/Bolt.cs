@@ -19,8 +19,8 @@ public class Bolt : StuffBase
 {
     public static readonly int SprWidth = 17;
     public static readonly int SprHeight = 33;
-    public static readonly int SprFrames = 8;
-    public static readonly double SprFPS = 12;
+    public static readonly int SprFrames = 9;
+    public static readonly double SprFPS = 18;
     public string? skin;
     private class BoltData
     {
@@ -131,18 +131,69 @@ public class Bolt : StuffBase
         Status.backwardsMissiles,
         Status.boost,
     };
-    public virtual Spr GetSprite()
+    public virtual Spr GetSprite(State s, Combat c, out bool Spriteflipx)
     {
-        return ModEntry.Instance.Bolt.Sprite;
+        int SpriteDirection = GetBoltDirection(s, c);
+        Spriteflipx = (SpriteDirection == 1);
+        
+        if (SpriteDirection == 0)
+        {
+
+            Spr BSprite = ModEntry.Instance.Bolt.Sprite;
+            switch (boltType)
+            {
+                case BType.Chaos:
+                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    break;
+                case BType.Magic:
+                    BSprite = ModEntry.Instance.MBolt.Sprite;
+                    break;
+                case BType.Hex:
+                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    break;
+                case BType.Witch:
+                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    break;
+            }
+            return BSprite;
+        }
+        else if (SpriteDirection != 0)
+        {
+            Spr BSprite = ModEntry.Instance.Bolt.Sprite;
+            switch (boltType)
+            {
+                case BType.Chaos:
+                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    break;
+                case BType.Magic:
+                    BSprite = ModEntry.Instance.MBoltAngle.Sprite;
+                    break;
+                case BType.Hex:
+                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    break;
+                case BType.Witch:
+                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    break;
+            }
+            return BSprite;
+        }
+        else return ModEntry.Instance.Bolt.Sprite;
+        
     }
     public override void Render(G g, Vec v)
     {
+        bool flag = targetPlayer;
+        bool flag4;
+        flag4 = flag;
+        bool flag2 = false;
         Vec offset = GetOffset(g, doRound: true);
         Vec vec = new Vec(Math.Sin((double)x + g.state.time * 10.0), Math.Cos((double)x + g.state.time * 20.0 + Math.PI / 2.0)).round();
         offset += vec;
         int num = g.state.route is Combat c ? GetBoltDirection(g.state, c) : 0;
         Vec vec2 = v + offset;
         Vec vec3 = default(Vec);
+        bool flag3 = g.state.time * 2.0 % 1.0 < 0.5;
+        flag2 = num > 0;
         if (num < 0)
         {
             vec3 += new Vec(-6.0, targetPlayer ? 4 : (-4));
@@ -159,15 +210,10 @@ public class Bolt : StuffBase
         }
         Vec vec4 = vec2 + vec3 + new Vec(7.0, 8.0);
         int frame = (int)Math.Truncate((-this.x + g.state.time * SprFPS) % SprFrames);
-        DrawWithHilight(g, GetSprite(), v, pixelRect: new Rect(frame * SprWidth, 0, SprWidth, SprHeight));
+        DrawWithHilight(g, GetSprite(g.state, (g.state.route as Combat)!, out var Spriteflipx), v, Spriteflipx, pixelRect: new Rect(frame * SprWidth, 0, SprWidth, SprHeight));
         // this is for the missile's exhaust (this render function is based on missile's render function)
         //Glow.Draw(vec4 + new Vec(0.5, -2.5), 25.0, boltColor * new Color(1.0, 0.5, 0.5).gain(0.2 + 0.1 * Math.Sin(g.state.time * 30.0 + (double)x) * 0.5));
-        bool flag = targetPlayer;
-        bool flag2 = false;
-        bool flag3 = g.state.time * 2.0 % 1.0 < 0.5;
-            flag2 = num > 0;
-        bool flag4;
-        flag4 = flag;
+
     }
 
     public override Vec GetOffset(G g, bool doRound = true)

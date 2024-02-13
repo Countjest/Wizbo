@@ -22,33 +22,24 @@ internal class ExhaustCardAction : CardAction // We made a custom card action th
 }
 internal class ParadoxCardAction : CardAction
 {
-    public int cardId3;
-
     public override void Begin(G g, State s, Combat c)
     {
-        var card3 = s.FindCard(cardId3);
-        if (card3 != null)
-        {
-            var artifact = s.EnumerateAllArtifacts().OfType<ParadoxGrimoire>().FirstOrDefault();
-            card3.ExhaustFX(); // This is a method for the exhaust sound effect and poof visual effect
-            s.RemoveCardFromWhereverItIs(cardId3);
-            c.SendCardToExhaust(s, card3);
+        var artifact = s.EnumerateAllArtifacts().OfType<ParadoxGrimoire>().FirstOrDefault();
 
-            if (artifact != null)
+        if (artifact != null)
+        {
+            artifact.ParadoxCounter++;
+            if (artifact.ParadoxCounter == 10)
             {
-                artifact.ParadoxCounter++;
-                if (artifact.ParadoxCounter == 10)
+                c.QueueImmediate(new ADrawCard()
                 {
-                    c.QueueImmediate(new ADrawCard() 
-                    { 
-                        count = 1 
-                    });
-                    c.QueueImmediate(new AEnergy()
-                    {
-                        changeAmount = 1
-                    });
-                    artifact.ParadoxCounter = 0;
-                }
+                    count = 1
+                });
+                c.QueueImmediate(new AEnergy()
+                {
+                    changeAmount = 1
+                });
+                artifact.ParadoxCounter = 0;
             }
         }
     }

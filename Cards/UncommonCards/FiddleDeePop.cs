@@ -119,7 +119,8 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     {
                         status = Status.tempShield, 
                         statusAmount = cardCost,
-                        xHint = 2,
+                        targetPlayer = true,
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList2;
@@ -148,6 +149,20 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     {
                         changeAmount = cardCost,
                         xHint = 1,
+                    },
+                    new AStatus()
+                    {
+                        status = Status.energyNextTurn,
+                        statusAmount = (cardCost)/2,
+                        targetPlayer = true,
+                        xHint = 0,
+                    },
+                    new AStatus()
+                    {
+                        status = Status.drawNextTurn,
+                        statusAmount = (cardCost)/2,
+                        targetPlayer = true,
+                        xHint = 0,
                     },
                 };
                 actions = cardActionList3;

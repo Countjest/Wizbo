@@ -61,6 +61,9 @@ public sealed class ModEntry : SimpleMod
     /*midrow*/
     internal ISpriteEntry FireMinespr { get; }
     internal ISpriteEntry Bolt { get; }
+    internal ISpriteEntry BoltAngle { get; }
+    internal ISpriteEntry MBolt { get; }
+    internal ISpriteEntry MBoltAngle { get; }
     /*Icons*/
     internal ISpriteEntry FmineIcon { get; }
     internal ISpriteEntry WboltIcon { get; }
@@ -73,6 +76,7 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry SumHStat { get; }
     internal ISpriteEntry ExhstCards { get; }
     internal ISpriteEntry EHeat { get; }
+    internal ISpriteEntry EnCardCost { get; }
 
 
 
@@ -157,11 +161,9 @@ public sealed class ModEntry : SimpleMod
         Instance = this;
         KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
         DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts")!;
+        MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
         Harmony = new(package.Manifest.UniqueName);
-        _ = new HPCoreExhaust();
-        _ = new HPGrimoireExhaust();
-        _ = new HPAGrimoireExhaust();
-        _ = new HPPGrimoireExhaust();
+        _ = new HPOnExhaust();
         _ = new HPArtifactBlacklist();
         _ = new HPShipAnim();
 
@@ -193,7 +195,10 @@ public sealed class ModEntry : SimpleMod
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
         //stuffbase
         FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
-        Bolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/Bolt.png"));
+        Bolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/bolt.png"));
+        MBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/mbolt.png"));
+        MBoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/mboltangle.png"));
+        BoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/boltangle.png"));
         //Icons
         FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
         WboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_wbolt.png"));
@@ -206,6 +211,7 @@ public sealed class ModEntry : SimpleMod
         SumHStat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/sumhstat.png"));
         ExhstCards = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/exhstcards.png"));
         EHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/eheat.png"));
+        EnCardCost = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/cardcost.png"));
 
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
@@ -375,6 +381,17 @@ public sealed class ModEntry : SimpleMod
             foreach (var artifactType in DuoArtifactTypes)
                 AccessTools.DeclaredMethod(artifactType, nameof(IDemoArtifact.Register))?.Invoke(null, [helper]);
         }
+        MoreDifficultiesApi?.RegisterAltStarters(
+            deck: Wizbo_Deck.Deck,
+            starterDeck: new StarterDeck
+            {
+                cards = new()
+                {
+                    new CardKoolahLimpoo(),
+                    new CardHashakalah(),
+                }
+            }
+);
     }
 }
 /* Dialog ideas :
