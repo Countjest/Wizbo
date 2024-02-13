@@ -81,6 +81,10 @@
         "Enemy Heat": {
             "name": "Enemy Heat",
             "description": "Total <c=Status>Heat</c> on the the enemy ship."
+        },
+        "Card Cost": {
+            "name": "Card Cost",
+            "description": "Base <c=action>Energy Cost</c> of the card."
         }
     },
     "card": {
