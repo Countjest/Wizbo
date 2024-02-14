@@ -62,7 +62,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxico
                         {
                             temporaryOverride= true
                         },
@@ -95,7 +95,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxico
                         {
                             temporaryOverride= true
                         },
@@ -128,16 +128,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiazbo
-                        {
-                            temporaryOverride= true
-                        },
-                        amount = 1,
-                        destination = CardDestination.Deck
-                    },
-                    new AAddCard
-                    {
-                        card = new CardToxic
+                        card = new CardToxico
                         {
                             temporaryOverride= true
                         },
@@ -146,7 +137,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardToxic
+                        card = new CardToxico
                         {
                             temporaryOverride= true
                         },

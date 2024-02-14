@@ -10,7 +10,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("DeeMekoides", new()
+        helper.Content.Cards.RegisterCard("Dee Mekoides", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -20,7 +20,7 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                 upgradesTo = [Upgrade.A, Upgrade.B]
                             
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "DeeMekoides", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Dee Mekoides", "name"]).Localize
         });;
     }
     public override CardData GetData(State state)

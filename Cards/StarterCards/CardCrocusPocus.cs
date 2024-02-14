@@ -18,7 +18,7 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "CrocusPocus", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Crocus Pocus", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

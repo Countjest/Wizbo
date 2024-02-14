@@ -91,14 +91,14 @@
         "CrocusPocus": {
             "name": "Crocus Pocus"
         },
-        "AbraKadoozle": {
-            "name": "AbraKadoozle"
+        "Abra Kadoozle": {
+            "name": "Abra Kadoozle"
         },
         "SpillYourDrink": {
-            "name": "SpillYourDrink"
+            "name": "Spill Your Drink"
         },
-        "DeeMekoides": {
-            "name": "DeeMekoides"
+        "Dee Mekoides": {
+            "name": "Dee Mekoides"
         },
         "Ponder": {
             "name": "Ponder"
@@ -109,24 +109,24 @@
         "Kachow": {
             "name": "Kachow"
         },
-        "Miasma": {
-            "name": "Miasma",
+        "Miazbo": {
+            "name": "Miazbo",
             "description": {
-                "None": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
-                "A": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>.",
-                "B": "On draw add 2 <c=status>Heat<c/> to the enemy \n On play gain 2 <c=status>Temp<c/> and 1 <c=status>Heat<c/>."
+                "None": "<c=action>On Draw</c>  apply 2 <c=status>Heat</c> to the enemy \n Gain 2 <c=status>Temp shield</c> and 1 <c=status>Heat</c>.",
+                "A": "<c=action>On Draw</c>  apply 2 <c=status>Heat</c> to the enemy \n Gain 2 <c=status>Temp shield</c> and 1 <c=status>Heat</c>.",
+                "B": "<c=action>On Draw</c>  apply 2 <c=status>Heat</c> to the enemy \n Gain 2 <c=status>Temp shield</c> and 1 <c=status>Heat</c>."
             }
         },
-        "Toxic": {
-            "name": "Toxic",
+        "Toxico": {
+            "name": "Toxico",
             "description": {
-                "None": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                "A": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card.",
-                "B": "Immediately after drawing add 1 <c=status>Corrode<c/> to the enemy and exhaust this card."
+                "None": "<c=action>On Draw</c> apply 1 <c=status>Corrode</c> to the enemy; exhaust this card.",
+                "A": "<c=action>On Draw</c>  apply 1 <c=status>Corrode</c> to the enemy; exhaust this card.",
+                "B": "<c=action>On Draw</c>  apply 1 <c=status>Corrode</c> to the enemy; exhaust this card."
             }
         },
-        "KoolahLimpoo": {
-            "name": "KoolahLimpoo"
+        "Koolah Limpoo": {
+            "name": "Koolah Limpoo"
         },
         "Hashakalah": {
             "name": "Hashakalah"
@@ -134,19 +134,19 @@
         "PocusCrocus": {
             "name": "Pocus Crocus",
             "description": {
-                "None": "Add 2 <c=card>Miasma</c> to your Draw pile, and one <c=card>Toxic</c> to your Discard.",
-                "A": "Add 2 <c=card>Miasma</c> to your Draw pile, and one <c=card>Toxic</c> to your Discard.",
-                "B": "Add 3 <c=card>Miasma</c> to your Draw pile, and 2 <c=card>Toxic</c> to your Discard."
+                "None": "Add 1 <c=card>Miazbo</c> to Hand & Draw pile, and one <c=card>Toxico</c> to Discard.",
+                "A": "Add 1 <c=card>Miazbo</c> to Hand & Draw pile, and one <c=card>Toxico</c> to Discard.",
+                "B": "Add 1 <c=card>Miazbo</c> to Hand & Draw pile, and 2 <c=card>Toxico</c> to Discard."
             }
         },
         "GreaterLesserBeam": {
-            "name": "GreaterLesserBeam"
+            "name": "Greater Lesserbeam"
         },
         "Vanish": {
             "name": "Vanish",
             "description": {
-                "None": "Vanish non-cockpit ship parts. Until the start of the next turn, leaving only your cockpit",
-                "A": "Vanish non-cockpit ship parts. Until the start of the next turn, leaving only your cockpit <c=cardtrait>retain</c>",
+                "None": "Until next turn; vanish non-cockpit ship parts",
+                "A": "Until next turn; vanish non-cockpit ship parts <c=cardtrait>retain</c>",
                 "B": "Send all non-cockpit enemy ship parts to the third dimension"
 
             }
@@ -154,14 +154,14 @@
         "Yeet": {
             "name": "Yeet"
         },
-        "KablooiePachinko": {
-            "name": "KablooiePachinko"
+        "Kablooie Pachinko": {
+            "name": "Kablooie Pachinko"
         },
-        "SkiddleDeePop": {
-            "name": "SkiddleDeePop"
+        "Skiddle Dee Pop": {
+            "name": "Skiddle Dee Pop"
         },
-        "FiddleDeeDoop": {
-            "name": "FiddleDeeDoop"
+        "Fiddle Dee Doop": {
+            "name": "Fiddle Dee Doop"
         }
     }
 }

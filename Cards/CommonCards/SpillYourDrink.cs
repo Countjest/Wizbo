@@ -8,7 +8,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("SpillYourDrink", new()
+        helper.Content.Cards.RegisterCard("Spill Your Drink", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -17,7 +17,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "SpillYourDrink", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Spill Your Drink", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

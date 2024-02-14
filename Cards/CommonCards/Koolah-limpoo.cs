@@ -8,7 +8,7 @@ internal sealed class CardKoolahLimpoo : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("KoolahLimpoo", new()
+        helper.Content.Cards.RegisterCard("Koolah Limpoo", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -17,7 +17,7 @@ internal sealed class CardKoolahLimpoo : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "KoolahLimpoo", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Koolah Limpoo", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

@@ -17,7 +17,7 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("SkiddleDeePop", new()
+        helper.Content.Cards.RegisterCard("Skiddle Dee Pop", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -32,7 +32,7 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                 upgradesTo = [Upgrade.A, Upgrade.B],
                 
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "SkiddleDeePop", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Skiddle Dee Pop", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

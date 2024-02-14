@@ -17,7 +17,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("GreaterLesserBeam", new()
+        helper.Content.Cards.RegisterCard("Greater Lesserbeam", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -31,7 +31,7 @@ internal sealed class CardGreaterLesserBeam : Card, IDemoCard
                 /* Some vanilla cards don't upgrade, some only upgrade to A, but most upgrade to either A or B */
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "GreaterLesserBeam", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Greater Lesserbeam", "name"]).Localize
             /* AnyLocalizations.Bind().Localize will find the 'name' of 'Foxtale' in the locale file and feed it here. The output for english in-game from this is 'Fox Tale' */
         });
     }

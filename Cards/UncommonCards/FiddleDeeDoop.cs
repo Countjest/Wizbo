@@ -17,7 +17,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
     /* For a bit more info on the Register Method, look at InternalInterfaces.cs and 1. CARDS section in ModEntry */
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("FiddleDeeDoop", new()
+        helper.Content.Cards.RegisterCard("Fiddle Dee Doop", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -32,7 +32,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                 upgradesTo = [Upgrade.A, Upgrade.B],
                 
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "FiddleDeeDoop", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Fiddle Dee Doop", "name"]).Localize
         });
     }
     public override CardData GetData(State state)

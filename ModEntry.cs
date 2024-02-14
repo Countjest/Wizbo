@@ -102,7 +102,7 @@ public sealed class ModEntry : SimpleMod
      * However you can be more detailed, or you can be more loose, if that's your style */
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
         typeof(CardMiazbo),
-        typeof(CardToxic),
+        typeof(CardToxico),
         typeof(CardKoolahLimpoo),
         typeof(CardHashakalah),
         typeof(CardSpillYourDrink),

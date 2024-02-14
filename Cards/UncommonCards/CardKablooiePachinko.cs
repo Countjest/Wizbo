@@ -10,7 +10,7 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("KablooiePachinko", new()
+        helper.Content.Cards.RegisterCard("Kablooie Pachinko", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -19,7 +19,7 @@ internal sealed class CardKablooiePachinko : Card, IDemoCard
                 rarity = Rarity.uncommon,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "KablooiePachinko", "name"]).Localize
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Kablooie Pachinko", "name"]).Localize
         });
     }
     public override CardData GetData(State state)
