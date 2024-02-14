@@ -44,7 +44,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -53,7 +53,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -77,7 +77,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -86,7 +86,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -110,7 +110,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                 {
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -119,7 +119,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -128,7 +128,7 @@ public override List<CardAction> GetActions(State s, Combat c)
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },

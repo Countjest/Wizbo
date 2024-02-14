@@ -62,7 +62,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -112,7 +112,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -121,7 +121,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardMiasma
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },

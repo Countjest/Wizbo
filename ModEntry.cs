@@ -64,6 +64,14 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry BoltAngle { get; }
     internal ISpriteEntry MBolt { get; }
     internal ISpriteEntry MBoltAngle { get; }
+    internal ISpriteEntry CBolt { get; }
+    internal ISpriteEntry CBoltAngle { get; }
+    internal ISpriteEntry HBolt { get; }
+    internal ISpriteEntry HBoltAngle { get; }
+    internal ISpriteEntry WBolt { get; }
+    internal ISpriteEntry WBoltAngle { get; }
+
+
     /*Icons*/
     internal ISpriteEntry FmineIcon { get; }
     internal ISpriteEntry WboltIcon { get; }
@@ -93,7 +101,7 @@ public sealed class ModEntry : SimpleMod
      * We recommend having a Starter Cards list, a Common Cards list, an Uncommon Cards list, and a Rare Cards list
      * However you can be more detailed, or you can be more loose, if that's your style */
     internal static IReadOnlyList<Type> Wizbo_CommonCard_Types { get; } = [
-        typeof(CardMiasma),
+        typeof(CardMiazbo),
         typeof(CardToxic),
         typeof(CardKoolahLimpoo),
         typeof(CardHashakalah),
@@ -196,9 +204,17 @@ public sealed class ModEntry : SimpleMod
         //stuffbase
         FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
         Bolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/bolt.png"));
+        BoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/boltangle.png"));
         MBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/mbolt.png"));
         MBoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/mboltangle.png"));
-        BoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/boltangle.png"));
+        CBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/cbolt.png"));
+        CBoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/cboltangle.png"));
+        HBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/hbolt.png"));
+        HBoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/hboltangle.png"));
+        WBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/wbolt.png"));
+        WBoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/wboltangle.png"));
+
+
         //Icons
         FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
         WboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_wbolt.png"));

@@ -143,16 +143,16 @@ public class Bolt : StuffBase
             switch (boltType)
             {
                 case BType.Chaos:
-                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    BSprite = ModEntry.Instance.CBolt.Sprite;
                     break;
                 case BType.Magic:
                     BSprite = ModEntry.Instance.MBolt.Sprite;
                     break;
                 case BType.Hex:
-                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    BSprite = ModEntry.Instance.HBolt.Sprite;
                     break;
                 case BType.Witch:
-                    BSprite = ModEntry.Instance.Bolt.Sprite;
+                    BSprite = ModEntry.Instance.WBolt.Sprite;
                     break;
             }
             return BSprite;
@@ -163,16 +163,16 @@ public class Bolt : StuffBase
             switch (boltType)
             {
                 case BType.Chaos:
-                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    BSprite = ModEntry.Instance.CBoltAngle.Sprite;
                     break;
                 case BType.Magic:
                     BSprite = ModEntry.Instance.MBoltAngle.Sprite;
                     break;
                 case BType.Hex:
-                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    BSprite = ModEntry.Instance.HBoltAngle.Sprite;
                     break;
                 case BType.Witch:
-                    BSprite = ModEntry.Instance.BoltAngle.Sprite;
+                    BSprite = ModEntry.Instance.WBoltAngle.Sprite;
                     break;
             }
             return BSprite;
