@@ -85,16 +85,20 @@
         "Card Cost": {
             "name": "Card Cost",
             "description": "Base <c=action>Energy Cost</c> of the card."
+        },
+        "Sum Heat": {
+            "name": "Sum Heat",
+            "description": "Sum total of your & enemy ship's <c=Status>Heat</c>."
         }
     },
     "card": {
-        "CrocusPocus": {
+        "Crocus Pocus": {
             "name": "Crocus Pocus"
         },
         "Abra Kadoozle": {
             "name": "Abra Kadoozle"
         },
-        "SpillYourDrink": {
+        "Spill Your Drink": {
             "name": "Spill Your Drink"
         },
         "Dee Mekoides": {
@@ -139,7 +143,7 @@
                 "B": "Add 1 <c=card>Miazbo</c> to Hand & Draw pile, and 2 <c=card>Toxico</c> to Discard."
             }
         },
-        "GreaterLesserBeam": {
+        "Greater Lesserbeam": {
             "name": "Greater Lesserbeam"
         },
         "Vanish": {

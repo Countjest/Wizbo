@@ -33,9 +33,12 @@ public class AVariableHintFake : AVariableHint
                 case "Enemy Heat":
                     value.path = ModEntry.Instance.EHeat.Sprite;
                     break;
-            case "Card Cost":
-                value.path = ModEntry.Instance.EnCardCost.Sprite;
-                break;
+                case "Card Cost":
+                    value.path = ModEntry.Instance.EnCardCost.Sprite;
+                    break;
+                case "Sum Heat":
+                    value.path = ModEntry.Instance.SumHeat.Sprite;
+                    break;
             default: return value;
             }
             return value;
@@ -59,6 +62,9 @@ public class AVariableHintFake : AVariableHint
                 break;
             case "Card Cost":
                 iconTT = ModEntry.Instance.EnCardCost.Sprite;
+                break;
+            case "Sum Heat":
+                iconTT = ModEntry.Instance.SumHeat.Sprite;
                 break;
         }
 

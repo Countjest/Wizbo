@@ -40,7 +40,7 @@ public class AFireField : CardAction
 
         return new List<Tooltip>
         {
-            new TTGlossary("action.medusaField")
+            new TTGlossary("action.FireField")
         };
     }
     public static Spr FireMinespr { get; }

@@ -9,7 +9,7 @@ internal sealed class CardCrocusPocus : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("CrocusPocus", new()
+        helper.Content.Cards.RegisterCard("Crocus Pocus", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()

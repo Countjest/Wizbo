@@ -85,6 +85,7 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry ExhstCards { get; }
     internal ISpriteEntry EHeat { get; }
     internal ISpriteEntry EnCardCost { get; }
+    internal ISpriteEntry SumHeat { get; }
 
 
 
@@ -112,8 +113,8 @@ public sealed class ModEntry : SimpleMod
     ];
     internal static IReadOnlyList<Type> Wizbo_UncommonCard_Types { get; } = [
         typeof(CardAbraKadoozle),
-        typeof(CardGreaterLesserBeam),
         typeof(CardKablooiePachinko),
+        typeof(CardGreaterLesserbeam),
         typeof(CardSkiddleDeePop),
         typeof(CardFiddleDeeDoop),
     ];
@@ -228,6 +229,7 @@ public sealed class ModEntry : SimpleMod
         ExhstCards = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/exhstcards.png"));
         EHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/eheat.png"));
         EnCardCost = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/cardcost.png"));
+        SumHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/sumheat.png"));
 
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {

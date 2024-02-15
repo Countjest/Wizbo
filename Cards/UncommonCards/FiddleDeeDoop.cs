@@ -71,11 +71,14 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new AExhaustOtherCard()
-                        {
-                            selectedCard = card2,
-                        },
-                        browseSource = CardBrowse.Source.Hand
+                        browseAction = new ChooseCardToPutInHand(),
+                        browseSource = CardBrowse.Source.DiscardPile,
+                        selectedCard = card2,
+
+                    },
+                    new ExhaustCardAction()
+                    {
+                        cardId = card2!.uuid,
                     },
                     new AVariableHintFake()
                     {
@@ -84,7 +87,7 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new AEnergy()
                     {
-                        changeAmount = cardCost,
+                        changeAmount = (0 + cardCost),
                         xHint = 1,
                     }
                 };
@@ -99,28 +102,30 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new AExhaustOtherCard()
-                        {
-                            selectedCard = card2,
-                        },
-                        browseSource = CardBrowse.Source.Hand
+                        browseAction = new ChooseCardToPutInHand(),
+                        browseSource = CardBrowse.Source.DiscardPile,
+                        selectedCard = card2,
+
+                    },
+                    new ExhaustCardAction()
+                    {
+                        cardId = card2!.uuid,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = cardCost,
+                        displayAmount = (0 + cardCost),
                         iconName = "Card Cost"
                     },
                     new AEnergy()
                     {
-                        changeAmount = cardCost,
+                        changeAmount = (0 + cardCost),
                         xHint = 1,
                     },
                     new AStatus()
                     {
-                        status = Status.tempShield, 
-                        statusAmount = cardCost,
-                        targetPlayer = true,
-                        xHint = 1,
+                        status = Status.tempShield,
+                        statusAmount = (0 + cardCost),
+                        xHint=1,
                     }
                 };
                 actions = cardActionList2;
@@ -134,36 +139,25 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new AExhaustOtherCard()
-                        {
-                            selectedCard = card2,
-                        },
-                        browseSource = CardBrowse.Source.DiscardPile
+                        browseAction = new ChooseCardToPutInHand(),
+                        browseSource = CardBrowse.Source.DiscardPile,
+                        selectedCard = card2,
+
+                    },
+                    new ExhaustCardAction()
+                    {
+                        cardId = card2!.uuid,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = cardCost,
+                        displayAmount = (0 + cardCost),
                         iconName = "Card Cost"
                     },
                     new AEnergy()
                     {
-                        changeAmount = cardCost,
+                        changeAmount = (0 + cardCost),
                         xHint = 1,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.energyNextTurn,
-                        statusAmount = (cardCost)/2,
-                        targetPlayer = true,
-                        xHint = 0,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.drawNextTurn,
-                        statusAmount = (cardCost)/2,
-                        targetPlayer = true,
-                        xHint = 0,
-                    },
+                    }
                 };
                 actions = cardActionList3;
                 break;

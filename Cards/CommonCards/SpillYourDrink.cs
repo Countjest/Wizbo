@@ -51,7 +51,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
                             temporaryOverride= true
                         },
                         amount = 1,
-                        destination = CardDestination.Deck,
+                        destination = CardDestination.Hand,
                     },
                 };
                 actions = cardActionList1;
