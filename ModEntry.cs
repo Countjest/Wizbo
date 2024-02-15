@@ -139,9 +139,9 @@ public sealed class ModEntry : SimpleMod
     /* We'll organize our artifacts the same way: making lists and then feed those to an IEnumerable */
     internal static IReadOnlyList<Type> Wizbo_CommonArtifact_Types { get; } = [
         typeof(GrimoireOfPower),
-        typeof(GrimoireOfSpeed),//meh
+        typeof(GrimoireOfSpeed),
         typeof(EtherealGrimoire),/*Boss*/
-        typeof(ParadoxGrimoire)/*Boss meh */
+        typeof(ParadoxGrimoire)/*Boss*/
     ];
     /*Duo Artifacts*/
     internal static IReadOnlyList<Type> DuoArtifactTypes { get; } = [

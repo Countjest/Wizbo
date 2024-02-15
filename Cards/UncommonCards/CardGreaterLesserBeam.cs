@@ -1,4 +1,5 @@
-﻿using Nickel;
+﻿using clay.PhilipTheMechanic.Actions;
+using Nickel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,10 +100,16 @@ internal sealed class CardGreaterLesserbeam : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AVariableHintFake()
+                    new ATooltipDummy()
                     {
-                        displayAmount = GetDmg(s, bonush + bonush2 + boostMod2 + boostMod),
-                        iconName = "Sum Heat",
+                        renderVarAssignment = true,
+                        icons = new()
+                        {
+                            new Icon(Enum.Parse<Spr>("icons_heat"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_plus"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_heat"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_outgoing"), null, Colors.textMain),
+                        }
                     },
                     new AAttack()
                     {
