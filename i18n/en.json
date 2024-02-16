@@ -26,10 +26,6 @@
             "name": "GrimoireOfSpeed",
             "description": "Every 3rd <c=7d5bff>Wizbo</c> card played grants 1 <c=status>Evade</c>"
         },
-        "AegisGrimoire": {
-            "name": "AegisGrimoire",
-            "description": "Gain 1 <c=status>Shield<c/> when you <c=cardtrait>exhaust</c> a card" //Dizzy duo
-        },
         "EtherealGrimoire": {
             "name": "EtherealGrimoire",
             "description": "Gain 1 <c=status>Overdrive<c/> when you <c=cardtrait>exhaust</c> a card" //Peri Duo boss?
@@ -37,6 +33,14 @@
         "ParadoxGrimoire": {
             "name": "ParadoxGrimoire",
             "description": "Every 10th card you <c=cardtrait>exhaust</c> grants 1 extra <c=energy>Energy</c> and <c=action>Draw</c> a card"
+        },
+        "AegisGrimoire": {
+            "name": "AegisGrimoire",
+            "description": "Gain 1 <c=status>Shield<c/> when you <c=cardtrait>exhaust</c> a card" //Dizzy duo
+        },
+        "Container Of Nourishment": {
+            "name": "Container Of Nourishment",
+            "description": "Moving with <c=status>Strafe</c> also shoots a <c=midrow>Magicbolt</c>" //Riggs duo
         }
     },
     "ship": {
@@ -152,7 +156,6 @@
                 "None": "Until next turn; vanish non-cockpit ship parts",
                 "A": "Until next turn; vanish non-cockpit ship parts <c=cardtrait>retain</c>",
                 "B": "Send all non-cockpit enemy ship parts to the third dimension"
-
             }
         },
         "Yeet": {

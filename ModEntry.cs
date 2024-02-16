@@ -53,7 +53,7 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry Wizbo_Character_Squint_1 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_2 { get; }
     internal ISpriteEntry Wizbo_Character_Squint_3 { get; }
-    internal ISpriteEntry TowerDoor { get; }
+    internal ISpriteEntry TowerDoor { get; } 
     internal ISpriteEntry SEmpty { get; }
     internal IDeckEntry Wizbo_Deck { get; }
     internal IShipEntry MagicTower_Ship { get; }
@@ -146,8 +146,8 @@ public sealed class ModEntry : SimpleMod
     /*Duo Artifacts*/
     internal static IReadOnlyList<Type> DuoArtifactTypes { get; } = [
         typeof(WizboDizzyArtifact),
-        /*typeof(WizboRiggsArtifact),
-        typeof(WizboPeriArtifact),
+        typeof(WizboRiggsArtifact),
+        /*typeof(WizboPeriArtifact),
         typeof(WizboIsaacArtifact),
         typeof(WizboDrakeArtifact),
         typeof(WizboMaxArtifact),
@@ -252,7 +252,13 @@ public sealed class ModEntry : SimpleMod
         Helper.Content.Characters.RegisterCharacter("Wizbo", new CharacterConfiguration()
         {
             Deck = Wizbo_Deck.Deck,
-            StarterCardTypes = Wizbo_StarterCard_Types,
+            Starters = new()
+            {
+                cards = [
+                    new CardCrocusPocus(),
+                    new CardPocusCrocus()
+                    ]
+            },
             Description = this.AnyLocalizations.Bind(["character", "Wizbo", "description"]).Localize,
             BorderSprite = Wizbo_Character_Panel.Sprite,
             NeutralAnimation = new()
