@@ -10,7 +10,7 @@ internal sealed class CardPocusCrocus : Card, IDemoCard
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Cards.RegisterCard("PocusCrocus", new()
+        helper.Content.Cards.RegisterCard("Pocus Crocus", new()
         {
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
@@ -19,7 +19,7 @@ internal sealed class CardPocusCrocus : Card, IDemoCard
                 rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
-            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "PocusCrocus", "name"]).Localize,
+            Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Pocus Crocus", "name"]).Localize,
         });
     }
     public override CardData GetData(State state)
@@ -28,7 +28,7 @@ internal sealed class CardPocusCrocus : Card, IDemoCard
         {
             cost = upgrade == Upgrade.A? 0 : 2,
             exhaust = true,
-            description = ModEntry.Instance.Localizations.Localize(["card", "PocusCrocus", "description", upgrade.ToString()])
+            description = ModEntry.Instance.Localizations.Localize(["card", "Pocus Crocus", "description", upgrade.ToString()])
             /* In a similar manner to how we localized card names, we'll localize their descriptions
              * For example, if Sheep Dream is upgraded to B, this description would try getting information from card > SheepDream > Description > B in the locale file */
         };

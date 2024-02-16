@@ -1,9 +1,11 @@
 ﻿using Nickel;
 using OneOf.Types;
+using CountJest.Wizbo.Actions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using CountJest.Wizbo.CardActions;
 
 /* Like other namespaces, this can be named whatever
  * However it's recommended that you follow the structure defined by ModEntry of <AuthorName>.<ModName> or <AuthorName>.<ModName>.Cards*/
@@ -41,8 +43,8 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
         {
             cost = upgrade switch
             {
-                Upgrade.A => 1,
-                Upgrade.B => 1,
+                Upgrade.A => 0,
+                Upgrade.B => 2,
                 _ => 1
             },
             exhaust = true,
@@ -54,12 +56,6 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
     public override List<CardAction> GetActions(State s, Combat c)
     {
         List<CardAction> actions = new();
-        Card? card2 = null;
-        int cardCost = 0;
-        if (card2 != null && c.isPlayerTurn)
-        {
-            cardCost = card2.GetCurrentCost(s);
-        }
         switch (upgrade)
         { 
             case Upgrade.None:
@@ -71,25 +67,10 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new ChooseCardToPutInHand(),
+                        browseAction = new EatCard(),
                         browseSource = CardBrowse.Source.DiscardPile,
-                        selectedCard = card2,
 
                     },
-                    new ExhaustCardAction()
-                    {
-                        cardId = card2!.uuid,
-                    },
-                    new AVariableHintFake()
-                    {
-                        displayAmount = cardCost,
-                        iconName = "Card Cost"
-                    },
-                    new AEnergy()
-                    {
-                        changeAmount = (0 + cardCost),
-                        xHint = 1,
-                    }
                 };
                 actions = cardActionList1;
                 break;
@@ -102,31 +83,10 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new ChooseCardToPutInHand(),
+                        browseAction = new EatCard(),
                         browseSource = CardBrowse.Source.DiscardPile,
-                        selectedCard = card2,
 
                     },
-                    new ExhaustCardAction()
-                    {
-                        cardId = card2!.uuid,
-                    },
-                    new AVariableHintFake()
-                    {
-                        displayAmount = (0 + cardCost),
-                        iconName = "Card Cost"
-                    },
-                    new AEnergy()
-                    {
-                        changeAmount = (0 + cardCost),
-                        xHint = 1,
-                    },
-                    new AStatus()
-                    {
-                        status = Status.tempShield,
-                        statusAmount = (0 + cardCost),
-                        xHint=1,
-                    }
                 };
                 actions = cardActionList2;
                 break;
@@ -139,25 +99,16 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new ChooseCardToPutInHand(),
+                        browseAction = new EatCard(),
                         browseSource = CardBrowse.Source.DiscardPile,
-                        selectedCard = card2,
 
                     },
-                    new ExhaustCardAction()
+                    new ACardSelect
                     {
-                        cardId = card2!.uuid,
+                        browseAction = new EatCard(),
+                        browseSource = CardBrowse.Source.DiscardPile,
+
                     },
-                    new AVariableHintFake()
-                    {
-                        displayAmount = (0 + cardCost),
-                        iconName = "Card Cost"
-                    },
-                    new AEnergy()
-                    {
-                        changeAmount = (0 + cardCost),
-                        xHint = 1,
-                    }
                 };
                 actions = cardActionList3;
                 break;

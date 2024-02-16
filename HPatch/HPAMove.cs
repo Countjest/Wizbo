@@ -14,10 +14,10 @@ namespace CountJest.Wizbo
         public HPAMove()
         {
             ModEntry.Instance.Harmony.Patch(
-            original: AccessTools.DeclaredMethod(typeof(CardAction), nameof(AMove)),
+            original: AccessTools.DeclaredMethod(typeof(AMove), nameof(global::AMove.Begin)),
             postfix: new HarmonyMethod(GetType(), nameof(HPAMove.AMove)));
         }
-        void AMove(G g, State s, Combat __instance)
+        static void AMove(State s, Combat __instance)
         {
             var BobaContainer = s.EnumerateAllArtifacts().OfType<WizboRiggsArtifact>().FirstOrDefault();
             if (BobaContainer != null)

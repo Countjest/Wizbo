@@ -174,7 +174,7 @@ public sealed class ModEntry : SimpleMod
         Harmony = new(package.Manifest.UniqueName);
         _ = new HPOnExhaust();
         _ = new HPArtifactBlacklist();
-        _ = new HPShipAnim();
+        _ = new HPAMove();
 
 
         CustomTTGlossary.ApplyPatches(Harmony);
@@ -400,6 +400,9 @@ public sealed class ModEntry : SimpleMod
             Description = this.AnyLocalizations.Bind(["ship", "Tower", "description"]).Localize,
 
         });
+
+        _ = new HPShipAnim();
+
         if (DuoArtifactsApi is not null)
         {
             foreach (var artifactType in DuoArtifactTypes)
@@ -414,8 +417,7 @@ public sealed class ModEntry : SimpleMod
                     new CardKoolahLimpoo(),
                     new CardHashakalah(),
                 }
-            }
-);
+            });
     }
 }
 /* Dialog ideas :

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace clay.PhilipTheMechanic.Actions
+namespace CountJest.Wizbo.Actions
 {
     [HarmonyPatch(typeof(Card))]
     public class ATooltipDummy : ADummyAction
