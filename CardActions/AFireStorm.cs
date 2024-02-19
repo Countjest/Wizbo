@@ -15,13 +15,13 @@ public class AFireStorm : CardAction
         new CardAction();
         foreach (var item in c.stuff.Values.ToList())
         {
+            FSBonus++;
             x = item.x;
             bool targetPlayer = AfsFlse;
             if (item != null)
             {               
                 c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
                 c.stuff.Remove(item.x);
-                FSBonus++;
                 s.AddShake(2.0);
                 c.fx.Add(new DroneExplosion
                 {
@@ -45,5 +45,10 @@ public class AFireStorm : CardAction
             new TTGlossary("action.medusaField")
         };
     }
-    public static Spr FireMinespr { get; }
+    public override Icon? GetIcon(State s)
+    {
+        Icon value = default(Icon);
+        value.path = ModEntry.Instance.FStormIcon.Sprite;
+        return value;
+    }
 }

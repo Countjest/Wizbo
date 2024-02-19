@@ -14,8 +14,8 @@ public class AFireField : CardAction
     {
         foreach (StuffBase item in c.stuff.Values.ToList())
         {
-            c.stuff.Remove(item.x);
             FFBonus++;
+            c.stuff.Remove(item.x);
             FireMine value = new FireMine
             {
                 x = item.x,

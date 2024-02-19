@@ -26,7 +26,7 @@ internal sealed class CardKachow : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.A ? 1 : 2,
+            cost = upgrade == Upgrade.B ? 2 : 1,
             exhaust = upgrade == Upgrade.A ? false : true,
 
         };

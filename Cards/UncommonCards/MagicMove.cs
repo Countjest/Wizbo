@@ -8,6 +8,9 @@ namespace CountJest.Wizbo.Cards;
 
 internal sealed class CardMagicMove : Card, IDemoCard
 {
+    private int ffX;
+    private int fsX;
+
     public static void Register(IModHelper helper)
     {
         helper.Content.Cards.RegisterCard("Magic Move", new()
@@ -29,15 +32,13 @@ internal sealed class CardMagicMove : Card, IDemoCard
         {
             cost = upgrade == Upgrade.None? 1 : 2,
             floppable = true,
-            exhaust = false,
+            exhaust = upgrade == Upgrade.None ? false : true,
             art = flipped ? ModEntry.Instance.MMArtBot.Sprite : ModEntry.Instance.MMArtTop.Sprite,
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        int ffX = 0;
-        int fsX = 0;
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -50,7 +51,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.tempShield,
-                        statusAmount = 2,
+                        statusAmount = 1,
                         targetPlayer = true,
                         disabled = flipped
                     },
@@ -61,8 +62,9 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     {
                         disabled = !flipped,
                     },
-                    new ADummyAction()
+                    new AAttack()
                     {
+                        damage = GetDmg(s, 2)
                     },
                 };
                 actions = cardActionList1;
@@ -72,7 +74,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
-                        FFBonus = ffX,
+                        FFBonus = ffX
                     },
                     new AVariableHintFake()
                     {
