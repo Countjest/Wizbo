@@ -22,13 +22,8 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
             CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
             {
-                /* We don't assign cards to characters, but rather to decks! It's important to keep that in mind */
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
-
-                /* The vanilla rarities are Rarity.common, Rarity.uncommon, Rarity.rare */
                 rarity = Rarity.uncommon,
-
-                
                 upgradesTo = [Upgrade.A, Upgrade.B],
                 
             },
@@ -46,8 +41,6 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                 _ => 1
             },
             exhaust = upgrade == Upgrade.B ? true : false,
-            /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
-            /* if we don't set a card specific 'art' here, the game will give it the deck's 'DefaultCardArt' */
         };
         return data;
     }
@@ -67,8 +60,6 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                     pair.Key != Status.tempShield)
                     .ToDictionary(i => i.Key, i => i.Value).Values.Max();
         }
-
-
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -117,7 +108,6 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                         statusAmount = -1,
                         targetPlayer = true,
                     },
-
                 };
                 actions = cardActionList2;
                 break;
@@ -132,6 +122,7 @@ internal sealed class CardSkiddleDeePop : Card, IDemoCard
                     new ADrawCard()
                     {
                         count = Cnum,
+                        xHint = 1,
                     }
                 };
                 actions = cardActionList3;

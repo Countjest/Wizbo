@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using CountJest.Wizbo.CardActions;
+using System;
 
 /* Like other namespaces, this can be named whatever
  * However it's recommended that you follow the structure defined by ModEntry of <AuthorName>.<ModName> or <AuthorName>.<ModName>.Cards*/
@@ -61,6 +62,17 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+                    new ATooltipDummy()
+                    {
+                        renderVarAssignment = true,
+                        icons = new()
+                        {
+                            new Icon(Enum.Parse<Spr>("icons_searchCard"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("combat_deck_empty"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_applyExhaust"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_gainEnergy"), null, Colors.textMain),
+                        }
+                    },
                     new ADelay
                     {
                         time = -0.5
@@ -77,6 +89,17 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
+                    new ATooltipDummy()
+                    {
+                        renderVarAssignment = true,
+                        icons = new()
+                        {
+                            new Icon(Enum.Parse<Spr>("icons_searchCard"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("combat_deck_empty"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_applyExhaust"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_gainEnergy"), null, Colors.textMain),
+                        }
+                    },
                     new ADelay
                     {
                         time = -0.5
@@ -93,6 +116,17 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+                    new ATooltipDummy()
+                    {
+                        renderVarAssignment = true,
+                        icons = new()
+                        {
+                            new Icon(Enum.Parse<Spr>("icons_searchCard"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("combat_deck_empty"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_applyExhaust"), null, Colors.textMain),
+                            new Icon(Enum.Parse<Spr>("icons_gainEnergy"), null, Colors.textMain),
+                        }
+                    },
                     new ADelay
                     {
                         time = -0.5

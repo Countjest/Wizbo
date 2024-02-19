@@ -74,6 +74,8 @@ public sealed class ModEntry : SimpleMod
 
     /*Icons*/
     internal ISpriteEntry FmineIcon { get; }
+    internal ISpriteEntry FFieldIcon { get; }
+    internal ISpriteEntry FStormIcon { get; }
     internal ISpriteEntry WboltIcon { get; }
     internal ISpriteEntry MboltIcon { get; }
     internal ISpriteEntry HboltIcon { get; }
@@ -87,6 +89,9 @@ public sealed class ModEntry : SimpleMod
     internal ISpriteEntry EnCardCost { get; }
     internal ISpriteEntry SumHeat { get; }
 
+    /*Specific Card Art*/
+    internal ISpriteEntry MMArtTop { get; }
+    internal ISpriteEntry MMArtBot { get; }
 
 
 
@@ -117,6 +122,8 @@ public sealed class ModEntry : SimpleMod
         typeof(CardGreaterLesserbeam),
         typeof(CardSkiddleDeePop),
         typeof(CardFiddleDeeDoop),
+        typeof(CardSquaDaLa),
+        typeof(CardMagicMove),
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
         typeof(CardKachow),
@@ -218,6 +225,8 @@ public sealed class ModEntry : SimpleMod
 
         //Icons
         FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
+        FFieldIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireField.png"));
+        FStormIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireStorm.png"));
         WboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_wbolt.png"));
         MboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_mbolt.png"));
         HboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_hbolt.png"));
@@ -230,6 +239,10 @@ public sealed class ModEntry : SimpleMod
         EHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/eheat.png"));
         EnCardCost = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/cardcost.png"));
         SumHeat = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/sumheat.png"));
+
+        //CardArt
+        MMArtTop = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/MagicMoveArtTop.png"));
+        MMArtBot = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/MagicMoveArtBot.png"));
 
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
@@ -421,5 +434,5 @@ public sealed class ModEntry : SimpleMod
     }
 }
 /* Dialog ideas :
- Wizbo + Max, discuss magic AfsFlse.S. non magic when Vanish reappears your tridim cockpit*/
+ Wizbo + Max, discuss magic V.S. non magic when Vanish reappears your tridim cockpit*/
 

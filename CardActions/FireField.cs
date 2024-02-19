@@ -9,11 +9,13 @@ using Nickel;
 namespace CountJest.Wizbo;
 public class AFireField : CardAction
 {
+    public int FFBonus;
     public override void Begin(G g, State s, Combat c)
     {
         foreach (StuffBase item in c.stuff.Values.ToList())
         {
             c.stuff.Remove(item.x);
+            FFBonus++;
             FireMine value = new FireMine
             {
                 x = item.x,
@@ -24,10 +26,8 @@ public class AFireField : CardAction
             };
             c.stuff[item.x] = value;
         }
-
         Audio.Play(Event.Status_PowerDown);
     }
-
     public override List<Tooltip> GetTooltips(State s)
     {
         if (s.route is Combat combat)
@@ -37,11 +37,15 @@ public class AFireField : CardAction
                 value.hilight = 2;
             }
         }
-
         return new List<Tooltip>
         {
             new TTGlossary("action.FireField")
         };
     }
-    public static Spr FireMinespr { get; }
+    public override Icon? GetIcon(State s)
+    {
+        Icon value = default(Icon);
+        value.path = ModEntry.Instance.FFieldIcon.Sprite;
+        return value;
+    }
 }

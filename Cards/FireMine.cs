@@ -9,7 +9,7 @@ public class FireMine : StuffBase
     public override List<Tooltip> GetTooltips()
     {
         List<Tooltip> list = new List<Tooltip>();
-        list.Add(new TTGlossary(MKGlossary("FireMine"), "1 damage 3 heat"));
+        list.Add(new TTGlossary(MKGlossary("FireMine"), "1 damage 2 heat"));
         List<Tooltip> list2 = list;
         if (bubbleShield)
         {
@@ -18,7 +18,12 @@ public class FireMine : StuffBase
 
         return list2;
     }
-    public Spr? Icon => ModEntry.Instance.FmineIcon.Sprite;
+
+    public override Spr? GetIcon()
+    {
+        return ModEntry.Instance.FmineIcon.Sprite;
+    }
+
     public override string GetDialogueTag()
     {
         return "FireMine";
@@ -52,7 +57,7 @@ public class FireMine : StuffBase
             new AStatus
             {
                 status = Status.heat,
-                statusAmount = 3,
+                statusAmount = 2,
                 targetPlayer = wasPlayer,
 
             }

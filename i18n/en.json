@@ -93,6 +93,14 @@
         "Sum Heat": {
             "name": "Sum Heat",
             "description": "Sum total of your & enemy ship's <c=Status>Heat</c>."
+        },
+        "Fire Field": {
+            "name": "Fire Field",
+            "description": "Turn all midrow objects into <c=Midrow>Firemine</c>."
+        },
+        "Fire Storm": {
+            "name": "Fire Storm",
+            "description": "Destroy all midrow objects as if you were the enemy ship"
         }
     },
     "card": {
@@ -169,6 +177,12 @@
         },
         "Fiddle Dee Doop": {
             "name": "Fiddle Dee Doop"
+        },
+        "Squa Da La": {
+            "name": "Squa Da La"
+        },
+        "Magic Move": {
+            "name": "Magic Move"
         }
     }
 }

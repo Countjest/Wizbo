@@ -39,6 +39,12 @@ public class AVariableHintFake : AVariableHint
                 case "Sum Heat":
                     value.path = ModEntry.Instance.SumHeat.Sprite;
                     break;
+                case "Fire Field":
+                    value.path = ModEntry.Instance.FFieldIcon.Sprite;
+                    break;
+                case "Fire Storm":
+                    value.path = ModEntry.Instance.FStormIcon.Sprite;
+                    break;
             default: return value;
             }
             return value;
@@ -65,6 +71,12 @@ public class AVariableHintFake : AVariableHint
                 break;
             case "Sum Heat":
                 iconTT = ModEntry.Instance.SumHeat.Sprite;
+                break;
+            case "Fire Field":
+                iconTT = ModEntry.Instance.FFieldIcon.Sprite;
+                break;
+            case "Fire Storm":
+                iconTT = ModEntry.Instance.FStormIcon.Sprite;
                 break;
         }
 
