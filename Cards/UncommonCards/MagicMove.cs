@@ -2,15 +2,13 @@
 using System.Reflection;
 using System.Collections.Generic;
 using CountJest.Wizbo.CardActions;
+using System.Linq;
 
 
 namespace CountJest.Wizbo.Cards;
 
 internal sealed class CardMagicMove : Card, IDemoCard
 {
-    private int ffX;
-    private int fsX;
-
     public static void Register(IModHelper helper)
     {
         helper.Content.Cards.RegisterCard("Magic Move", new()
@@ -39,6 +37,15 @@ internal sealed class CardMagicMove : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        int FFX = 0;
+        int FSX = 0;
+        if (s.route is Combat)
+        {
+            for (var item = 0; item < c.stuff.Values.Count; item++)
+                FFX = item;
+            for (var item2 = 0; item2 < c.stuff.Values.Count; item2++)
+                FSX = item2;
+        }
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -47,6 +54,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
+                        disabled = flipped
                     },
                     new AStatus()
                     {
@@ -64,7 +72,8 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     },
                     new AAttack()
                     {
-                        damage = GetDmg(s, 2)
+                        damage = GetDmg(s, 2),
+                        disabled = !flipped,
                     },
                 };
                 actions = cardActionList1;
@@ -74,17 +83,18 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
-                        FFBonus = ffX
+                        disabled = flipped,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = ffX,
+                        displayAmount = FFX,
                         iconName = "Fire Field",
+                        disabled = flipped,
                     },
                     new AStatus()
                     {
                         status = Status.tempShield,
-                        statusAmount = ffX,
+                        statusAmount = FFX,
                         targetPlayer = true,
                         disabled = flipped,
                         xHint = 1,
@@ -94,17 +104,18 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     },
                     new AFireStorm()
                     {
-                        FSBonus = fsX,
+                        FSBonus = FSX,
                         disabled = !flipped,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = fsX,
+                        displayAmount = FSX,
                         iconName = "Fire Storm",
+                        disabled = !flipped,
                     },
                     new AAttack()
                     {
-                        damage = GetDmg( s,  fsX),
+                        damage = GetDmg( s,  FSX),
                         xHint = 1,
                         disabled = !flipped,
                     }
@@ -116,17 +127,18 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
-                        FFBonus = ffX,
+                        disabled = flipped,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = ffX,
+                        displayAmount = FFX,
                         iconName = "Fire Field",
+                        disabled = flipped,
                     },
                     new AStatus()
                     {
                         status = Status.tempShield,
-                        statusAmount = ffX,
+                        statusAmount = FFX,
                         targetPlayer = true,
                         disabled = flipped,
                         xHint = 1,
@@ -136,18 +148,21 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     },
                     new AFireStorm()
                     {
-                        FSBonus = fsX,
+                        FSBonus = FSX,
                         disabled = !flipped,
                     },
                     new AVariableHintFake()
                     {
-                        displayAmount = fsX,
+                        displayAmount = FSX,
                         iconName = "Fire Storm",
+                        disabled = !flipped,
                     },
                     new AAttack()
                     {
-                        damage = GetDmg( s,  fsX),
-                        xHint = 1,
+                        damage = GetDmg( s,  0),
+                        status = ModEntry.Instance.OxidationStatus.Status,
+                        statusAmount = FSX,
+                        xHint = 0,
                         disabled = !flipped,
                     }
                 };

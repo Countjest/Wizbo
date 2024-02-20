@@ -26,9 +26,15 @@ internal sealed class CardYeet : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = 1,
+            cost = upgrade switch
+            {
+                Upgrade.A => 0,
+                Upgrade.B => 3,
+                _ => 1
+            },
             exhaust = true,
             retain = upgrade == Upgrade.B ? true : false,
+            description = upgrade == Upgrade.B ? ModEntry.Instance.Localizations.Localize(["card", "Yeet", "descriptionB"]) : null,
         };
         return data;
     }
@@ -87,7 +93,7 @@ internal sealed class CardYeet : Card, IDemoCard
                     },
                     new AAddCard
                     {
-                        card = new CardYeet
+                        card = new CardMiazbo
                         {
                             temporaryOverride= true
                         },
@@ -100,16 +106,6 @@ internal sealed class CardYeet : Card, IDemoCard
             case Upgrade.B:
                 List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                    new AVariableHintFake()
-                    {
-                        displayAmount = GetDmg(s, Epile),
-                        iconName = "Exhausted Cards"
-                    },
-                    new AAttack()
-                    {
-                        damage = GetDmg(s, Epile),
-                        xHint = 1,
-                    },
                     new AAddCard
                     {
                         card = new CardMiazbo
@@ -119,16 +115,15 @@ internal sealed class CardYeet : Card, IDemoCard
                         amount = 1,
                         destination = CardDestination.Hand
                     },
-                    new AAddCard
-                    {
-                        card = new CardMiazbo
-                        {
-                            temporaryOverride= true
-                        },
-                        amount = 1,
-                        destination = CardDestination.Discard
-                    }
                 };
+                for (int i = 0; i < (2*Epile); i++)
+                {
+                    cardActionList3.Add(new AAttack
+                                {
+                                    damage = GetDmg(s, 1),
+                                    omitFromTooltips = true
+                                });
+                }
                 actions = cardActionList3;
                 break;
         }

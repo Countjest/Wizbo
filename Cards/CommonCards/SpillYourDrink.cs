@@ -24,7 +24,7 @@ internal sealed class CardSpillYourDrink : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.A ? 1 : 1,
+            cost = upgrade == Upgrade.A ? 0 : 1,
             exhaust = upgrade == Upgrade.A ? false : false,
         };
         return data;

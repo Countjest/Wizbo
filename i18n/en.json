@@ -175,7 +175,8 @@
             }
         },
         "Yeet": {
-            "name": "Yeet"
+            "name": "Yeet",
+            "descriptionB": "Attack for 1 damage; repeat twice per <c=cardtrait>Exhausted</c> card"
         },
         "Kablooie Pachinko": {
             "name": "Kablooie Pachinko"

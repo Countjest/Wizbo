@@ -92,6 +92,9 @@ public sealed class ModEntry : SimpleMod
     /*Specific Card Art*/
     internal ISpriteEntry MMArtTop { get; }
     internal ISpriteEntry MMArtBot { get; }
+    
+    /*Kokoro Statuses*/
+    internal IStatusEntry OxidationStatus { get; }
 
 
 
@@ -244,6 +247,10 @@ public sealed class ModEntry : SimpleMod
         //CardArt
         MMArtTop = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/MagicMoveArtTop.png"));
         MMArtBot = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/MagicMoveArtBot.png"));
+
+        //Kokoro Statuses
+        OxidationStatus = helper.Content.Statuses.LookupByUniqueName("Shockah.Kokoro::Shockah.Kokoro.Status.Oxidation")!;
+
 
         Wizbo_Deck = Helper.Content.Decks.RegisterDeck("WizboDeck", new DeckConfiguration()
         {
