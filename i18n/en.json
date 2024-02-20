@@ -166,6 +166,14 @@
                 "B": "Send all non-cockpit enemy ship parts to the third dimension"
             }
         },
+        "Bidi Bodi Boo": {
+            "name": "Bidi Bodi Boo",
+            "description": {
+                "None": "Return an <c=cardtrait>Exhausted</c> card to your hand",
+                "A": "Add 2 Cards from any deck to your hand",
+                "B": "Copy ALL <c=cardtrait>Exhausted</c> cards to the Discard Pile"
+            }
+        },
         "Yeet": {
             "name": "Yeet"
         },

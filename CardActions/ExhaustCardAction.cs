@@ -29,7 +29,7 @@ internal class ParadoxCardAction : CardAction
         if (artifact != null)
         {
             artifact.ParadoxCounter++;
-            if (artifact.ParadoxCounter == 10)
+            if (artifact.ParadoxCounter == 8)
             {
                 c.QueueImmediate(new ADrawCard()
                 {
