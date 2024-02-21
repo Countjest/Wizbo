@@ -15,6 +15,8 @@ using Newtonsoft.Json.Serialization;
 using System.Runtime.Versioning;
 using static HarmonyLib.Code;
 using CountJest.Wizbo.Artifacts.Duo;
+using CountJest.Wizbo.Cards.RareCards;
+using CountJest.Wizbo.Cards.CommonCards;
 
 /* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
  * This is helpful to know at a glance what mod we're looking at, and who made it */
@@ -115,7 +117,7 @@ public sealed class ModEntry : SimpleMod
         typeof(CardKoolahLimpoo),
         typeof(CardHashakalah),
         typeof(CardSpillYourDrink),
-        typeof(CardYeet),
+        typeof(CardKachow),
         typeof(CardShazammy),
         typeof(CardDeeMekoides)
     ];
@@ -129,7 +131,7 @@ public sealed class ModEntry : SimpleMod
         typeof(CardMagicMove),
     ];
     internal static IReadOnlyList<Type> Wizbo_RareCard_Types { get; } = [
-        typeof(CardKachow),
+        typeof(CardYeet),
         typeof(CardVanish),
         typeof(CardBidiBodiBoo),
     ];
@@ -151,15 +153,15 @@ public sealed class ModEntry : SimpleMod
     internal static IReadOnlyList<Type> Wizbo_CommonArtifact_Types { get; } = [
         typeof(GrimoireOfPower),
         typeof(GrimoireOfSpeed),
-        typeof(EtherealGrimoire),/*Boss*/
+        typeof(DunamisGrimoire),/*Boss*/
         typeof(ParadoxGrimoire)/*Boss*/
     ];
     /*Duo Artifacts*/
     internal static IReadOnlyList<Type> DuoArtifactTypes { get; } = [
         typeof(WizboDizzyArtifact),
         typeof(WizboRiggsArtifact),
-        /*typeof(WizboPeriArtifact),
-        typeof(WizboIsaacArtifact),
+        typeof(WizboPeriArtifact),
+        /*typeof(WizboIsaacArtifact),
         typeof(WizboDrakeArtifact),
         typeof(WizboMaxArtifact),
         typeof(WizboBooksArtifact),

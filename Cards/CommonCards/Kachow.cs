@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace CountJest.Wizbo.Cards;
+namespace CountJest.Wizbo.Cards.CommonCards;
 
 internal sealed class CardKachow : Card, IDemoCard
 {
@@ -16,7 +16,7 @@ internal sealed class CardKachow : Card, IDemoCard
             Meta = new()
             {
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
-                rarity = Rarity.rare,
+                rarity = Rarity.common,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
             Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Kachow", "name"]).Localize

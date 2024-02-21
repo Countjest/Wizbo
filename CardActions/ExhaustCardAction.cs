@@ -20,6 +20,28 @@ internal class ExhaustCardAction : CardAction // We made a custom card action th
         }
     }
 }
+internal class DunamisCardAction : CardAction
+{
+    public override void Begin(G g, State s, Combat c)
+    {
+        var artifact2 = s.EnumerateAllArtifacts().OfType<DunamisGrimoire>().FirstOrDefault();
+
+        if (artifact2 != null)
+        {
+            artifact2.DunamisCounter++;
+            if (artifact2.DunamisCounter == 10)
+            {
+                c.QueueImmediate(new AStatus()
+                {
+                    status = Status.powerdrive,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
+                artifact2.DunamisCounter = 0;
+            }
+        }
+    }
+}
 internal class ParadoxCardAction : CardAction
 {
     public override void Begin(G g, State s, Combat c)

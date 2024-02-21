@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Reflection;
 
-namespace CountJest.Wizbo.Cards;
+namespace CountJest.Wizbo.Cards.RareCards;
 
 internal sealed class CardYeet : Card, IDemoCard
 {
@@ -16,7 +16,7 @@ internal sealed class CardYeet : Card, IDemoCard
             Meta = new()
             {
                 deck = ModEntry.Instance.Wizbo_Deck.Deck,
-                rarity = Rarity.common,
+                rarity = Rarity.rare,
                 upgradesTo = [Upgrade.A, Upgrade.B]
             },
             Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "Yeet", "name"]).Localize
@@ -54,7 +54,7 @@ internal sealed class CardYeet : Card, IDemoCard
         switch (upgrade)
         {
             case Upgrade.None:
-                List<CardAction> cardActionList1 = new List<CardAction>() 
+                List<CardAction> cardActionList1 = new List<CardAction>()
                 {
                     new AVariableHintFake()
                     {
@@ -116,13 +116,13 @@ internal sealed class CardYeet : Card, IDemoCard
                         destination = CardDestination.Hand
                     },
                 };
-                for (int i = 0; i < (2*Epile); i++)
+                for (int i = 0; i < 2 * Epile; i++)
                 {
                     cardActionList3.Add(new AAttack
-                                {
-                                    damage = GetDmg(s, 1),
-                                    omitFromTooltips = true
-                                });
+                    {
+                        damage = GetDmg(s, 1),
+                        omitFromTooltips = true
+                    });
                 }
                 actions = cardActionList3;
                 break;

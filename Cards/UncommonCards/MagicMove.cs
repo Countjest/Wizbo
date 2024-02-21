@@ -93,9 +93,9 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     },
                     new AStatus()
                     {
-                        status = Status.tempShield,
+                        status = Status.timeStop,
                         statusAmount = FFX,
-                        targetPlayer = true,
+                        targetPlayer = false,
                         disabled = flipped,
                         xHint = 1,
                     },

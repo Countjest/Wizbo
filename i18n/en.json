@@ -26,9 +26,9 @@
             "name": "GrimoireOfSpeed",
             "description": "Every 3rd <c=7d5bff>Wizbo</c> card played grants 1 <c=status>Evade</c>"
         },
-        "EtherealGrimoire": {
-            "name": "EtherealGrimoire",
-            "description": "Gain 1 <c=status>Overdrive<c/> when you <c=cardtrait>exhaust</c> a card" //Peri Duo boss?
+        "DunamisGrimoire": {
+            "name": "DunamisGrimoire",
+            "description": "Gain 1 <c=status>Powerdrive<c/> when you <c=cardtrait>exhaust</c> 10 cards"
         },
         "ParadoxGrimoire": {
             "name": "ParadoxGrimoire",
@@ -41,6 +41,10 @@
         "Container Of Nourishment": {
             "name": "Container Of Nourishment",
             "description": "Moving with <c=status>Strafe</c> also shoots a <c=midrow>Magicbolt</c>" //Riggs duo
+        },
+        "Parallel Stabilizer": {
+            "name": "Parallel Stabilizer",
+            "description": "Gain <c=status>TableFlip</c> at the start of combat" //Peri duo
         }
     },
     "ship": {

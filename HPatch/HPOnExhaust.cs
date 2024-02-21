@@ -26,14 +26,11 @@ namespace CountJest.Wizbo
                 artifactPulse = ShipCore.Key(),
                 count = 1,
             });
-            var EtherealBook = s.EnumerateAllArtifacts().OfType<EtherealGrimoire>().FirstOrDefault();
-            if (EtherealBook != null)
-                __instance.Queue(new AStatus()
+            var PotentialBook = s.EnumerateAllArtifacts().OfType<DunamisGrimoire>().FirstOrDefault();
+            if (PotentialBook != null)
+                __instance.Queue(new DunamisCardAction()
                 {
-                    artifactPulse = EtherealBook.Key(),
-                    status = Status.overdrive,
-                    statusAmount = 1,
-                    targetPlayer = true
+                    artifactPulse = PotentialBook.Key(),
                 });
             var ShieldBook = s.EnumerateAllArtifacts().OfType<WizboDizzyArtifact>().FirstOrDefault();
             if (ShieldBook != null)
