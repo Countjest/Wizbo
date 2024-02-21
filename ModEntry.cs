@@ -179,13 +179,11 @@ public sealed class ModEntry : SimpleMod
     public ModEntry(IPluginPackage<IModManifest> package, IModHelper helper, ILogger logger) : base(package, helper, logger)
     {
         Instance = this;
+        Harmony = new(package.Manifest.UniqueName);
         KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
         DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts")!;
         MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
-        Harmony = new(package.Manifest.UniqueName);
-        _ = new HPOnExhaust();
-        _ = new HPArtifactBlacklist();
-        _ = new HPAMove();
+
 
 
         CustomTTGlossary.ApplyPatches(Harmony);
@@ -194,8 +192,9 @@ public sealed class ModEntry : SimpleMod
             localeStreamFunction: locale => package.PackageRoot.GetRelativeFile($"i18n/{locale}.json").OpenRead()
         );
         this.Localizations = new MissingPlaceholderLocalizationProvider<IReadOnlyList<string>>(
-            new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(this.AnyLocalizations)
-        );
+            new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(this.AnyLocalizations));
+
+
         //Char
         Wizbo_Character_CardBackground = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_char_cardbackground.png"));
         Wizbo_Character_CardFrame = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/wizard_char_cardframe.png"));
@@ -422,7 +421,7 @@ public sealed class ModEntry : SimpleMod
 
         });
 
-        _ = new HPShipAnim();
+
 
         if (DuoArtifactsApi is not null)
         {
@@ -439,6 +438,13 @@ public sealed class ModEntry : SimpleMod
                     new CardShazammy(),
                 }
             });
+/*__HARMONY PATCHES__*/
+        _ = new HPOnExhaust();
+        _ = new HPArtifactBlacklist();
+        _ = new HPStrafeMove();
+        _ = new HPShipAnim();
+
+
     }
 }
 /* Dialog ideas :

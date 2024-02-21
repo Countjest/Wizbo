@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 
 namespace CountJest.Wizbo
 {
-    internal sealed class HPAMove
+    internal sealed class HPStrafeMove
     {
-        public HPAMove()
+        public HPStrafeMove()
         {
             ModEntry.Instance.Harmony.Patch(
-            original: AccessTools.DeclaredMethod(typeof(AMove), nameof(global::AMove.Begin)),
-            postfix: new HarmonyMethod(GetType(), nameof(HPAMove.AMove)));
+            original: AccessTools.DeclaredMethod(typeof(CardAction), nameof(AMove)),
+            postfix: new HarmonyMethod(GetType(), nameof(HPStrafeMove.AMove)));
         }
-        static void AMove(State s, Combat __instance)
+        public static void AMove(CardAction __instance, State s, Combat c)
         {
             var BobaContainer = s.EnumerateAllArtifacts().OfType<WizboRiggsArtifact>().FirstOrDefault();
             if (BobaContainer != null)
             {
                 if (s.ship.Get(Status.strafe) > 0)
                 {
-                    __instance.Queue(new ASpawn()
+                    c.QueueImmediate(new ASpawn()
                     {
                         thing = new Bolt()
                         {
@@ -35,6 +35,6 @@ namespace CountJest.Wizbo
                     });
                 }
             }
-        }
+        }    
     }
 }
