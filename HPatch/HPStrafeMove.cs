@@ -22,7 +22,7 @@ namespace CountJest.Wizbo
             var BobaContainer = s.EnumerateAllArtifacts().OfType<WizboRiggsArtifact>().FirstOrDefault();
             if (BobaContainer != null)
             {
-                if (s.ship.Get(Status.strafe) > 0)
+                if (s.ship.Get(Status.strafe) > 0 && c.isPlayerTurn == true)
                 {
                     c.QueueImmediate(new ASpawn()
                     {

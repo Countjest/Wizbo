@@ -11,7 +11,7 @@ internal sealed class WizboPeriArtifact : Artifact, IDemoArtifact
 {
     public static void Register(IModHelper helper)
     {
-        helper.Content.Artifacts.RegisterArtifact("WizboRiggsArtifact", new()
+        helper.Content.Artifacts.RegisterArtifact("WizboPeriArtifact", new()
         {
             ArtifactType = MethodBase.GetCurrentMethod()!.DeclaringType!,
             Meta = new()
