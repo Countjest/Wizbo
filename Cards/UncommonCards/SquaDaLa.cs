@@ -41,7 +41,10 @@ internal sealed class CardSquaDaLa : Card, IDemoCard
                 {
                     new ASpawn()
                     {
-                        thing = new FireMine()
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Fire,
+                        }
                     },
                     new AMove()
                     {
@@ -57,7 +60,10 @@ internal sealed class CardSquaDaLa : Card, IDemoCard
                 {
                     new ASpawn()
                     {
-                        thing = new FireMine()
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Fire,
+                        }
                     },
                     new AMove()
                     {
@@ -73,7 +79,10 @@ internal sealed class CardSquaDaLa : Card, IDemoCard
                 {
                     new ASpawn()
                     {
-                        thing = new FireMine()
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Fire,
+                        }
                     },
                     new AMove()
                     {
@@ -83,7 +92,10 @@ internal sealed class CardSquaDaLa : Card, IDemoCard
                     },
                     new ASpawn()
                     {
-                        thing = new FireMine()
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Fire,
+                        }
                     },
                 };
                 actions = cardActionList3;

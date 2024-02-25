@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CountJest.Wizbo;
 using FSPRO;
-using Nickel;
+using static CountJest.Wizbo.Sphere;
 
 namespace CountJest.Wizbo;
 public class AFireField : CardAction
 {
     public int FFBonus;
+    public SType sphereType;
+
     public override void Begin(G g, State s, Combat c)
     {
         foreach (StuffBase item in c.stuff.Values.ToList())
         {
             FFBonus++;
             c.stuff.Remove(item.x);
-            FireMine value = new FireMine
+            Sphere value = new Sphere()
             {
+                sphereType = sphereData[sphereType].sphereType,
                 x = item.x,
                 xLerped = item.xLerped,
                 bubbleShield = item.bubbleShield,

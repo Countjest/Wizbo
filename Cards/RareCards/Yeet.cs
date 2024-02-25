@@ -29,7 +29,7 @@ internal sealed class CardYeet : Card, IDemoCard
             cost = upgrade switch
             {
                 Upgrade.A => 0,
-                Upgrade.B => 3,
+                Upgrade.B => 2,
                 _ => 1
             },
             exhaust = true,
@@ -116,7 +116,7 @@ internal sealed class CardYeet : Card, IDemoCard
                         destination = CardDestination.Hand
                     },
                 };
-                for (int i = 0; i < 2 * Epile; i++)
+                for (int i = 0; i < Epile; i++)
                 {
                     cardActionList3.Add(new AAttack
                     {

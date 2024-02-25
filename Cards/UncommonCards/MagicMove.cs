@@ -54,6 +54,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
+                        sphereType = SType.Fire,
                         disabled = flipped
                     },
                     new AStatus()
@@ -83,6 +84,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
+                        sphereType = SType.Chaos,
                         disabled = flipped,
                     },
                     new AVariableHintFake()
@@ -90,6 +92,14 @@ internal sealed class CardMagicMove : Card, IDemoCard
                         displayAmount = FFX,
                         iconName = "Fire Field",
                         disabled = flipped,
+                    },
+                    new AStatus()
+                    {
+                        status = Status.timeStop,
+                        statusAmount = FFX,
+                        targetPlayer = true,
+                        disabled = flipped,
+                        xHint = 1,
                     },
                     new AStatus()
                     {
@@ -113,13 +123,15 @@ internal sealed class CardMagicMove : Card, IDemoCard
                         iconName = "Fire Storm",
                         disabled = !flipped,
                     },
-                    new AAttack()
-                    {
-                        damage = GetDmg( s,  FSX),
-                        xHint = 1,
-                        disabled = !flipped,
-                    }
                 };
+                for (int i = 0; i < FSX; i++)
+                {
+                    cardActionList2.Add(new AAttack
+                    {
+                        damage = GetDmg(s, 1),
+                        omitFromTooltips = true
+                    });
+                }
                 actions = cardActionList2;
                 break;
             case Upgrade.B:
@@ -127,6 +139,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                 {
                     new AFireField()
                     {
+                        sphereType = SType.Toxic,
                         disabled = flipped,
                     },
                     new AVariableHintFake()
@@ -137,9 +150,17 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     },
                     new AStatus()
                     {
-                        status = Status.tempShield,
+                        status = Status.boost,
                         statusAmount = FFX,
                         targetPlayer = true,
+                        disabled = flipped,
+                        xHint = 1,
+                    },
+                    new AStatus()
+                    {
+                        status = Status.boost,
+                        statusAmount = FFX,
+                        targetPlayer = false,
                         disabled = flipped,
                         xHint = 1,
                     },
@@ -166,6 +187,16 @@ internal sealed class CardMagicMove : Card, IDemoCard
                         disabled = !flipped,
                     }
                 };
+                for (int i = 0; i < FSX; i++)
+                {
+                    cardActionList3.Add(new AAttack
+                    {
+                        damage = GetDmg(s, 0),
+                        status = ModEntry.Instance.OxidationStatus.Status,
+                        statusAmount = 1,
+                        omitFromTooltips = true
+                    });
+                }
                 actions = cardActionList3;
                 break;
         }

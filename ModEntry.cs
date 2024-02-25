@@ -61,7 +61,11 @@ public sealed class ModEntry : SimpleMod
     internal IShipEntry MagicTower_Ship { get; }
 
     /*midrow*/
-    internal ISpriteEntry FireMinespr { get; }
+    internal ISpriteEntry FBallspr { get; }
+    internal ISpriteEntry TBallspr { get; }
+    internal ISpriteEntry CBallspr { get; }
+
+
     internal ISpriteEntry Bolt { get; }
     internal ISpriteEntry BoltAngle { get; }
     internal ISpriteEntry MBolt { get; }
@@ -75,7 +79,9 @@ public sealed class ModEntry : SimpleMod
 
 
     /*Icons*/
-    internal ISpriteEntry FmineIcon { get; }
+    internal ISpriteEntry FsphereIcon { get; }
+    internal ISpriteEntry TsphereIcon { get; }
+    internal ISpriteEntry CsphereIcon { get; }
     internal ISpriteEntry FFieldIcon { get; }
     internal ISpriteEntry FStormIcon { get; }
     internal ISpriteEntry WboltIcon { get; }
@@ -214,8 +220,13 @@ public sealed class ModEntry : SimpleMod
         //ship
         TowerDoor = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/door.png"));
         SEmpty = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/ships/none.png"));
-        //stuffbase
-        FireMinespr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireMine.png"));
+        //stuffbase - mines
+        FBallspr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireBall.png"));
+        TBallspr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/ToxicBall.png"));
+        CBallspr = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/ChaosBall.png"));
+
+
+        //stuffbase - bolts
         Bolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/bolt.png"));
         BoltAngle = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/boltangle.png"));
         MBolt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/mbolt.png"));
@@ -229,7 +240,10 @@ public sealed class ModEntry : SimpleMod
 
 
         //Icons
-        FmineIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fmine.png"));
+        FsphereIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/fball.png"));
+        TsphereIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/tball.png"));
+        CsphereIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/cball.png"));
+
         FFieldIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireField.png"));
         FStormIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/midrow/FireStorm.png"));
         WboltIcon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/icon_wbolt.png"));

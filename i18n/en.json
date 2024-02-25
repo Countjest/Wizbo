@@ -71,6 +71,24 @@
                 "name": "Witchbolt",
                 "description": "Witchbolt, deals damage equal to the number of enemy ship parts, never misses"
             }
+        },
+        "Sphere": {
+            "Pholder": {
+                "name": "Pholder",
+                "description": "Applies <c=cardtrait>Weak</c> to the enemy ship part hit and 2 <c=status>Missile Malfunction<c/>, never misses"
+            },
+            "Chaos": {
+                "name": "Chaosball",
+                "description": "40% chance to apply 1 <c=status>Boost</c> 60% chance to apply 1 of <c=status>Heat, Corrode or Missile Malfunction<c/>, never misses"
+            },
+            "Fire": {
+                "name": "Fireball",
+                "description": "Deals 1 damage to the enemy, never misses"
+            },
+            "Toxic": {
+                "name": "Toxicball",
+                "description": "Witchbolt, deals damage equal to the number of enemy ship parts, never misses"
+            }
         }
     },
     "Action": {

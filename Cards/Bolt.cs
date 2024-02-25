@@ -25,6 +25,7 @@ public class Bolt : StuffBase
     private class BoltData
     {
         public string? Key;
+
         public Color boltColor;
 
         public Spr icon;

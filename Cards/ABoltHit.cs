@@ -102,7 +102,7 @@ namespace CountJest.Wizbo
                 {
                     c.QueueImmediate(new AWeaken
                     {
-                        worldX = worldX,
+                        worldX = raycastResult.worldX,
                         targetPlayer = targetPlayer
                     });
                 }
