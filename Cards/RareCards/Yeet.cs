@@ -116,7 +116,7 @@ internal sealed class CardYeet : Card, IDemoCard
                         destination = CardDestination.Hand
                     },
                 };
-                for (int i = 0; i < Epile; i++)
+                for (int i = 0; i < ((2*Epile)/3); i++)
                 {
                     cardActionList3.Add(new AAttack
                     {
