@@ -10,8 +10,6 @@ public class AFireStorm : CardAction
     public int FSBonus;
     public override void Begin(G g, State s, Combat c)
     {
-        base.Begin(g, s, c);
-
         new CardAction();
         foreach (var item in c.stuff.Values.ToList())
         {
@@ -42,7 +40,7 @@ public class AFireStorm : CardAction
 
         return new List<Tooltip>
         {
-            new TTGlossary("action.medusaField")
+            new TTGlossary("action.FireStorm")
         };
     }
     public override Icon? GetIcon(State s)

@@ -17,7 +17,7 @@ public class AFireField : CardAction
             c.stuff.Remove(item.x);
             Sphere value = new Sphere()
             {
-                sphereType = sphereData[sphereType].sphereType,
+                sphereType = (SType)sphereType,
                 x = item.x,
                 xLerped = item.xLerped,
                 bubbleShield = item.bubbleShield,

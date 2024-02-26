@@ -146,7 +146,6 @@ public sealed class AVanishPart : CardAction
 
     public override void Begin(G g, State s, Combat c)
     {
-        base.Begin(g, s, c);
         timer = 0;
 
         var ship = TargetPlayer ? s.ship : c.otherShip;

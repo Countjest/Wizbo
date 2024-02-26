@@ -6,6 +6,8 @@ using FMOD;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Linq;
 
 namespace CountJest.Wizbo;
 [JsonConverter(typeof(StringEnumConverter))]
@@ -35,8 +37,6 @@ public class Sphere : StuffBase
         public Status status;
 
         public int statusAmount;
-
-        public SType sphereType { get; internal set; }
     }
 
     public SType sphereType;
@@ -100,7 +100,7 @@ public class Sphere : StuffBase
 
     public override double GetWiggleRate()
     {
-        return 4.0;
+        return 3.0;
     }
     public override List<Tooltip> GetTooltips()
     {
@@ -183,6 +183,8 @@ public class Sphere : StuffBase
         Status.boost,
     };
     public int sCounter;
+    private const bool AfsFlse = false;
+    public StuffBase? item;
 
     public override List<CardAction> GetActions(State s, Combat c)
     {
@@ -195,9 +197,28 @@ public class Sphere : StuffBase
             };
             if (sCounter == 3)
             {
-                cardActionList1.AddRange(GetActionsOnDestroyed(s, c, false, x));
+                if (item != null)
+                {
+                    new CardAction();
+                    {
+                        x = item.x;
+                        bool targetPlayer = AfsFlse;
+                        if (item != null)
+                        {
+                            c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
+                            c.stuff.Remove(item.x);
+                            s.AddShake(2.0);
+                            c.fx.Add(new DroneExplosion
+                            {
+                                pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
+                            });
+                        }
+                    }
+                }
+                
             }
             actions = cardActionList1;
+
         }
         return actions;
     }
@@ -211,16 +232,16 @@ public class Sphere : StuffBase
             {
                 new ABallAttack
                 {
-                    hurtAmount = (1 + (sCounter/2)),
+                    hurtAmount = (1 + (sCounter / 2)),
                     targetPlayer = wasPlayer,
                     worldX = worldX,
                 },
                 new ABallStatus
                 {
                     status = Status.heat,
-                    statusAmount = (2 + sCounter),
+                    statusAmount = (2 + (sCounter/2)),
                     targetPlayer = wasPlayer,
-                    worldX = worldX
+                    worldX = worldX,
                 },
             },
             SType.Toxic => new List<CardAction>
@@ -236,7 +257,7 @@ public class Sphere : StuffBase
                     status = ModEntry.Instance.OxidationStatus.Status,
                     statusAmount = (2 + sCounter),
                     targetPlayer = wasPlayer,
-                    worldX = worldX
+                    worldX = worldX,
                 },
 
             },
@@ -253,7 +274,7 @@ public class Sphere : StuffBase
                     status = status,
                     statusAmount = (1 + sCounter),
                     targetPlayer = wasPlayer,
-                    worldX = worldX
+                    worldX = worldX,
                 },
 
             },
@@ -298,6 +319,12 @@ public class Sphere : StuffBase
             if (raycastResult.hitShip)
             {
                 damageDone = ship.NormalDamage(s, c, hurtAmount, worldX);
+                c.QueueImmediate(new ABallStatus() 
+                {
+                    targetPlayer = targetPlayer,
+                    worldX = worldX,
+
+                });
             }
 
             if (damageDone != null)
@@ -316,19 +343,6 @@ public class Sphere : StuffBase
         public int statusAmount { get; set; }
         public bool targetPlayer;
         public int worldX;
-        private SType sphereType;
-
-        public override void Begin(G g, State s, Combat c)
-        {
-            Ship ship = (targetPlayer ? s.ship : c.otherShip);
-            RaycastResult raycastResult = CombatUtils.RaycastGlobal(c, ship, fromDrone: true, worldX);
-            statusAmount = 0;
-            if (raycastResult.hitShip)
-            {
-                statusAmount = sphereData[sphereType].statusAmount;
-                status = sphereData[sphereType].status;
-            }
-        }
     }
 }
 

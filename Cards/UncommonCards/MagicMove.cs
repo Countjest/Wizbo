@@ -30,7 +30,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
         {
             cost = upgrade == Upgrade.None? 1 : 2,
             floppable = true,
-            exhaust = upgrade == Upgrade.None ? false : true,
+            exhaust = false,
             art = flipped ? ModEntry.Instance.MMArtBot.Sprite : ModEntry.Instance.MMArtTop.Sprite,
         };
         return data;
@@ -129,6 +129,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                     cardActionList2.Add(new AAttack
                     {
                         damage = GetDmg(s, 1),
+                        disabled = !flipped,
                         omitFromTooltips = true
                     });
                 }
@@ -178,14 +179,6 @@ internal sealed class CardMagicMove : Card, IDemoCard
                         iconName = "Fire Storm",
                         disabled = !flipped,
                     },
-                    new AAttack()
-                    {
-                        damage = GetDmg( s,  0),
-                        status = ModEntry.Instance.OxidationStatus.Status,
-                        statusAmount = FSX,
-                        xHint = 0,
-                        disabled = !flipped,
-                    }
                 };
                 for (int i = 0; i < FSX; i++)
                 {
@@ -194,6 +187,7 @@ internal sealed class CardMagicMove : Card, IDemoCard
                         damage = GetDmg(s, 0),
                         status = ModEntry.Instance.OxidationStatus.Status,
                         statusAmount = 1,
+                        disabled = !flipped,
                         omitFromTooltips = true
                     });
                 }

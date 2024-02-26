@@ -79,15 +79,15 @@
             },
             "Chaos": {
                 "name": "Chaosball",
-                "description": "40% chance to apply 1 <c=status>Boost</c> 60% chance to apply 1 of <c=status>Heat, Corrode or Missile Malfunction<c/>, never misses"
+                "description": "40% chance to apply 2 <c=status>Boost</c> 60% chance to apply 2 of <c=status>Heat, Corrode or Missile Malfunction<c/> when destroyed, increases by 1 each turn; Selfdestructs in 3 turns"
             },
             "Fire": {
                 "name": "Fireball",
-                "description": "Deals 1 damage to the enemy, never misses"
+                "description": "Deals 2 Damage & applies 2 <c=status>Heat</c> when destroyed, increases by 1 every 2 turns; Selfdestructs in 3 turns"
             },
             "Toxic": {
                 "name": "Toxicball",
-                "description": "Witchbolt, deals damage equal to the number of enemy ship parts, never misses"
+                "description": "Applies 2 <c=status>Oxidation</c> when destroyed, increases by 1 each turn; Selfdestructs in 3 turns"
             }
         }
     },
