@@ -104,10 +104,6 @@ public sealed class ModEntry : SimpleMod
     /*Kokoro Statuses*/
     internal IStatusEntry OxidationStatus { get; }
 
-
-
-
-
     internal static IReadOnlyList<Type> Wizbo_StarterCard_Types { get; } = [
         /* Add more starter cards here if you'd like. */
         typeof(CardPocusCrocus),
@@ -191,8 +187,6 @@ public sealed class ModEntry : SimpleMod
         KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
         DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts")!;
         MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
-
-
 
         CustomTTGlossary.ApplyPatches(Harmony);
         this.AnyLocalizations = new JsonLocalizationProvider(

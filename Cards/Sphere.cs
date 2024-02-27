@@ -336,12 +336,17 @@ public class Sphere : StuffBase
         public int worldX;
         public override void Begin(G g, State s, Combat c)
         {
-            c.QueueImmediate(new AStatus()
+            Ship ship = (targetPlayer ? s.ship : c.otherShip);
+            RaycastResult raycastResult = CombatUtils.RaycastGlobal(c, ship, fromDrone: true, worldX);
+            if (raycastResult.hitShip)
             {
-                status = status,
-                statusAmount = statusAmount,
-                targetPlayer = targetPlayer,
-            });
+                c.QueueImmediate(new AStatus()
+                {
+                    status = status,
+                    statusAmount = statusAmount,
+                    targetPlayer = targetPlayer,
+                });
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ public class Bolt : StuffBase
             BType.Fire,
             new BoltData
             {
-                Key = "Fire",
+                Key = "FireB",
                 boltColor  = new Color("C3FFFB"),
                 icon = ModEntry.Instance.WboltIcon.Sprite,
                 baseDamage = 0
@@ -50,7 +50,7 @@ public class Bolt : StuffBase
             BType.Chaos,
             new BoltData
             {
-                Key = "Chaos",
+                Key = "ChaosB",
                 boltColor  = new Color("faffea"),
                 icon = ModEntry.Instance.CboltIcon.Sprite,
                 baseDamage = 0
@@ -60,7 +60,7 @@ public class Bolt : StuffBase
             BType.Magic,
             new BoltData
             {
-                Key = "Magic",
+                Key = "MagicB",
                 boltColor  = new Color("ffffff"),
                 icon = ModEntry.Instance.MboltIcon.Sprite,
                 baseDamage = 1
@@ -70,7 +70,7 @@ public class Bolt : StuffBase
             BType.Hex,
             new BoltData
             {
-                Key = "Hex",
+                Key = "HexB",
                 boltColor  = new Color("ceb9ff"),
                 icon = ModEntry.Instance.HboltIcon.Sprite,
                 baseDamage = 0
