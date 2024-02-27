@@ -459,6 +459,7 @@ public sealed class ModEntry : SimpleMod
         _ = new HPArtifactBlacklist();
         _ = new HPStrafeMove();
         _ = new HPShipAnim();
+        Harmony.PatchAll();
 
 
     }

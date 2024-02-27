@@ -67,9 +67,9 @@
                 "name": "Magicbolt",
                 "description": "Deals 1 damage to the enemy, never misses"
             },
-            "Witch": {
-                "name": "Witchbolt",
-                "description": "Witchbolt, deals damage equal to the number of enemy ship parts, never misses"
+            "Fire": {
+                "name": "Firebolt",
+                "description": "Deals damage equal to the enemy's <c=status>Heat<c/> & applies 1 <c=status>Heat<c/>, never misses"
             }
         },
         "Sphere": {
