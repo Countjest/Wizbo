@@ -104,30 +104,19 @@ public class Sphere : StuffBase
     }
     public override List<Tooltip> GetTooltips()
     {
-        Spr sprite = ModEntry.Instance.FsphereIcon.Sprite;
-        switch (sphereType)
+        Spr sprite = sphereType switch
         {
-            case SType.Toxic:
-                sprite = ModEntry.Instance.TsphereIcon.Sprite;
-                break;
-            case SType.Chaos:
-                sprite = ModEntry.Instance.CsphereIcon.Sprite;
-                break;
-            case SType.Fire:
-                sprite = ModEntry.Instance.FsphereIcon.Sprite;
-                break;
-            case SType.Pholder:
-                sprite = ModEntry.Instance.FsphereIcon.Sprite;
-                break;
-            default:
-                sprite = ModEntry.Instance.FsphereIcon.Sprite;
-                break;
-        }
+            SType.Toxic => ModEntry.Instance.TsphereIcon.Sprite,
+            SType.Chaos => ModEntry.Instance.CsphereIcon.Sprite,
+            SType.Fire => ModEntry.Instance.FsphereIcon.Sprite,
+            SType.Pholder => ModEntry.Instance.FsphereIcon.Sprite,
+            _ => ModEntry.Instance.FsphereIcon.Sprite,
+        };
         var result = new List<Tooltip>()
         {
             new CustomTTGlossary(
                 CustomTTGlossary.GlossaryType.midrow,
-                () => sprite,
+                () => (Spr)sprite,
                 () => ModEntry.Instance.Localizations.Localize(["Midrow", "Sphere", $"{sphereType}", "name"]),
                 () => ModEntry.Instance.Localizations.Localize(["Midrow", "Sphere", $"{sphereType}", "description"]),
                 key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::Sphere{sphereType}"
@@ -154,6 +143,18 @@ public class Sphere : StuffBase
                 break;
         }
         return SSprite;
+    }
+    public override Spr? GetIcon()
+    {
+        Spr Ssprite = sphereType switch
+        {
+            SType.Toxic => ModEntry.Instance.TsphereIcon.Sprite,
+            SType.Chaos => ModEntry.Instance.CsphereIcon.Sprite,
+            SType.Fire => ModEntry.Instance.FsphereIcon.Sprite,
+            SType.Pholder => ModEntry.Instance.FsphereIcon.Sprite,
+            _ => ModEntry.Instance.FsphereIcon.Sprite,
+        };
+        return Ssprite;
     }
     public override void Render(G g, Vec v)
     {
@@ -184,38 +185,28 @@ public class Sphere : StuffBase
     };
     public int sCounter;
     private const bool AfsFlse = false;
-    public StuffBase? item;
-
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        StuffBase item = this;
         sCounter++;
         List<CardAction> actions = new();
         {
             List<CardAction> cardActionList1 = new List<CardAction>()
-            {   
-                
+            {
+
             };
             if (sCounter == 3)
             {
-                if (item != null)
+                x = item.x;
+                bool targetPlayer = AfsFlse;
+                c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
+                c.stuff.Remove(item.x);
+                s.AddShake(2.0);
+                c.fx.Add(new DroneExplosion
                 {
-                    new CardAction();
-                    {
-                        x = item.x;
-                        bool targetPlayer = AfsFlse;
-                        if (item != null)
-                        {
-                            c.QueueImmediate(item.GetActionsOnDestroyed(s, c, targetPlayer, x));
-                            c.stuff.Remove(item.x);
-                            s.AddShake(2.0);
-                            c.fx.Add(new DroneExplosion
-                            {
-                                pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
-                            });
-                        }
-                    }
-                }
-                
+                    pos = new Vec(x * 16, 60.0) + new Vec(7.5, 4.0)
+                });
+
             }
             actions = cardActionList1;
 
@@ -319,7 +310,7 @@ public class Sphere : StuffBase
             if (raycastResult.hitShip)
             {
                 damageDone = ship.NormalDamage(s, c, hurtAmount, worldX);
-                c.QueueImmediate(new ABallStatus() 
+                c.QueueImmediate(new ABallStatus()
                 {
                     targetPlayer = targetPlayer,
                     worldX = worldX,
@@ -339,10 +330,19 @@ public class Sphere : StuffBase
     }
     public class ABallStatus : CardAction
     {
-        public Status status { get; set; }
-        public int statusAmount { get; set; }
+        public Status status;
+        public int statusAmount;
         public bool targetPlayer;
         public int worldX;
+        public override void Begin(G g, State s, Combat c)
+        {
+            c.QueueImmediate(new AStatus()
+            {
+                status = status,
+                statusAmount = statusAmount,
+                targetPlayer = targetPlayer,
+            });
+        }
     }
 }
 

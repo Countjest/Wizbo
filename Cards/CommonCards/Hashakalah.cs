@@ -1,5 +1,6 @@
 ﻿using Nickel;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Reflection;
 
 namespace CountJest.Wizbo.Cards;
@@ -24,24 +25,40 @@ internal sealed class CardHashakalah : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.A ? 0 : 1,
-            exhaust = upgrade == Upgrade.A ? true : false,
+            cost = upgrade == Upgrade.B ? 2 : 1,
+            exhaust = upgrade == Upgrade.B ? true : false,
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
+        var LR = s.ship.Get(Status.heat);
+        var L = LR * (-1);
+        var R = LR * (1);
         List<CardAction> actions = new();
         switch (upgrade)
         {
             case Upgrade.None:
                 List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                    new AStatus()
+                    new ASpawn()
                     {
-                        status = Status.drawNextTurn,
-                        statusAmount = 2,
-                        targetPlayer = true,
+                        timer = 0,
+                        offset = -1,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false
+                        }
+                    },
+                    new ASpawn()
+                    {
+                        offset = 1,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false
+                        }
                     },
                     new AAddCard
                     {
@@ -58,12 +75,6 @@ internal sealed class CardHashakalah : Card, IDemoCard
             case Upgrade.A:
                 List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    new AStatus()
-                    {
-                        status = Status.drawNextTurn,
-                        statusAmount = 2,
-                        targetPlayer = true,
-                    },
                     new AAddCard
                     {
                         card = new CardMiazbo
@@ -72,6 +83,26 @@ internal sealed class CardHashakalah : Card, IDemoCard
                         },
                         amount = 1,
                         destination = CardDestination.Hand,
+                    },
+                    new ASpawn()
+                    {
+                        timer = 0,
+                        offset = -1,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false
+                        }
+                    },
+                    new ASpawn()
+                    {
+                        timer = 0,
+                        offset = 1,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false
+                        }
                     },
                 };
                 actions = cardActionList2;
@@ -81,29 +112,65 @@ internal sealed class CardHashakalah : Card, IDemoCard
                 {
                     new AStatus()
                     {
-                        status = Status.drawNextTurn,
-                        statusAmount = 2,
+                        status = Status.heat,
+                        statusAmount = 4,
                         targetPlayer = true,
                     },
-                    new AAddCard
+                    new AVariableHint()
                     {
-                        card = new CardMiazbo
-                        {
-                            temporaryOverride= true
-                        },
-                        amount = 1,
-                        destination = CardDestination.Hand,
+                        status = Status.heat,
                     },
-                    new AAddCard
+                    new ASpawn()
                     {
-                        card = new CardMiazbo
+                        offset = (L + R),
+                        thing = new Bolt()
                         {
-                            temporaryOverride= true
+                            boltType= BType.Fire,
+                            targetPlayer = false,
                         },
-                        amount = 1,
-                        destination = CardDestination.Deck,
+                        xHint = 1
                     }
                 };
+                for (int i = 0; i < (s.ship.Get(Status.heat)); i++)
+                {
+                    L++;
+                    cardActionList3.Add(ModEntry.Instance.KokoroApi.ActionCosts.Make(
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost(
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
+                                Status.heat, target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite,
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite),
+                            amount: 1),
+                        new ASpawn()
+                        {
+                            timer = 0,
+                            offset = L,
+                            thing = new Bolt()
+                            {
+                                boltType = BType.Fire,
+                                targetPlayer = false,
+                            },
+                            omitFromTooltips = true,
+                        }));
+                    R--;
+                    cardActionList3.Add(ModEntry.Instance.KokoroApi.ActionCosts.Make(
+                        ModEntry.Instance.KokoroApi.ActionCosts.Cost(
+                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
+                                Status.heat, target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
+                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite,
+                                    ModEntry.Instance.HeatCostSatisfied.Sprite),
+                            amount: 1),
+                        new ASpawn()
+                        {
+                            offset = R,
+                            thing = new Bolt()
+                            {
+                                boltType = BType.Fire,
+                                targetPlayer = false,
+                            },
+                            omitFromTooltips = true,
+                        }));
+                }
                 actions = cardActionList3;
                 break;
         }

@@ -45,8 +45,8 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
             cost = upgrade switch
             {
                 Upgrade.A => 0,
-                Upgrade.B => 2,
-                _ => 1
+                Upgrade.B => 1,
+                _ => 0
             },
             exhaust = true,
             /* Give your card some meta data, such as giving it an energy cost, making it exhaustable, and more */
@@ -110,6 +110,12 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                         browseSource = CardBrowse.Source.DiscardPile,
 
                     },
+                    new ACardSelect
+                    {
+                        browseAction = new EatCard(),
+                        browseSource = CardBrowse.Source.DiscardPile,
+
+                    },
                 };
                 actions = cardActionList2;
                 break;
@@ -133,15 +139,8 @@ internal sealed class CardFiddleDeeDoop : Card, IDemoCard
                     },
                     new ACardSelect
                     {
-                        browseAction = new EatCard(),
+                        browseAction = new EatCard2(),
                         browseSource = CardBrowse.Source.DiscardPile,
-
-                    },
-                    new ACardSelect
-                    {
-                        browseAction = new EatCard(),
-                        browseSource = CardBrowse.Source.DiscardPile,
-
                     },
                 };
                 actions = cardActionList3;

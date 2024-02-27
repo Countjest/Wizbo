@@ -115,3 +115,23 @@ public class SpitCard : CardAction
             c.SendCardToDiscard(s, Ecard2);
     }
 }
+public class SpitCard2 : CardAction
+{
+    public Card? Ecard;
+    public Card? Ecard2;
+    public override void Begin(G g, State s, Combat c)
+    {
+        if (Ecard != null)
+        {
+            Ecard2 = Ecard.CopyWithNewId();
+            Ecard2!.temporaryOverride = true;
+            c.QueueImmediate(
+            new AAddCard()
+            {
+                card = Ecard2,
+                amount =1,
+                destination = CardDestination.Deck,
+            });
+        }
+    }
+}

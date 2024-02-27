@@ -28,4 +28,31 @@ namespace CountJest.Wizbo.CardActions
             }
         }
     }
+    public class EatCard2 : CardAction
+    {
+        public override void Begin(G g, State s, Combat c)
+        {
+            Card? card = selectedCard;
+            if (card != null)
+            {
+                int cardCost = card.GetCurrentCost(s);
+                c.QueueImmediate(
+                    new ExhaustCardAction()
+                    {
+                        cardId = card.uuid,
+                    });
+                c.QueueImmediate(
+                    new AEnergy()
+                    {
+                        changeAmount = cardCost,
+
+                    });
+                c.QueueImmediate(
+                    new SpitCard2()
+                    {
+                        Ecard = card,
+                    });
+            }
+        }
+    }
 }

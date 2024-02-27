@@ -10,7 +10,7 @@ namespace CountJest.Wizbo;
 [JsonConverter(typeof(StringEnumConverter))]
 public enum BType
 {
-    Witch,
+    Fire,
     Chaos,
     Magic,
     Hex
@@ -37,10 +37,10 @@ public class Bolt : StuffBase
     private static readonly Dictionary<BType, BoltData> boltData = new Dictionary<BType, BoltData>
     {
         {
-            BType.Witch,
+            BType.Fire,
             new BoltData
             {
-                Key = "Witch",
+                Key = "Fire",
                 boltColor  = new Color("C3FFFB"),
                 icon = ModEntry.Instance.WboltIcon.Sprite,
                 baseDamage = 0
@@ -99,7 +99,7 @@ public class Bolt : StuffBase
             case BType.Hex:
                 sprite = ModEntry.Instance.HboltIcon.Sprite;
                 break;
-            case BType.Witch:
+            case BType.Fire:
                 sprite = ModEntry.Instance.WboltIcon.Sprite;
                 break;
             case BType.Chaos:
@@ -152,7 +152,7 @@ public class Bolt : StuffBase
                 case BType.Hex:
                     BSprite = ModEntry.Instance.HBolt.Sprite;
                     break;
-                case BType.Witch:
+                case BType.Fire:
                     BSprite = ModEntry.Instance.WBolt.Sprite;
                     break;
             }
@@ -172,7 +172,7 @@ public class Bolt : StuffBase
                 case BType.Hex:
                     BSprite = ModEntry.Instance.HBoltAngle.Sprite;
                     break;
-                case BType.Witch:
+                case BType.Fire:
                     BSprite = ModEntry.Instance.WBoltAngle.Sprite;
                     break;
             }
@@ -317,21 +317,29 @@ public class Bolt : StuffBase
     public override List<CardAction>? GetActions(State s, Combat c)
     {
         bool Flag3 = s.time * 2.0 % 1.0 < 0.5;
-        int WDmg = 0;
-        if (s.route is Combat)
-            for (var partIndex = 0; partIndex < c.otherShip.parts.Count; partIndex++)
-                WDmg = partIndex;
+        int FDmg = 0;
+        int boostMod = 0;
+        int bonush = 0;
+        if (c.isPlayerTurn == true && s.route is Combat)
+        {
+            if (c.otherShip.statusEffects.Values.Count > 0)
+            {
+                bonush = c.otherShip.Get(Status.heat);
+                boostMod = c.otherShip.Get(Status.boost);
+                FDmg = bonush + boostMod;
+            }
+        }
         Status status = Chaosstatuslist[s.rngActions.NextInt() % Chaosstatuslist.Count];
         return boltType switch
         {
-            BType.Witch => new List<CardAction>
+            BType.Fire => new List<CardAction>
             {
                 new ABoltHit
                 {
                     worldX = x,
-                    outgoingDamage = boltData[boltType].baseDamage + WDmg,
+                    outgoingDamage = boltData[boltType].baseDamage + FDmg,
                     targetPlayer = targetPlayer,
-                    status = Status.boost,
+                    status = Status.heat,
                     statusAmount = 1,
 
                 }
@@ -379,7 +387,7 @@ public class Bolt : StuffBase
         {
             case BType.Hex:
                 return (ModEntry.Instance.HboltIcon.Sprite);
-            case BType.Witch:
+            case BType.Fire:
                 return (ModEntry.Instance.WboltIcon.Sprite);
             case BType.Chaos:
                 return (ModEntry.Instance.CboltIcon.Sprite);

@@ -27,8 +27,8 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
     {
         CardData data = new CardData()
         {
-            cost = upgrade == Upgrade.None ? 3 : 3,
-            exhaust = upgrade == Upgrade.B ? false : true,
+            cost = upgrade == Upgrade.None ? 1 : 2,
+            exhaust = upgrade == Upgrade.None ? false : true,
 
         };
         return data;
@@ -45,8 +45,8 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                     {
                         thing = new Bolt()
                         {
-                        boltType = BType.Hex,
-                        targetPlayer = false
+                            boltType = BType.Chaos,
+                            targetPlayer = false
                         }
                     },
 
@@ -58,23 +58,30 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                 {
                     new ASpawn()
                     {
-                        offset = 3,
+                        offset = 1,
                         thing = new Bolt()
                         {
-                        boltType = BType.Hex,
-                        targetPlayer = false
+                            boltType = BType.Chaos,
+                            targetPlayer = false
                         }
                     },
                     new ASpawn()
                     {
-                        offset = -3,
-                        thing = new Bolt()
+                        offset = 0,
+                        thing = new Sphere()
                         {
-                        boltType = BType.Hex,
-                        targetPlayer = false
+                            sphereType = SType.Chaos,
                         }
                     },
-
+                    new ASpawn()
+                    {
+                        offset = -1,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Chaos,
+                            targetPlayer = false
+                        }
+                    },
                 };
                 actions = cardActionList2;
                 break;
@@ -83,10 +90,27 @@ internal sealed class CardDeeMekoides : Card, IDemoCard
                 {
                     new ASpawn()
                     {
+                        offset = 1,
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Chaos,
+                        }
+                    },
+                    new ASpawn()
+                    {
+                        offset = 0,
                         thing = new Bolt()
                         {
-                        boltType = BType.Witch,
-                        targetPlayer = false
+                            boltType = BType.Chaos,
+                            targetPlayer = false
+                        }
+                    },
+                    new ASpawn()
+                    {
+                        offset = -1,
+                        thing = new Sphere()
+                        {
+                            sphereType = SType.Chaos,
                         }
                     },
                 };

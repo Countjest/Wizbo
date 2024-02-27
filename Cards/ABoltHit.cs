@@ -47,7 +47,7 @@ namespace CountJest.Wizbo
                 }
             }
 
-            if (bolt.boltType == BType.Magic || bolt.boltType == BType.Hex || bolt.boltType == BType.Chaos || bolt.boltType == BType.Witch)
+            if (bolt.boltType == BType.Magic || bolt.boltType == BType.Hex || bolt.boltType == BType.Chaos || bolt.boltType == BType.Fire)
             {
                 flag = true;
                 raycastResult.worldX = bolt.GetBoltImpact(s, c);
