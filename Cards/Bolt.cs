@@ -317,18 +317,6 @@ public class Bolt : StuffBase
     public override List<CardAction>? GetActions(State s, Combat c)
     {
         bool Flag3 = s.time * 2.0 % 1.0 < 0.5;
-        int FDmg = 0;
-        int boostMod = 0;
-        int bonush = 0;
-        if (c.isPlayerTurn == true && s.route is Combat)
-        {
-            if (c.otherShip.statusEffects.Values.Count > 0)
-            {
-                bonush = c.otherShip.Get(Status.heat);
-                boostMod = c.otherShip.Get(Status.boost);
-                FDmg = bonush + boostMod;
-            }
-        }
         Status status = Chaosstatuslist[s.rngActions.NextInt() % Chaosstatuslist.Count];
         return boltType switch
         {
@@ -337,7 +325,7 @@ public class Bolt : StuffBase
                 new ABoltHit
                 {
                     worldX = x,
-                    outgoingDamage = boltData[boltType].baseDamage + FDmg,
+                    outgoingDamage = boltData[boltType].baseDamage + 0,
                     targetPlayer = targetPlayer,
                     status = Status.heat,
                     statusAmount = 1,

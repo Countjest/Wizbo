@@ -1,20 +1,17 @@
 ﻿using FSPRO;
+using System;
 
 namespace CountJest.Wizbo
 {
     public class ABoltHit : CardAction
     {
         public bool targetPlayer;
-
         public int outgoingDamage;
-
         public int worldX;
-
         public Status? status;
-
-        public int statusAmount = 1;
-
+        public int statusAmount;
         public bool weaken;
+        public int FDmg { get; private set; }
 
         public override bool CanSkipTimerIfLastEvent()
         {
@@ -77,8 +74,20 @@ namespace CountJest.Wizbo
                     num = 0;
                 }
 
-                DamageDone dmg = ship.NormalDamage(s, c, num, raycastResult.worldX);
-                EffectSpawner.NonCannonHit(g, targetPlayer, raycastResult, dmg);
+
+                FDmg = ship.Get(Status.heat) + ship.Get(Status.boost);
+
+                if (bolt.boltType is BType.Fire)
+                {
+                    int Fnum = num + FDmg;
+                    DamageDone dmg = ship.NormalDamage(s, c, Fnum, raycastResult.worldX);
+                    EffectSpawner.NonCannonHit(g, targetPlayer, raycastResult, dmg);
+                }
+                else
+                {
+                    DamageDone dmg = ship.NormalDamage(s, c, num, raycastResult.worldX);
+                    EffectSpawner.NonCannonHit(g, targetPlayer, raycastResult, dmg);
+                };
                 Part? partAtWorldX2 = ship.GetPartAtWorldX(raycastResult.worldX);
                 if (partAtWorldX2 != null && partAtWorldX2.stunModifier == PStunMod.stunnable)
                 {

@@ -167,7 +167,8 @@
             "name": "Koolah Limpoo"
         },
         "Hashakalah": {
-            "name": "Hashakalah"
+            "name": "Hashakalah",
+            "descriptionB": "Attack for 1 damage; repeat twice per (3) <c=cardtrait>Exhausted</c> cards"
         },
         "Pocus Crocus": {
             "name": "Pocus Crocus",
@@ -198,7 +199,7 @@
         },
         "Yeet": {
             "name": "Yeet",
-            "descriptionB": "Attack for 1 damage; repeat twice per <c=cardtrait>Exhausted</c> card"
+            "descriptionB": "Attack for 1 damage; repeat twice per (3) <c=cardtrait>Exhausted</c> cards"
         },
         "Kablooie Pachinko": {
             "name": "Kablooie Pachinko"

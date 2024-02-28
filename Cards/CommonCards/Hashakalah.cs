@@ -1,4 +1,6 @@
-﻿using Nickel;
+﻿using CountJest.Wizbo.Actions;
+using Nickel;
+using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Reflection;
@@ -27,12 +29,15 @@ internal sealed class CardHashakalah : Card, IDemoCard
         {
             cost = upgrade == Upgrade.B ? 2 : 1,
             exhaust = upgrade == Upgrade.B ? true : false,
+            description = upgrade == Upgrade.B ? ModEntry.Instance.Localizations.Localize(["card", "Hashakalah", "descriptionB"]) : null,
         };
         return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        var LR = s.ship.Get(Status.heat);
+        Icon value = default(Icon);
+        value.path = ModEntry.Instance.HboltIcon.Sprite;
+        var LR = s.ship.Get(Status.heat)+4;
         var L = LR * (-1);
         var R = LR * (1);
         List<CardAction> actions = new();
@@ -116,10 +121,6 @@ internal sealed class CardHashakalah : Card, IDemoCard
                         statusAmount = 4,
                         targetPlayer = true,
                     },
-                    new AVariableHint()
-                    {
-                        status = Status.heat,
-                    },
                     new ASpawn()
                     {
                         offset = (L + R),
@@ -128,10 +129,10 @@ internal sealed class CardHashakalah : Card, IDemoCard
                             boltType= BType.Fire,
                             targetPlayer = false,
                         },
-                        xHint = 1
+                        xHint = 1,
                     }
                 };
-                for (int i = 0; i < (s.ship.Get(Status.heat)); i++)
+                for (int i = 0; i < (s.ship.Get(Status.heat)+4); i++)
                 {
                     L++;
                     cardActionList3.Add(ModEntry.Instance.KokoroApi.ActionCosts.Make(
