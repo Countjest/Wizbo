@@ -168,7 +168,7 @@
         },
         "Hashakalah": {
             "name": "Hashakalah",
-            "descriptionB": "Gain 4 <c=status>Heat</c> and spawn an offset <c=midrow>Firebolt</c> for each heat you have"
+            "descriptionB": "Gain 2 <c=status>Heat</c> and spawn an offset <c=midrow>Firebolt</c> for each heat you have"
         },
         "Pocus Crocus": {
             "name": "Pocus Crocus",

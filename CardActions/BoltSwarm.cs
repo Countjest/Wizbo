@@ -12,48 +12,51 @@ public class BoltSwarm : CardAction
     {
         if (c.isPlayerTurn == true)
         {
-            int LR = s.ship.Get(Status.heat) + 4;
-            int L = LR * (-1);
-            int R = LR * (1);
-            for (int i = LR; i > 0 ; i--)
+            int LR = s.ship.Get(Status.heat) + 2;
+            int L = (LR * (-1))/2;
+            int R = (LR * (1))/2;
+            for (int i = LR; i > 0 ; i-=2)
             {
                 L++;
-                c.QueueImmediate(
-                new ASpawn()
+                if (L < 0)
                 {
-                    timer = 0,
-                    offset = L,
-                    thing = new Bolt()
+                    c.QueueImmediate(
+                    new ASpawn()
                     {
-                        boltType = BType.Fire,
-                        targetPlayer = false,
-                    },
-                    omitFromTooltips = true,
-                });
-                R--;
-                c.QueueImmediate(
-                new ASpawn()
-                {
-                    offset = R,
-                    thing = new Bolt()
-                    {
-                        boltType = BType.Fire,
-                        targetPlayer = false,
-                    },
-                    omitFromTooltips = true,
-                });
-            }
-            if (LR == 0)
-            {
-                c.Queue(
-                    new AStatus()
-                    {
-                        status = Status.heat,
-                        statusAmount = 0,
-                        targetPlayer = true,
-                        mode = AStatusMode.Set,
+                        timer = 0,
+                        offset = L,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false,
+                        },
+                        omitFromTooltips = true,
                     });
+                }
+                R--;
+                if (R > 0)
+                {
+                    c.QueueImmediate(
+                    new ASpawn()
+                    {
+                        offset = R,
+                        thing = new Bolt()
+                        {
+                            boltType = BType.Fire,
+                            targetPlayer = false,
+                        },
+                        omitFromTooltips = true,
+                    });
+                }
             }
+            c.QueueImmediate(
+                new AStatus()
+                {
+                    status = Status.heat,
+                    statusAmount = 0,
+                    targetPlayer = true,
+                    mode = AStatusMode.Set
+                });
         }
     }
 }

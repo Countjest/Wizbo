@@ -17,6 +17,12 @@
 	  <Compile Remove="Cards\UncommonCards\oldFiddleDeeDoop.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Content Include="bin\Debug\net8.0\Wizbo.deps.json" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="bin\Debug\net8.0\Wizbo.dll" />
+	</ItemGroup>
+	<ItemGroup>
 	  <PackageReference Include="Nickel.ModBuildConfig" Version="0.8.0-alpha1" />
 	</ItemGroup>
 	<ItemGroup>
@@ -26,5 +32,8 @@
 	  <Reference Update="CobaltCore">
 	    <Private>True</Private>
 	  </Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="bin\Release\net8.0\" />
 	</ItemGroup>
 </Project>

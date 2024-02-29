@@ -113,7 +113,7 @@ internal sealed class CardHashakalah : Card, IDemoCard
                     new AStatus()
                     {
                         status = Status.heat,
-                        statusAmount = 4,
+                        statusAmount = 2,
                         targetPlayer = true,
                     },
                     new BoltSwarm()
