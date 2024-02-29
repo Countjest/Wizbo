@@ -35,11 +35,6 @@ internal sealed class CardHashakalah : Card, IDemoCard
     }
     public override List<CardAction> GetActions(State s, Combat c)
     {
-        Icon value = default(Icon);
-        value.path = ModEntry.Instance.HboltIcon.Sprite;
-        var LR = s.ship.Get(Status.heat)+4;
-        var L = LR * (-1);
-        var R = LR * (1);
         List<CardAction> actions = new();
         switch (upgrade)
         {
@@ -121,57 +116,19 @@ internal sealed class CardHashakalah : Card, IDemoCard
                         statusAmount = 4,
                         targetPlayer = true,
                     },
+                    new BoltSwarm()
+                    {
+                    },
                     new ASpawn()
                     {
-                        offset = (L + R),
+                        offset = (0),
                         thing = new Bolt()
                         {
                             boltType= BType.Fire,
                             targetPlayer = false,
                         },
-                        xHint = 1,
-                    }
+                    },
                 };
-                for (int i = 0; i < (s.ship.Get(Status.heat)+4); i++)
-                {
-                    L++;
-                    cardActionList3.Add(ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                                Status.heat, target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite,
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite),
-                            amount: 1),
-                        new ASpawn()
-                        {
-                            timer = 0,
-                            offset = L,
-                            thing = new Bolt()
-                            {
-                                boltType = BType.Fire,
-                                targetPlayer = false,
-                            },
-                            omitFromTooltips = true,
-                        }));
-                    R--;
-                    cardActionList3.Add(ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                        ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                            ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                                Status.heat, target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                                    ModEntry.Instance.HeatCostUnsatisfied.Sprite,
-                                    ModEntry.Instance.HeatCostSatisfied.Sprite),
-                            amount: 1),
-                        new ASpawn()
-                        {
-                            offset = R,
-                            thing = new Bolt()
-                            {
-                                boltType = BType.Fire,
-                                targetPlayer = false,
-                            },
-                            omitFromTooltips = true,
-                        }));
-                }
                 actions = cardActionList3;
                 break;
         }

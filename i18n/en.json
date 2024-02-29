@@ -168,7 +168,7 @@
         },
         "Hashakalah": {
             "name": "Hashakalah",
-            "descriptionB": "Attack for 1 damage; repeat twice per (3) <c=cardtrait>Exhausted</c> cards"
+            "descriptionB": "Gain 4 <c=status>Heat</c> and spawn an offset <c=midrow>Firebolt</c> for each heat you have"
         },
         "Pocus Crocus": {
             "name": "Pocus Crocus",
